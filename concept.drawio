@@ -1,100 +1,100 @@
 <mxfile host="65bd71144e">
     <diagram id="gpGpZgoTjZDdY0LVgVNX" name="Page-1">
-        <mxGraphModel dx="1122" dy="907" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+        <mxGraphModel dx="828" dy="612" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="2" value="Website" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="2" value="Website" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="590" y="70" width="240" height="370" as="geometry"/>
                 </mxCell>
-                <mxCell id="12" value="User Activity" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                <mxCell id="12" value="User Activity" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="2" vertex="1">
                     <mxGeometry x="20" y="50" width="140" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="13" value="List Services" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="12">
+                <mxCell id="13" value="List Services" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="12" vertex="1">
                     <mxGeometry y="30" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="Browse services" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="12">
+                <mxCell id="14" value="Browse services" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="12" vertex="1">
                     <mxGeometry y="60" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="15" value="view/gain service SturdyRefs" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="12">
+                <mxCell id="15" value="view/gain service SturdyRefs" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="12" vertex="1">
                     <mxGeometry y="90" width="140" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="62" value="handle user authenticaton LDAP/AD" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="2">
+                <mxCell id="62" value="handle user authenticaton LDAP/AD" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="2" vertex="1">
                     <mxGeometry x="10" y="200" width="220" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="63" value="&lt;br&gt;&amp;nbsp;user db&lt;br&gt;store a token per user, and web view stuff" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                <mxCell id="63" value="&lt;br&gt;&amp;nbsp;user db&lt;br&gt;store a token per user, and web view stuff" style="rounded=0;whiteSpace=wrap;html=1;" parent="2" vertex="1">
                     <mxGeometry x="10" y="250" width="220" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="64" value="" style="shape=datastore;whiteSpace=wrap;html=1;" vertex="1" parent="2">
+                <mxCell id="64" value="" style="shape=datastore;whiteSpace=wrap;html=1;" parent="2" vertex="1">
                     <mxGeometry x="20" y="260" width="40" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="3" value="Registry-Server/Service Gateway" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="3" value="Registry-Server/Service Gateway" style="swimlane;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="10" y="40" width="490" height="525" as="geometry"/>
                 </mxCell>
-                <mxCell id="24" value="Web View Cap" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="3">
+                <mxCell id="24" value="Web View Cap" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="3" vertex="1">
                     <mxGeometry x="250" y="40" width="230" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="25" value="Provide service information to website&lt;br&gt;&lt;br&gt;Provide sturdy ref" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="24">
+                <mxCell id="25" value="Provide service information to website&lt;br&gt;&lt;br&gt;Provide sturdy ref" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="24" vertex="1">
                     <mxGeometry y="30" width="230" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="26" value="Tunnel caps between services and website to enable servives to give their specific information to the website" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="24">
+                <mxCell id="26" value="Tunnel caps between services and website to enable servives to give their specific information to the website" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="24" vertex="1">
                     <mxGeometry y="90" width="230" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="61" value="" style="endArrow=classic;startArrow=classic;html=1;" edge="1" parent="24">
+                <mxCell id="61" value="" style="endArrow=classic;startArrow=classic;html=1;" parent="24" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="90" y="185" as="sourcePoint"/>
                         <mxPoint x="90" y="155" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="35" value="strudyRef storage db:&lt;br&gt;store&lt;br&gt;sturyRef - service + details payload + user auth token" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="3">
+                <mxCell id="35" value="Storage Cap + db:&lt;br&gt;store&lt;br&gt;sturyRef - service + details payload + user auth token" style="rounded=0;whiteSpace=wrap;html=1;" parent="3" vertex="1">
                     <mxGeometry x="250" y="235" width="230" height="100" as="geometry"/>
                 </mxCell>
-                <mxCell id="36" value="SturdyRef Resolver Cap" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="3">
+                <mxCell id="36" value="SturdyRef Resolver Cap" style="swimlane;whiteSpace=wrap;html=1;" parent="3" vertex="1">
                     <mxGeometry x="250" y="385" width="230" height="115" as="geometry"/>
                 </mxCell>
-                <mxCell id="37" value="resolve sturdy ref by creating a cap" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="36">
+                <mxCell id="37" value="resolve sturdy ref by creating a cap" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="36" vertex="1">
                     <mxGeometry x="10" y="40" width="210" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="38" value="tunnel caps from service to user" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="36">
+                <mxCell id="38" value="tunnel caps from service to user" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="36" vertex="1">
                     <mxGeometry x="20" y="70" width="190" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="47" value="" style="shape=datastore;whiteSpace=wrap;html=1;" vertex="1" parent="3">
+                <mxCell id="47" value="" style="shape=datastore;whiteSpace=wrap;html=1;" parent="3" vertex="1">
                     <mxGeometry x="260" y="245" width="40" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="60" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="3" source="35" target="36">
+                <mxCell id="60" value="" style="endArrow=classic;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="3" source="35" target="36" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="470" y="305" as="sourcePoint"/>
                         <mxPoint x="520" y="255" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="30" value="Service Spawner" style="swimlane;whiteSpace=wrap;html=1;" vertex="1" parent="3">
+                <mxCell id="30" value="Service Spawner" style="swimlane;whiteSpace=wrap;html=1;" parent="3" vertex="1">
                     <mxGeometry x="10" y="40" width="220" height="230" as="geometry"/>
                 </mxCell>
-                <mxCell id="39" value="list possible services" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="30">
+                <mxCell id="39" value="list possible services" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="30" vertex="1">
                     <mxGeometry x="5" y="40" width="130" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="42" value="start service if requested by Resolver" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="30">
+                <mxCell id="42" value="start service if requested by Resolver" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="30" vertex="1">
                     <mxGeometry y="140" width="220" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="44" value="stop idle services/&amp;nbsp; &lt;br&gt;services without live caps" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="30">
+                <mxCell id="44" value="stop idle services/&amp;nbsp; &lt;br&gt;services without live caps" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="30" vertex="1">
                     <mxGeometry x="10" y="165" width="160" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="45" value="ViewerCap:" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="30">
+                <mxCell id="45" value="ViewerCap:" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="30" vertex="1">
                     <mxGeometry x="-10" y="20" width="90" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="41" value="start service if requested by website" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="30">
+                <mxCell id="41" value="start service if requested by website" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="30" vertex="1">
                     <mxGeometry x="5" y="60" width="210" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="46" value="ResolverCap:" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="30">
+                <mxCell id="46" value="ResolverCap:" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="30" vertex="1">
                     <mxGeometry x="-10" y="120" width="100" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="68" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;exitX=1.014;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="3" source="41" target="26">
+                <mxCell id="68" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;exitX=1.014;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;" parent="3" source="41" target="26" edge="1">
                     <mxGeometry width="100" height="100" relative="1" as="geometry">
                         <mxPoint x="470" y="320" as="sourcePoint"/>
                         <mxPoint x="570" y="220" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="69" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;" edge="1" parent="3">
+                <mxCell id="69" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;fillColor=#f5f5f5;gradientColor=#b3b3b3;strokeColor=#666666;" parent="3" edge="1">
                     <mxGeometry width="100" height="100" relative="1" as="geometry">
                         <mxPoint x="190" y="270" as="sourcePoint"/>
                         <mxPoint x="250" y="420" as="targetPoint"/>
@@ -103,58 +103,58 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="4" value="" style="endArrow=none;dashed=1;html=1;" edge="1" parent="1">
+                <mxCell id="4" value="" style="endArrow=none;dashed=1;html=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="510" y="890" as="sourcePoint"/>
                         <mxPoint x="510" y="10" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="6" value="" style="endArrow=none;dashed=1;html=1;" edge="1" parent="1">
+                <mxCell id="6" value="" style="endArrow=none;dashed=1;html=1;" parent="1" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="510" y="490" as="sourcePoint"/>
                         <mxPoint x="860" y="490" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="8" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" vertex="1" parent="1">
+                <mxCell id="8" value="Actor" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" parent="1" vertex="1">
                     <mxGeometry x="760" y="590" width="30" height="55" as="geometry"/>
                 </mxCell>
-                <mxCell id="9" value="use caps in scrip" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" vertex="1" parent="1">
+                <mxCell id="9" value="use caps in scrip" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
                     <mxGeometry x="560" y="700" width="120" height="150" as="geometry"/>
                 </mxCell>
-                <mxCell id="18" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="8">
+                <mxCell id="18" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="8" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="510" y="490" as="sourcePoint"/>
                         <mxPoint x="775" y="430" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="19" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.9;exitY=0.4;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="9" target="8">
+                <mxCell id="19" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.9;exitY=0.4;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="9" target="8" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="510" y="490" as="sourcePoint"/>
                         <mxPoint x="560" y="440" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="28" value="model run: use a user script or flow,&lt;br&gt;resolve the cap over Resolver&lt;br&gt;get direct live link cap from services" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" vertex="1" parent="1">
+                <mxCell id="28" value="model run: use a user script or flow,&lt;br&gt;resolve the cap over Resolver&lt;br&gt;get direct live link cap from services" style="shape=note;whiteSpace=wrap;html=1;backgroundOutline=1;darkOpacity=0.05;" parent="1" vertex="1">
                     <mxGeometry x="30" y="730" width="210" height="180" as="geometry"/>
                 </mxCell>
-                <mxCell id="32" value="&lt;h1&gt;The Website&lt;/h1&gt;&lt;div&gt;start with Web View Cap&lt;/div&gt;&lt;div&gt;the user should be able to list all services, and than browse into them, select data or service and generate a not yet alive capabitity as sturdyRef, that he may use in scripts&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;The user should also be able to view, edit and delete their caps.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;That requires User management and auth... maybe we can keep that on the website&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                <mxCell id="32" value="&lt;h1&gt;The Website&lt;/h1&gt;&lt;div&gt;start with Web View Cap&lt;/div&gt;&lt;div&gt;the user should be able to list all services, and than browse into them, select data or service and generate a not yet alive capabitity as sturdyRef, that he may use in scripts&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;The user should also be able to view, edit and delete their caps.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;That requires User management and auth... maybe we can keep that on the website&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="840" y="70" width="220" height="260" as="geometry"/>
                 </mxCell>
-                <mxCell id="48" value="&lt;h1&gt;The User Script&lt;/h1&gt;&lt;p&gt;the user can add his aquired surdy ref to his script. On execution the script will resolve the sturdy ref by connecting to the registry resolver, tunneling the connection over the resolver.&lt;/p&gt;&lt;p&gt;The user may deploy the script in the same environment as the services.&amp;nbsp;&lt;/p&gt;&lt;p&gt;It than should be possible to establish a direct link to a service&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                <mxCell id="48" value="&lt;h1&gt;The User Script&lt;/h1&gt;&lt;p&gt;the user can add his aquired surdy ref to his script. On execution the script will resolve the sturdy ref by connecting to the registry resolver, tunneling the connection over the resolver.&lt;/p&gt;&lt;p&gt;The user may deploy the script in the same environment as the services.&amp;nbsp;&lt;/p&gt;&lt;p&gt;It than should be possible to establish a direct link to a service&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="855" y="500" width="190" height="250" as="geometry"/>
                 </mxCell>
-                <mxCell id="51" value="" style="endArrow=classic;html=1;entryX=0;entryY=0;entryDx=210;entryDy=105;entryPerimeter=0;exitX=-0.03;exitY=0.907;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="9" target="28">
+                <mxCell id="51" value="" style="endArrow=classic;html=1;entryX=0;entryY=0;entryDx=210;entryDy=105;entryPerimeter=0;exitX=-0.03;exitY=0.907;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="9" target="28" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="480" y="360" as="sourcePoint"/>
                         <mxPoint x="530" y="310" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="55" value="" style="endArrow=classic;html=1;entryX=0.095;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="21" target="28">
+                <mxCell id="55" value="" style="endArrow=classic;html=1;entryX=0.095;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.25;exitY=1;exitDx=0;exitDy=0;" parent="1" source="21" target="28" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="480" y="350" as="sourcePoint"/>
                         <mxPoint x="530" y="300" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="56" value="" style="endArrow=classic;startArrow=classic;html=1;" edge="1" parent="1" source="28">
+                <mxCell id="56" value="" style="endArrow=classic;startArrow=classic;html=1;" parent="1" source="28" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="480" y="340" as="sourcePoint"/>
                         <mxPoint x="360" y="540" as="targetPoint"/>
@@ -163,19 +163,19 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="65" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;" edge="1" parent="1" source="25">
+                <mxCell id="65" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;fillColor=#f8cecc;gradientColor=#ea6b66;strokeColor=#b85450;" parent="1" source="25" edge="1">
                     <mxGeometry width="100" height="100" relative="1" as="geometry">
                         <mxPoint x="450" y="360" as="sourcePoint"/>
                         <mxPoint x="590" y="140" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="20" value="clim service 1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="20" value="clim service 1" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="20" y="570" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="21" value="soil service 1" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+                <mxCell id="21" value="soil service 1" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
                     <mxGeometry x="20" y="650" width="120" height="60" as="geometry"/>
                 </mxCell>
-                <mxCell id="74" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.657;entryY=0.011;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="20" target="28">
+                <mxCell id="74" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.657;entryY=0.011;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="20" target="28" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="360" y="530" as="sourcePoint"/>
                         <mxPoint x="410" y="480" as="targetPoint"/>
@@ -184,13 +184,13 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="76" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="20">
+                <mxCell id="76" value="" style="endArrow=classic;startArrow=classic;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" parent="1" source="20" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="360" y="530" as="sourcePoint"/>
                         <mxPoint x="80" y="310" as="targetPoint"/>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="77" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="21" target="30">
+                <mxCell id="77" value="" style="endArrow=classic;startArrow=classic;html=1;entryX=0.75;entryY=1;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="21" target="30" edge="1">
                     <mxGeometry width="50" height="50" relative="1" as="geometry">
                         <mxPoint x="180" y="680" as="sourcePoint"/>
                         <mxPoint x="170" y="310" as="targetPoint"/>
@@ -199,14 +199,17 @@
                         </Array>
                     </mxGeometry>
                 </mxCell>
-                <mxCell id="78" value="&lt;h1&gt;TLS ++&lt;/h1&gt;&lt;div&gt;both sides need to authenticate&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                <mxCell id="78" value="&lt;h1&gt;TLS ++&lt;/h1&gt;&lt;div&gt;both sides need to authenticate&lt;/div&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
                     <mxGeometry x="850" y="790" width="190" height="120" as="geometry"/>
                 </mxCell>
-                <mxCell id="80" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;" edge="1" parent="1">
+                <mxCell id="80" value="" style="shape=flexArrow;endArrow=classic;startArrow=classic;html=1;" parent="1" edge="1">
                     <mxGeometry width="100" height="100" relative="1" as="geometry">
                         <mxPoint x="940" y="810" as="sourcePoint"/>
                         <mxPoint x="1030" y="810" as="targetPoint"/>
                     </mxGeometry>
+                </mxCell>
+                <mxCell id="81" value="&lt;h1&gt;Questions&lt;/h1&gt;&lt;p&gt;how do we allow users to commit their scripts to github, without exposing the keys to public use?&lt;/p&gt;&lt;p&gt;- Sign non public sturdyRefs, keep a list of valid signatures.&amp;nbsp;&lt;/p&gt;&lt;p&gt;- Do not put sturdyRefs into a script, use an alias, that is resolved before sending the sturdyRef&lt;/p&gt;&lt;p&gt;- get a global cap, like an api token, that is required when connecting&amp;nbsp; to the Resolver, before transmitting&lt;/p&gt;" style="text;html=1;strokeColor=none;fillColor=none;spacing=5;spacingTop=-20;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="1120" y="80" width="190" height="350" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
