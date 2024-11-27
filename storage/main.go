@@ -81,7 +81,7 @@ func dbRequestScheduler(db *sql.DB, requestChan <-chan dbRequest) {
 			request.responseChan <- dbResponse{err: err}
 		case getSturdyRefRequest:
 			serviceId, payload, authToken, err := getSturdyRef(db, request.sturdyRef)
-			request.responseChan <- dbResponse{serviceId: []string{serviceId}, payload: []string{payload}, authToken: []string{authToken}, err: err}
+			request.responseChan <- dbResponse{sturdyRefs: []*sturdyRefStored{{payload: payload, serviceId: serviceId, authToken: authToken}}, err: err}
 		case deleteSturdyRefRequest:
 			err := deleteSturdyRef(db, request.sturdyRef)
 			request.responseChan <- dbResponse{err: err}
@@ -115,13 +115,16 @@ type dbRequest struct {
 	authToken    string
 	responseChan chan dbResponse
 }
+type sturdyRefStored struct {
+	sturdyRef string
+	serviceId string
+	payload   string
+	authToken string
+}
 
 // db response
 type dbResponse struct {
-	sturdyRefs []string
-	serviceId  []string
-	payload    []string
-	authToken  []string
+	sturdyRefs []*sturdyRefStored
 	err        error
 }
 
@@ -131,7 +134,6 @@ func createDB(dbPath string) (*sql.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-	defer db.Close()
 
 	// create the tables
 	_, err = db.Exec(`
@@ -192,7 +194,7 @@ func deleteSturdyRef(db *sql.DB, sturdyRef string) error {
 }
 
 // list all sturdyrefs in the database
-func listSturdyRefs(db *sql.DB) ([]string, error) {
+func listSturdyRefs(db *sql.DB) ([]*sturdyRefStored, error) {
 
 	rows, err := db.Query(`
 		SELECT sturdyRef, serviceId, payload, authToken
@@ -203,20 +205,24 @@ func listSturdyRefs(db *sql.DB) ([]string, error) {
 	}
 	defer rows.Close()
 
-	var sturdyRefs []string
+	sturdyRefs := []*sturdyRefStored{}
 	for rows.Next() {
-		var sturdyRef string
-		err = rows.Scan(&sturdyRef)
+		sturdyRefStored := &sturdyRefStored{}
+		err = rows.Scan(
+			&sturdyRefStored.sturdyRef,
+			&sturdyRefStored.serviceId,
+			&sturdyRefStored.payload,
+			&sturdyRefStored.authToken)
 		if err != nil {
 			return nil, err
 		}
-		sturdyRefs = append(sturdyRefs, sturdyRef)
+		sturdyRefs = append(sturdyRefs, sturdyRefStored)
 	}
 	return sturdyRefs, nil
 }
 
 // list sturdyrefs by auth token
-func listSturdyRefsByAuthToken(db *sql.DB, authToken string) ([]string, error) {
+func listSturdyRefsByAuthToken(db *sql.DB, authToken string) ([]*sturdyRefStored, error) {
 	rows, err := db.Query(`
 		SELECT sturdyRef, serviceId, payload
 		FROM sturdyrefs
@@ -227,14 +233,17 @@ func listSturdyRefsByAuthToken(db *sql.DB, authToken string) ([]string, error) {
 	}
 	defer rows.Close()
 
-	var sturdyRefs []string
+	sturdyRefs := []*sturdyRefStored{}
 	for rows.Next() {
-		var sturdyRef string
-		err = rows.Scan(&sturdyRef)
+		sturdyRefStored := &sturdyRefStored{}
+		err = rows.Scan(
+			&sturdyRefStored.sturdyRef,
+			&sturdyRefStored.serviceId,
+			&sturdyRefStored.payload)
 		if err != nil {
 			return nil, err
 		}
-		sturdyRefs = append(sturdyRefs, sturdyRef)
+		sturdyRefs = append(sturdyRefs, sturdyRefStored)
 	}
 	return sturdyRefs, nil
 }

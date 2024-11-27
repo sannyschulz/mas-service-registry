@@ -193,19 +193,19 @@ func (s *storageEditor) GetSturdyRef(ctx context.Context, call capnp_service_reg
 	if err != nil {
 		return err
 	}
-	err = sref.SetSturdyRefID(response.sturdyRefs[0])
+	err = sref.SetSturdyRefID(response.sturdyRefs[0].sturdyRef)
 	if err != nil {
 		return err
 	}
-	err = sref.SetServiceID(response.serviceId[0])
+	err = sref.SetServiceID(response.sturdyRefs[0].serviceId)
 	if err != nil {
 		return err
 	}
-	err = sref.SetPayload(response.payload[0])
+	err = sref.SetPayload(response.sturdyRefs[0].payload)
 	if err != nil {
 		return err
 	}
-	err = sref.SetUsersignature(response.authToken[0])
+	err = sref.SetUsersignature(response.sturdyRefs[0].authToken)
 	if err != nil {
 		return err
 	}
@@ -248,19 +248,19 @@ func (s *storageEditor) ListSturdyRefsForUser(ctx context.Context, call capnp_se
 		if err != nil {
 			return err
 		}
-		err = sturdyRefStored.SetPayload(response.payload[i])
+		err = sturdyRefStored.SetPayload(sref.payload)
 		if err != nil {
 			return err
 		}
-		err = sturdyRefStored.SetServiceID(response.serviceId[i])
+		err = sturdyRefStored.SetServiceID(sref.serviceId)
 		if err != nil {
 			return err
 		}
-		err = sturdyRefStored.SetSturdyRefID(sref)
+		err = sturdyRefStored.SetSturdyRefID(sref.sturdyRef)
 		if err != nil {
 			return err
 		}
-		err = sturdyRefStored.SetUsersignature(response.authToken[i])
+		err = sturdyRefStored.SetUsersignature(sref.authToken)
 		if err != nil {
 			return err
 		}
@@ -300,19 +300,19 @@ func (s *storageEditor) ListAllSturdyRefs(ctx context.Context, call capnp_servic
 		if err != nil {
 			return err
 		}
-		err = sturdyRefStored.SetPayload(response.payload[i])
+		err = sturdyRefStored.SetPayload(sref.payload)
 		if err != nil {
 			return err
 		}
-		err = sturdyRefStored.SetServiceID(response.serviceId[i])
+		err = sturdyRefStored.SetServiceID(sref.serviceId)
 		if err != nil {
 			return err
 		}
-		err = sturdyRefStored.SetSturdyRefID(sref)
+		err = sturdyRefStored.SetSturdyRefID(sref.sturdyRef)
 		if err != nil {
 			return err
 		}
-		err = sturdyRefStored.SetUsersignature(response.authToken[i])
+		err = sturdyRefStored.SetUsersignature(sref.authToken)
 		if err != nil {
 			return err
 		}
