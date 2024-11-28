@@ -1,12 +1,12 @@
-Build instructions for the storage module.
+# Build instructions for the storage module
 
-requires: sqlite3 
+requires: sqlite3
 
-On Windows:
+**On Windows:**
 
 you need to install gcc first. You can use the mingw-w64 package from the MSYS2 project.
 
-download and install MSYS2 from https://www.msys2.org/
+download and install MSYS2 from [https://www.msys2.org/](https://www.msys2.org/)
 msys2-base-x86_64-*.tar.zst: Same as .sfx.exe but as an ZSTD archive
 unpack
 move folder to C:\msys64

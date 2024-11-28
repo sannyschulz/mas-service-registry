@@ -70,6 +70,11 @@ func listenForRequests(config *commonlib.Config, storageCap, spawnerCap *capnp.C
 	port := config.Data["Service"].(map[string]interface{})["Port"].(int)
 	restorer := commonlib.NewRestorer(host, uint16(port))
 
+	resolveHandler := &resolveHandler{
+		storageCap: *storageCap,
+		spawnerCap: *spawnerCap,
+	}
+	restorer.AddForwardingHandler(resolveHandler)
 	// sturdy ref resolving part
 
 	// start listening for connections
