@@ -2,6 +2,7 @@ package main
 
 import (
 	"errors"
+	"fmt"
 	"time"
 
 	"capnproto.org/go/capnp/v3"
@@ -9,28 +10,72 @@ import (
 )
 
 type SpawnManager struct {
-	runningServices       map[string]capnp.Client          // serviceId -> service Capability
+	servicesByToken     map[string]*RegisteredService   // serviceId -> RegisteredService
+	servicesByServiceId map[string][]*RegisteredService // token -> RegisteredService
+
 	incommingRegistration map[string]*awaitingRegistration // token -> awaitingRegistration
-	tokenToServiceId      map[string]string                // token -> serviceId
-	reqWaitingForService  map[string][]*requestServiceMsgC // serviceId -> requestServiceMsgC list
+
+	reqWaitingForService map[string][]*requestServiceMsg // serviceId -> requestServiceMsgC list
 
 	serviceConfig           map[string]map[string]interface{} // serviceId -> serviceConfig(to start the service)
-	requestSpawnMsgC        chan *requestSpawnMsgC            // request to spawn a service (triggered from inside)
-	requestServiceMsgC      chan *requestServiceMsgC          // request to get a service (triggered from outside)
-	registerServiceMsgC     chan *registerServiceMsgC         // registration of a service (triggered from outside)
-	failRegisterServiceMsgC chan *failRegisterServiceMsgC     // failed registration of a service (triggered from inside)
+	requestSpawnMsgC        chan *requestSpawnMsg             // request to spawn a service (triggered from inside)
+	requestServiceMsgC      chan *requestServiceMsg           // request to get a service (triggered from outside)
+	registerServiceMsgC     chan *registerServiceMsg          // registration of a service (triggered from outside)
+	failRegisterServiceMsgC chan *failRegisterServiceMsg      // failed registration of a service (triggered from inside)
+	connectionLostMsgC      chan *connectionLostMsg           // connection lost to a service (triggered from inside)
+}
+
+type RegisteredService struct {
+	serviceId       string
+	token           string
+	state           state
+	bootstrapClient capnp.Client
+}
+
+type state int
+
+const (
+	running state = iota
+	awaitRegistration
+	missconfigured
+	disconnected
+	stopped
+)
+
+func (sm *SpawnManager) addNewService(serviceId string, serviceConfig map[string]interface{}) (*RegisteredService, error) {
+
+	if _, ok := sm.serviceConfig[serviceId]; !ok {
+		return nil, errors.New("Service configuration not found")
+	}
+	tokenGuid := uuid.New()
+	token := tokenGuid.String()
+	service := &RegisteredService{
+		serviceId: serviceId,
+		token:     token,
+		state:     awaitRegistration,
+	}
+	sm.incommingRegistration[token] = &awaitingRegistration{
+		service:   service,
+		timestamp: time.Now(),
+		err:       nil,
+	}
+	sm.servicesByToken[token] = service
+	sm.servicesByServiceId[serviceId] = append(sm.servicesByServiceId[serviceId], service)
+
+	return service, nil
 }
 
 func NewSpawnManager(serviceConfig map[string]map[string]interface{}) *SpawnManager {
 	sp := &SpawnManager{
-		runningServices:       make(map[string]capnp.Client),
-		incommingRegistration: make(map[string]*awaitingRegistration),
-		tokenToServiceId:      map[string]string{},
-		reqWaitingForService:  map[string][]*requestServiceMsgC{},
-		serviceConfig:         serviceConfig,
-		requestSpawnMsgC:      make(chan *requestSpawnMsgC),
-		requestServiceMsgC:    make(chan *requestServiceMsgC),
-		registerServiceMsgC:   make(chan *registerServiceMsgC),
+		servicesByToken:         map[string]*RegisteredService{},
+		servicesByServiceId:     map[string][]*RegisteredService{},
+		incommingRegistration:   make(map[string]*awaitingRegistration),
+		reqWaitingForService:    map[string][]*requestServiceMsg{},
+		serviceConfig:           serviceConfig,
+		requestSpawnMsgC:        make(chan *requestSpawnMsg),
+		requestServiceMsgC:      make(chan *requestServiceMsg),
+		registerServiceMsgC:     make(chan *registerServiceMsg),
+		failRegisterServiceMsgC: make(chan *failRegisterServiceMsg),
 	}
 	go sp.messageHandlerLoop()
 
@@ -42,46 +87,56 @@ func (sm *SpawnManager) messageHandlerLoop() {
 	for {
 		select {
 		case req := <-sm.requestSpawnMsgC:
-			tokenGuid := uuid.New()
-			token := tokenGuid.String()
-			sm.incommingRegistration[token] = &awaitingRegistration{
-				serviceId:        req.serviceId,
-				registationToken: token,
-				timestamp:        time.Now(),
-				err:              nil,
+			// spawn a new service
+			service, err := sm.addNewService(req.serviceId, sm.serviceConfig[req.serviceId])
+			if err != nil {
+				req.answerToken <- ""
+			} else {
+				req.answerToken <- service.token
 			}
-			// token to serviceId
-			sm.tokenToServiceId[token] = req.serviceId
-			req.answerToken <- token
 
 		case req := <-sm.requestServiceMsgC:
-			if service, ok := sm.runningServices[req.serviceId]; ok {
-				req.answer <- &requestAnswer{
-					service: service,
-					err:     nil,
-				}
-			} else {
-				// check if serviceId exists in serviceConfig
-				if _, ok := sm.serviceConfig[req.serviceId]; !ok {
-					req.answer <- &requestAnswer{
-						service: capnp.ErrorClient(errors.New("Service not found")),
-						err:     errors.New("Service not found"),
-					}
-				} else {
-					// add to waiting list
-					sm.reqWaitingForService[req.serviceId] = append(sm.reqWaitingForService[req.serviceId], req)
-					if _, ok := sm.incommingRegistration[req.serviceId]; !ok {
-						// service not running
-						// spawn service
-						go sm.spawnService(req.serviceId, sm.serviceConfig[req.serviceId])
-						// await for registration
+			found := false
+			if services, ok := sm.servicesByServiceId[req.serviceId]; ok && len(services) > 0 {
+				// if service is running, return first running service
+				for _, service := range services {
+					switch service.state {
+					// TODO: if multiple services are running, return the one with the least load
+					case running:
+						found = true
+						req.answer <- &requestAnswer{
+							service: service.bootstrapClient,
+							err:     nil,
+						}
+						break
+					case awaitRegistration:
+						found = true
+						// add to waiting list
+						sm.reqWaitingForService[req.serviceId] = append(sm.reqWaitingForService[req.serviceId], req)
+						break
+					case missconfigured:
+						found = true
+						// service will never be available, return error
+						req.answer <- &requestAnswer{
+							service: capnp.ErrorClient(errors.New("Service missconfigured")),
+							err:     errors.New("Service missconfigured"),
+						}
+						break
 					}
 				}
 			}
+			if !found {
+				// if service is not running, add to waiting list
+				sm.reqWaitingForService[req.serviceId] = append(sm.reqWaitingForService[req.serviceId], req)
+				go sm.spawnService(req.serviceId, sm.serviceConfig[req.serviceId])
+			}
+
 		case registration := <-sm.registerServiceMsgC:
 			if await, ok := sm.incommingRegistration[registration.serviceToken]; ok {
-				if await.serviceId == registration.serviceId {
-					sm.runningServices[registration.serviceId] = registration.bootstrapper
+				if await.service.state == awaitRegistration {
+					await.service.state = running
+					await.service.bootstrapClient = registration.bootstrapper
+
 					// notify awaiting requests
 					for _, req := range sm.reqWaitingForService[registration.serviceId] {
 						req.answer <- &requestAnswer{
@@ -96,28 +151,37 @@ func (sm *SpawnManager) messageHandlerLoop() {
 
 		case failReg := <-sm.failRegisterServiceMsgC: // triggered by timeout or service failure
 			if await, ok := sm.incommingRegistration[failReg.serviceToken]; ok {
-				if await.serviceId == failReg.serviceId {
+				if await.service.state == awaitRegistration {
+					await.service.state = missconfigured
 					await.err = failReg.err
 					// notify awaiting requests, that the service is not available
-					for _, req := range sm.reqWaitingForService[failReg.serviceId] {
+					for _, req := range sm.reqWaitingForService[await.service.serviceId] {
 						req.answer <- &requestAnswer{
 							service: capnp.ErrorClient(failReg.err),
 							err:     failReg.err,
 						}
 					}
-					delete(sm.incommingRegistration, failReg.serviceToken) // remove from incomming registration list
-					delete(sm.reqWaitingForService, failReg.serviceId)     // remove requests from waiting list
-					delete(sm.tokenToServiceId, failReg.serviceToken)      // remove token to serviceId mapping
+
+					delete(sm.reqWaitingForService, await.service.serviceId) // remove requests from waiting list
+					delete(sm.incommingRegistration, failReg.serviceToken)   // remove from incomming registration list
 				}
 			}
 
 		case connLost := <-sm.connectionLostMsgC:
+			// can only be triggered if service is running
 			// handle connection lost to a service
-			// remove the service from running services
-			if serviceId, ok := sm.tokenToServiceId[connLost.token]; ok {
-				sm.runningServices[serviceId].Release()
-				delete(sm.runningServices, serviceId)
-				delete(sm.tokenToServiceId, connLost.token)
+			if service, ok := sm.servicesByToken[connLost.token]; ok {
+				service.state = disconnected
+				// handle different errors:
+				// service crashed (by malformed input?),
+				// service is not reachable (network error?),
+				// service is not responding (overloaded?)
+				// service is not available (shutdown?)
+				if connLost.error != nil {
+					fmt.Println("Connection lost to service: ", connLost.error)
+
+					// TBD: handle different errors
+				}
 			}
 		}
 
@@ -156,17 +220,16 @@ func (sm *SpawnManager) spawnService(serviceId string, serviceConfig map[string]
 }
 
 type awaitingRegistration struct {
-	serviceId        string
-	registationToken string
-	timestamp        time.Time
-	err              error
+	service   *RegisteredService
+	timestamp time.Time
+	err       error
 }
-type requestSpawnMsgC struct {
+type requestSpawnMsg struct {
 	serviceId   string
 	answerToken chan string // token
 }
 
-type requestServiceMsgC struct {
+type requestServiceMsg struct {
 	serviceId string
 	answer    chan *requestAnswer
 }
@@ -176,14 +239,18 @@ type requestAnswer struct {
 	err     error
 }
 
-type registerServiceMsgC struct {
+type registerServiceMsg struct {
 	serviceId    string
 	serviceToken string
 	bootstrapper capnp.Client
 }
 
-type failRegisterServiceMsgC struct {
+type failRegisterServiceMsg struct {
 	serviceToken string
-	serviceId    string
 	err          error
+}
+
+type connectionLostMsg struct {
+	token string
+	error error
 }
