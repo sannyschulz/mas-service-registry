@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"path/filepath"
 	"time"
 
 	"capnproto.org/go/capnp/v3"
@@ -138,14 +139,14 @@ func (sm *SpawnManager) messageHandlerLoop() {
 					await.service.bootstrapClient = registration.bootstrapper
 
 					// notify awaiting requests
-					for _, req := range sm.reqWaitingForService[registration.serviceId] {
+					for _, req := range sm.reqWaitingForService[await.service.serviceId] {
 						req.answer <- &requestAnswer{
 							service: registration.bootstrapper,
 							err:     nil,
 						}
 					}
+					delete(sm.reqWaitingForService, await.service.serviceId)    // remove requests from waiting list
 					delete(sm.incommingRegistration, registration.serviceToken) // remove from incomming registration list
-					delete(sm.reqWaitingForService, registration.serviceId)     // remove requests from waiting list
 				}
 			}
 
@@ -202,16 +203,51 @@ func RequestService(serviceId string) capnp.Client {
 	return capnp.ErrorClient(errors.New("Not implemented"))
 }
 
-func (sm *SpawnManager) registerService(serviceId string, service capnp.Client) {
+func (sm *SpawnManager) registerService(token string, service capnp.Client) {
 	// handle incomming registration requests from services
-	// check for valid registration token
-	// store the service in running services
-	// notify awaiting requests
+	// send message to spawn manager
+	msg := &registerServiceMsg{
+		serviceToken: token,
+		bootstrapper: service,
+	}
+	sm.registerServiceMsgC <- msg
+
 }
 
-func (sm *SpawnManager) spawnService(serviceId string, serviceConfig map[string]interface{}) error {
+func (sm *SpawnManager) spawnService(serviceId, mode string) error {
 
 	// generate a registration token
+	msg := &requestSpawnMsg{
+		serviceId:   serviceId,
+		answerToken: make(chan string),
+	}
+	sm.requestSpawnMsgC <- msg
+	token := <-msg.answerToken
+
+	if token == "" {
+		return errors.New("Failed to spawn service")
+	}
+	config := sm.serviceConfig[serviceId] // get service config
+
+	name := config["Name"].(string)
+	id := config["Id"].(string)
+	description := config["Description"].(string)
+	path := config["Path"].(string) // path to script folder
+	idleTimeout := config["IdleTimeout"].(int)
+
+	// generate script file name
+	if mode == "LocalWindows" {
+		path = filepath.Join(path, fmt.Sprintf("%s_%s.bat", id, mode))
+	}
+	if mode == "LocalUnix" {
+		path = filepath.Join(path, fmt.Sprintf("%s_%s.sh", id, mode))
+	}
+	if mode == "Slurm" {
+		path = filepath.Join(path, fmt.Sprintf("%s_%s.sh", id, mode))
+	}
+
+	// start the service
+
 	// spawn a new service with the given serviceId and serviceConfig and registration token
 	// put it into awaitForRegistration map
 	// enter start timestamp
@@ -240,7 +276,6 @@ type requestAnswer struct {
 }
 
 type registerServiceMsg struct {
-	serviceId    string
 	serviceToken string
 	bootstrapper capnp.Client
 }
