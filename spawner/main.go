@@ -55,11 +55,12 @@ func (c *ConfigConfiguratorImpl) GetDefaultConfig() *commonlib.Config {
 
 	// this is an example of a service that can be spawned, should be overwritten before starting the service
 	defaultConfig.Data["Spawn"].(map[string]interface{})["ClimateService1"] = map[string]interface{}{
-		"Name":        "Climate Service 1",
-		"Id":          "climate_service_1",
-		"Description": "Climate Service 1",
-		"Path":        "path/to/climate_service_1", // path to start script folder Id_Mode.ext (climate_service_1_LocalWindows.bat,  climate_service_1_LocalUnix.sh, climate_service_1_Slurm.sh)
-		"IdleTimeout": 10,                          // in minutes
+		"Name":         "Climate Service 1",
+		"Id":           "climate_service_1",
+		"Description":  "Climate Service 1",
+		"Path":         "path/to/climate_service_1", // path to start script folder Id_Mode.ext (climate_service_1_LocalWindows.bat,  climate_service_1_LocalUnix.sh, climate_service_1_Slurm.sh)
+		"IdleTimeout":  10,                          // in minutes
+		"StartTimeout": 100,                         // in seconds (time to wait for the service to start)
 	}
 
 	return defaultConfig
