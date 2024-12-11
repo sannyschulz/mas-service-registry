@@ -1373,3 +1373,1055 @@ func (f ServiceViewer_getResolvableService_Results_Future) Struct() (ServiceView
 func (p ServiceViewer_getResolvableService_Results_Future) Service() ResolvableServiceRequest_Future {
 	return ResolvableServiceRequest_Future{Future: p.Future.Field(0, nil)}
 }
+
+type ServiceRegistry capnp.Client
+
+// ServiceRegistry_TypeID is the unique identifier for the type ServiceRegistry.
+const ServiceRegistry_TypeID = 0xf6821b0b4a0ed4cc
+
+func (c ServiceRegistry) RegisterService(ctx context.Context, params func(ServiceRegistry_registerService_Params) error) (ServiceRegistry_registerService_Results_Future, capnp.ReleaseFunc) {
+
+	s := capnp.Send{
+		Method: capnp.Method{
+			InterfaceID:   0xf6821b0b4a0ed4cc,
+			MethodID:      0,
+			InterfaceName: "spawner.capnp:ServiceRegistry",
+			MethodName:    "registerService",
+		},
+	}
+	if params != nil {
+		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 1}
+		s.PlaceArgs = func(s capnp.Struct) error { return params(ServiceRegistry_registerService_Params(s)) }
+	}
+
+	ans, release := capnp.Client(c).SendCall(ctx, s)
+	return ServiceRegistry_registerService_Results_Future{Future: ans.Future()}, release
+
+}
+
+func (c ServiceRegistry) WaitStreaming() error {
+	return capnp.Client(c).WaitStreaming()
+}
+
+// String returns a string that identifies this capability for debugging
+// purposes.  Its format should not be depended on: in particular, it
+// should not be used to compare clients.  Use IsSame to compare clients
+// for equality.
+func (c ServiceRegistry) String() string {
+	return "ServiceRegistry(" + capnp.Client(c).String() + ")"
+}
+
+// AddRef creates a new Client that refers to the same capability as c.
+// If c is nil or has resolved to null, then AddRef returns nil.
+func (c ServiceRegistry) AddRef() ServiceRegistry {
+	return ServiceRegistry(capnp.Client(c).AddRef())
+}
+
+// Release releases a capability reference.  If this is the last
+// reference to the capability, then the underlying resources associated
+// with the capability will be released.
+//
+// Release will panic if c has already been released, but not if c is
+// nil or resolved to null.
+func (c ServiceRegistry) Release() {
+	capnp.Client(c).Release()
+}
+
+// Resolve blocks until the capability is fully resolved or the Context
+// expires.
+func (c ServiceRegistry) Resolve(ctx context.Context) error {
+	return capnp.Client(c).Resolve(ctx)
+}
+
+func (c ServiceRegistry) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Client(c).EncodeAsPtr(seg)
+}
+
+func (ServiceRegistry) DecodeFromPtr(p capnp.Ptr) ServiceRegistry {
+	return ServiceRegistry(capnp.Client{}.DecodeFromPtr(p))
+}
+
+// IsValid reports whether c is a valid reference to a capability.
+// A reference is invalid if it is nil, has resolved to null, or has
+// been released.
+func (c ServiceRegistry) IsValid() bool {
+	return capnp.Client(c).IsValid()
+}
+
+// IsSame reports whether c and other refer to a capability created by the
+// same call to NewClient.  This can return false negatives if c or other
+// are not fully resolved: use Resolve if this is an issue.  If either
+// c or other are released, then IsSame panics.
+func (c ServiceRegistry) IsSame(other ServiceRegistry) bool {
+	return capnp.Client(c).IsSame(capnp.Client(other))
+}
+
+// Update the flowcontrol.FlowLimiter used to manage flow control for
+// this client. This affects all future calls, but not calls already
+// waiting to send. Passing nil sets the value to flowcontrol.NopLimiter,
+// which is also the default.
+func (c ServiceRegistry) SetFlowLimiter(lim fc.FlowLimiter) {
+	capnp.Client(c).SetFlowLimiter(lim)
+}
+
+// Get the current flowcontrol.FlowLimiter used to manage flow control
+// for this client.
+func (c ServiceRegistry) GetFlowLimiter() fc.FlowLimiter {
+	return capnp.Client(c).GetFlowLimiter()
+}
+
+// A ServiceRegistry_Server is a ServiceRegistry with a local implementation.
+type ServiceRegistry_Server interface {
+	RegisterService(context.Context, ServiceRegistry_registerService) error
+}
+
+// ServiceRegistry_NewServer creates a new Server from an implementation of ServiceRegistry_Server.
+func ServiceRegistry_NewServer(s ServiceRegistry_Server) *server.Server {
+	c, _ := s.(server.Shutdowner)
+	return server.New(ServiceRegistry_Methods(nil, s), s, c)
+}
+
+// ServiceRegistry_ServerToClient creates a new Client from an implementation of ServiceRegistry_Server.
+// The caller is responsible for calling Release on the returned Client.
+func ServiceRegistry_ServerToClient(s ServiceRegistry_Server) ServiceRegistry {
+	return ServiceRegistry(capnp.NewClient(ServiceRegistry_NewServer(s)))
+}
+
+// ServiceRegistry_Methods appends Methods to a slice that invoke the methods on s.
+// This can be used to create a more complicated Server.
+func ServiceRegistry_Methods(methods []server.Method, s ServiceRegistry_Server) []server.Method {
+	if cap(methods) == 0 {
+		methods = make([]server.Method, 0, 1)
+	}
+
+	methods = append(methods, server.Method{
+		Method: capnp.Method{
+			InterfaceID:   0xf6821b0b4a0ed4cc,
+			MethodID:      0,
+			InterfaceName: "spawner.capnp:ServiceRegistry",
+			MethodName:    "registerService",
+		},
+		Impl: func(ctx context.Context, call *server.Call) error {
+			return s.RegisterService(ctx, ServiceRegistry_registerService{call})
+		},
+	})
+
+	return methods
+}
+
+// ServiceRegistry_registerService holds the state for a server call to ServiceRegistry.registerService.
+// See server.Call for documentation.
+type ServiceRegistry_registerService struct {
+	*server.Call
+}
+
+// Args returns the call's arguments.
+func (c ServiceRegistry_registerService) Args() ServiceRegistry_registerService_Params {
+	return ServiceRegistry_registerService_Params(c.Call.Args())
+}
+
+// AllocResults allocates the results struct.
+func (c ServiceRegistry_registerService) AllocResults() (ServiceRegistry_registerService_Results, error) {
+	r, err := c.Call.AllocResults(capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return ServiceRegistry_registerService_Results(r), err
+}
+
+// ServiceRegistry_List is a list of ServiceRegistry.
+type ServiceRegistry_List = capnp.CapList[ServiceRegistry]
+
+// NewServiceRegistry_List creates a new list of ServiceRegistry.
+func NewServiceRegistry_List(s *capnp.Segment, sz int32) (ServiceRegistry_List, error) {
+	l, err := capnp.NewPointerList(s, sz)
+	return capnp.CapList[ServiceRegistry](l), err
+}
+
+type ServiceRegistry_registerService_Params capnp.Struct
+
+// ServiceRegistry_registerService_Params_TypeID is the unique identifier for the type ServiceRegistry_registerService_Params.
+const ServiceRegistry_registerService_Params_TypeID = 0x94993c86506a5e40
+
+func NewServiceRegistry_registerService_Params(s *capnp.Segment) (ServiceRegistry_registerService_Params, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceRegistry_registerService_Params(st), err
+}
+
+func NewRootServiceRegistry_registerService_Params(s *capnp.Segment) (ServiceRegistry_registerService_Params, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceRegistry_registerService_Params(st), err
+}
+
+func ReadRootServiceRegistry_registerService_Params(msg *capnp.Message) (ServiceRegistry_registerService_Params, error) {
+	root, err := msg.Root()
+	return ServiceRegistry_registerService_Params(root.Struct()), err
+}
+
+func (s ServiceRegistry_registerService_Params) String() string {
+	str, _ := text.Marshal(0x94993c86506a5e40, capnp.Struct(s))
+	return str
+}
+
+func (s ServiceRegistry_registerService_Params) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (ServiceRegistry_registerService_Params) DecodeFromPtr(p capnp.Ptr) ServiceRegistry_registerService_Params {
+	return ServiceRegistry_registerService_Params(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s ServiceRegistry_registerService_Params) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s ServiceRegistry_registerService_Params) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s ServiceRegistry_registerService_Params) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s ServiceRegistry_registerService_Params) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s ServiceRegistry_registerService_Params) ServiceToken() (string, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.Text(), err
+}
+
+func (s ServiceRegistry_registerService_Params) HasServiceToken() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s ServiceRegistry_registerService_Params) ServiceTokenBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.TextBytes(), err
+}
+
+func (s ServiceRegistry_registerService_Params) SetServiceToken(v string) error {
+	return capnp.Struct(s).SetText(0, v)
+}
+
+// ServiceRegistry_registerService_Params_List is a list of ServiceRegistry_registerService_Params.
+type ServiceRegistry_registerService_Params_List = capnp.StructList[ServiceRegistry_registerService_Params]
+
+// NewServiceRegistry_registerService_Params creates a new list of ServiceRegistry_registerService_Params.
+func NewServiceRegistry_registerService_Params_List(s *capnp.Segment, sz int32) (ServiceRegistry_registerService_Params_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	return capnp.StructList[ServiceRegistry_registerService_Params](l), err
+}
+
+// ServiceRegistry_registerService_Params_Future is a wrapper for a ServiceRegistry_registerService_Params promised by a client call.
+type ServiceRegistry_registerService_Params_Future struct{ *capnp.Future }
+
+func (f ServiceRegistry_registerService_Params_Future) Struct() (ServiceRegistry_registerService_Params, error) {
+	p, err := f.Future.Ptr()
+	return ServiceRegistry_registerService_Params(p.Struct()), err
+}
+
+type ServiceRegistry_registerService_Results capnp.Struct
+
+// ServiceRegistry_registerService_Results_TypeID is the unique identifier for the type ServiceRegistry_registerService_Results.
+const ServiceRegistry_registerService_Results_TypeID = 0x85ec771c80e6e0c8
+
+func NewServiceRegistry_registerService_Results(s *capnp.Segment) (ServiceRegistry_registerService_Results, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return ServiceRegistry_registerService_Results(st), err
+}
+
+func NewRootServiceRegistry_registerService_Results(s *capnp.Segment) (ServiceRegistry_registerService_Results, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return ServiceRegistry_registerService_Results(st), err
+}
+
+func ReadRootServiceRegistry_registerService_Results(msg *capnp.Message) (ServiceRegistry_registerService_Results, error) {
+	root, err := msg.Root()
+	return ServiceRegistry_registerService_Results(root.Struct()), err
+}
+
+func (s ServiceRegistry_registerService_Results) String() string {
+	str, _ := text.Marshal(0x85ec771c80e6e0c8, capnp.Struct(s))
+	return str
+}
+
+func (s ServiceRegistry_registerService_Results) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (ServiceRegistry_registerService_Results) DecodeFromPtr(p capnp.Ptr) ServiceRegistry_registerService_Results {
+	return ServiceRegistry_registerService_Results(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s ServiceRegistry_registerService_Results) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s ServiceRegistry_registerService_Results) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s ServiceRegistry_registerService_Results) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s ServiceRegistry_registerService_Results) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+
+// ServiceRegistry_registerService_Results_List is a list of ServiceRegistry_registerService_Results.
+type ServiceRegistry_registerService_Results_List = capnp.StructList[ServiceRegistry_registerService_Results]
+
+// NewServiceRegistry_registerService_Results creates a new list of ServiceRegistry_registerService_Results.
+func NewServiceRegistry_registerService_Results_List(s *capnp.Segment, sz int32) (ServiceRegistry_registerService_Results_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0}, sz)
+	return capnp.StructList[ServiceRegistry_registerService_Results](l), err
+}
+
+// ServiceRegistry_registerService_Results_Future is a wrapper for a ServiceRegistry_registerService_Results promised by a client call.
+type ServiceRegistry_registerService_Results_Future struct{ *capnp.Future }
+
+func (f ServiceRegistry_registerService_Results_Future) Struct() (ServiceRegistry_registerService_Results, error) {
+	p, err := f.Future.Ptr()
+	return ServiceRegistry_registerService_Results(p.Struct()), err
+}
+
+type ServiceToSpawner capnp.Client
+
+// ServiceToSpawner_TypeID is the unique identifier for the type ServiceToSpawner.
+const ServiceToSpawner_TypeID = 0xdbfec66490f8d669
+
+func (c ServiceToSpawner) GetLiveCapability(ctx context.Context, params func(ServiceToSpawner_getLiveCapability_Params) error) (ServiceToSpawner_getLiveCapability_Results_Future, capnp.ReleaseFunc) {
+
+	s := capnp.Send{
+		Method: capnp.Method{
+			InterfaceID:   0xdbfec66490f8d669,
+			MethodID:      0,
+			InterfaceName: "spawner.capnp:ServiceToSpawner",
+			MethodName:    "getLiveCapability",
+		},
+	}
+	if params != nil {
+		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 1}
+		s.PlaceArgs = func(s capnp.Struct) error { return params(ServiceToSpawner_getLiveCapability_Params(s)) }
+	}
+
+	ans, release := capnp.Client(c).SendCall(ctx, s)
+	return ServiceToSpawner_getLiveCapability_Results_Future{Future: ans.Future()}, release
+
+}
+
+func (c ServiceToSpawner) GetServiceView(ctx context.Context, params func(ServiceToSpawner_getServiceView_Params) error) (ServiceToSpawner_getServiceView_Results_Future, capnp.ReleaseFunc) {
+
+	s := capnp.Send{
+		Method: capnp.Method{
+			InterfaceID:   0xdbfec66490f8d669,
+			MethodID:      1,
+			InterfaceName: "spawner.capnp:ServiceToSpawner",
+			MethodName:    "getServiceView",
+		},
+	}
+	if params != nil {
+		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 0}
+		s.PlaceArgs = func(s capnp.Struct) error { return params(ServiceToSpawner_getServiceView_Params(s)) }
+	}
+
+	ans, release := capnp.Client(c).SendCall(ctx, s)
+	return ServiceToSpawner_getServiceView_Results_Future{Future: ans.Future()}, release
+
+}
+
+func (c ServiceToSpawner) GetResolvablePayload(ctx context.Context, params func(ServiceToSpawner_getResolvablePayload_Params) error) (ServiceToSpawner_getResolvablePayload_Results_Future, capnp.ReleaseFunc) {
+
+	s := capnp.Send{
+		Method: capnp.Method{
+			InterfaceID:   0xdbfec66490f8d669,
+			MethodID:      2,
+			InterfaceName: "spawner.capnp:ServiceToSpawner",
+			MethodName:    "getResolvablePayload",
+		},
+	}
+	if params != nil {
+		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 1}
+		s.PlaceArgs = func(s capnp.Struct) error { return params(ServiceToSpawner_getResolvablePayload_Params(s)) }
+	}
+
+	ans, release := capnp.Client(c).SendCall(ctx, s)
+	return ServiceToSpawner_getResolvablePayload_Results_Future{Future: ans.Future()}, release
+
+}
+
+func (c ServiceToSpawner) WaitStreaming() error {
+	return capnp.Client(c).WaitStreaming()
+}
+
+// String returns a string that identifies this capability for debugging
+// purposes.  Its format should not be depended on: in particular, it
+// should not be used to compare clients.  Use IsSame to compare clients
+// for equality.
+func (c ServiceToSpawner) String() string {
+	return "ServiceToSpawner(" + capnp.Client(c).String() + ")"
+}
+
+// AddRef creates a new Client that refers to the same capability as c.
+// If c is nil or has resolved to null, then AddRef returns nil.
+func (c ServiceToSpawner) AddRef() ServiceToSpawner {
+	return ServiceToSpawner(capnp.Client(c).AddRef())
+}
+
+// Release releases a capability reference.  If this is the last
+// reference to the capability, then the underlying resources associated
+// with the capability will be released.
+//
+// Release will panic if c has already been released, but not if c is
+// nil or resolved to null.
+func (c ServiceToSpawner) Release() {
+	capnp.Client(c).Release()
+}
+
+// Resolve blocks until the capability is fully resolved or the Context
+// expires.
+func (c ServiceToSpawner) Resolve(ctx context.Context) error {
+	return capnp.Client(c).Resolve(ctx)
+}
+
+func (c ServiceToSpawner) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Client(c).EncodeAsPtr(seg)
+}
+
+func (ServiceToSpawner) DecodeFromPtr(p capnp.Ptr) ServiceToSpawner {
+	return ServiceToSpawner(capnp.Client{}.DecodeFromPtr(p))
+}
+
+// IsValid reports whether c is a valid reference to a capability.
+// A reference is invalid if it is nil, has resolved to null, or has
+// been released.
+func (c ServiceToSpawner) IsValid() bool {
+	return capnp.Client(c).IsValid()
+}
+
+// IsSame reports whether c and other refer to a capability created by the
+// same call to NewClient.  This can return false negatives if c or other
+// are not fully resolved: use Resolve if this is an issue.  If either
+// c or other are released, then IsSame panics.
+func (c ServiceToSpawner) IsSame(other ServiceToSpawner) bool {
+	return capnp.Client(c).IsSame(capnp.Client(other))
+}
+
+// Update the flowcontrol.FlowLimiter used to manage flow control for
+// this client. This affects all future calls, but not calls already
+// waiting to send. Passing nil sets the value to flowcontrol.NopLimiter,
+// which is also the default.
+func (c ServiceToSpawner) SetFlowLimiter(lim fc.FlowLimiter) {
+	capnp.Client(c).SetFlowLimiter(lim)
+}
+
+// Get the current flowcontrol.FlowLimiter used to manage flow control
+// for this client.
+func (c ServiceToSpawner) GetFlowLimiter() fc.FlowLimiter {
+	return capnp.Client(c).GetFlowLimiter()
+}
+
+// A ServiceToSpawner_Server is a ServiceToSpawner with a local implementation.
+type ServiceToSpawner_Server interface {
+	GetLiveCapability(context.Context, ServiceToSpawner_getLiveCapability) error
+
+	GetServiceView(context.Context, ServiceToSpawner_getServiceView) error
+
+	GetResolvablePayload(context.Context, ServiceToSpawner_getResolvablePayload) error
+}
+
+// ServiceToSpawner_NewServer creates a new Server from an implementation of ServiceToSpawner_Server.
+func ServiceToSpawner_NewServer(s ServiceToSpawner_Server) *server.Server {
+	c, _ := s.(server.Shutdowner)
+	return server.New(ServiceToSpawner_Methods(nil, s), s, c)
+}
+
+// ServiceToSpawner_ServerToClient creates a new Client from an implementation of ServiceToSpawner_Server.
+// The caller is responsible for calling Release on the returned Client.
+func ServiceToSpawner_ServerToClient(s ServiceToSpawner_Server) ServiceToSpawner {
+	return ServiceToSpawner(capnp.NewClient(ServiceToSpawner_NewServer(s)))
+}
+
+// ServiceToSpawner_Methods appends Methods to a slice that invoke the methods on s.
+// This can be used to create a more complicated Server.
+func ServiceToSpawner_Methods(methods []server.Method, s ServiceToSpawner_Server) []server.Method {
+	if cap(methods) == 0 {
+		methods = make([]server.Method, 0, 3)
+	}
+
+	methods = append(methods, server.Method{
+		Method: capnp.Method{
+			InterfaceID:   0xdbfec66490f8d669,
+			MethodID:      0,
+			InterfaceName: "spawner.capnp:ServiceToSpawner",
+			MethodName:    "getLiveCapability",
+		},
+		Impl: func(ctx context.Context, call *server.Call) error {
+			return s.GetLiveCapability(ctx, ServiceToSpawner_getLiveCapability{call})
+		},
+	})
+
+	methods = append(methods, server.Method{
+		Method: capnp.Method{
+			InterfaceID:   0xdbfec66490f8d669,
+			MethodID:      1,
+			InterfaceName: "spawner.capnp:ServiceToSpawner",
+			MethodName:    "getServiceView",
+		},
+		Impl: func(ctx context.Context, call *server.Call) error {
+			return s.GetServiceView(ctx, ServiceToSpawner_getServiceView{call})
+		},
+	})
+
+	methods = append(methods, server.Method{
+		Method: capnp.Method{
+			InterfaceID:   0xdbfec66490f8d669,
+			MethodID:      2,
+			InterfaceName: "spawner.capnp:ServiceToSpawner",
+			MethodName:    "getResolvablePayload",
+		},
+		Impl: func(ctx context.Context, call *server.Call) error {
+			return s.GetResolvablePayload(ctx, ServiceToSpawner_getResolvablePayload{call})
+		},
+	})
+
+	return methods
+}
+
+// ServiceToSpawner_getLiveCapability holds the state for a server call to ServiceToSpawner.getLiveCapability.
+// See server.Call for documentation.
+type ServiceToSpawner_getLiveCapability struct {
+	*server.Call
+}
+
+// Args returns the call's arguments.
+func (c ServiceToSpawner_getLiveCapability) Args() ServiceToSpawner_getLiveCapability_Params {
+	return ServiceToSpawner_getLiveCapability_Params(c.Call.Args())
+}
+
+// AllocResults allocates the results struct.
+func (c ServiceToSpawner_getLiveCapability) AllocResults() (ServiceToSpawner_getLiveCapability_Results, error) {
+	r, err := c.Call.AllocResults(capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getLiveCapability_Results(r), err
+}
+
+// ServiceToSpawner_getServiceView holds the state for a server call to ServiceToSpawner.getServiceView.
+// See server.Call for documentation.
+type ServiceToSpawner_getServiceView struct {
+	*server.Call
+}
+
+// Args returns the call's arguments.
+func (c ServiceToSpawner_getServiceView) Args() ServiceToSpawner_getServiceView_Params {
+	return ServiceToSpawner_getServiceView_Params(c.Call.Args())
+}
+
+// AllocResults allocates the results struct.
+func (c ServiceToSpawner_getServiceView) AllocResults() (ServiceToSpawner_getServiceView_Results, error) {
+	r, err := c.Call.AllocResults(capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getServiceView_Results(r), err
+}
+
+// ServiceToSpawner_getResolvablePayload holds the state for a server call to ServiceToSpawner.getResolvablePayload.
+// See server.Call for documentation.
+type ServiceToSpawner_getResolvablePayload struct {
+	*server.Call
+}
+
+// Args returns the call's arguments.
+func (c ServiceToSpawner_getResolvablePayload) Args() ServiceToSpawner_getResolvablePayload_Params {
+	return ServiceToSpawner_getResolvablePayload_Params(c.Call.Args())
+}
+
+// AllocResults allocates the results struct.
+func (c ServiceToSpawner_getResolvablePayload) AllocResults() (ServiceToSpawner_getResolvablePayload_Results, error) {
+	r, err := c.Call.AllocResults(capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getResolvablePayload_Results(r), err
+}
+
+// ServiceToSpawner_List is a list of ServiceToSpawner.
+type ServiceToSpawner_List = capnp.CapList[ServiceToSpawner]
+
+// NewServiceToSpawner_List creates a new list of ServiceToSpawner.
+func NewServiceToSpawner_List(s *capnp.Segment, sz int32) (ServiceToSpawner_List, error) {
+	l, err := capnp.NewPointerList(s, sz)
+	return capnp.CapList[ServiceToSpawner](l), err
+}
+
+type ServiceToSpawner_getLiveCapability_Params capnp.Struct
+
+// ServiceToSpawner_getLiveCapability_Params_TypeID is the unique identifier for the type ServiceToSpawner_getLiveCapability_Params.
+const ServiceToSpawner_getLiveCapability_Params_TypeID = 0xb509d61df01f13a2
+
+func NewServiceToSpawner_getLiveCapability_Params(s *capnp.Segment) (ServiceToSpawner_getLiveCapability_Params, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getLiveCapability_Params(st), err
+}
+
+func NewRootServiceToSpawner_getLiveCapability_Params(s *capnp.Segment) (ServiceToSpawner_getLiveCapability_Params, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getLiveCapability_Params(st), err
+}
+
+func ReadRootServiceToSpawner_getLiveCapability_Params(msg *capnp.Message) (ServiceToSpawner_getLiveCapability_Params, error) {
+	root, err := msg.Root()
+	return ServiceToSpawner_getLiveCapability_Params(root.Struct()), err
+}
+
+func (s ServiceToSpawner_getLiveCapability_Params) String() string {
+	str, _ := text.Marshal(0xb509d61df01f13a2, capnp.Struct(s))
+	return str
+}
+
+func (s ServiceToSpawner_getLiveCapability_Params) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (ServiceToSpawner_getLiveCapability_Params) DecodeFromPtr(p capnp.Ptr) ServiceToSpawner_getLiveCapability_Params {
+	return ServiceToSpawner_getLiveCapability_Params(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s ServiceToSpawner_getLiveCapability_Params) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s ServiceToSpawner_getLiveCapability_Params) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s ServiceToSpawner_getLiveCapability_Params) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s ServiceToSpawner_getLiveCapability_Params) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s ServiceToSpawner_getLiveCapability_Params) Payload() (string, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.Text(), err
+}
+
+func (s ServiceToSpawner_getLiveCapability_Params) HasPayload() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s ServiceToSpawner_getLiveCapability_Params) PayloadBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.TextBytes(), err
+}
+
+func (s ServiceToSpawner_getLiveCapability_Params) SetPayload(v string) error {
+	return capnp.Struct(s).SetText(0, v)
+}
+
+// ServiceToSpawner_getLiveCapability_Params_List is a list of ServiceToSpawner_getLiveCapability_Params.
+type ServiceToSpawner_getLiveCapability_Params_List = capnp.StructList[ServiceToSpawner_getLiveCapability_Params]
+
+// NewServiceToSpawner_getLiveCapability_Params creates a new list of ServiceToSpawner_getLiveCapability_Params.
+func NewServiceToSpawner_getLiveCapability_Params_List(s *capnp.Segment, sz int32) (ServiceToSpawner_getLiveCapability_Params_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	return capnp.StructList[ServiceToSpawner_getLiveCapability_Params](l), err
+}
+
+// ServiceToSpawner_getLiveCapability_Params_Future is a wrapper for a ServiceToSpawner_getLiveCapability_Params promised by a client call.
+type ServiceToSpawner_getLiveCapability_Params_Future struct{ *capnp.Future }
+
+func (f ServiceToSpawner_getLiveCapability_Params_Future) Struct() (ServiceToSpawner_getLiveCapability_Params, error) {
+	p, err := f.Future.Ptr()
+	return ServiceToSpawner_getLiveCapability_Params(p.Struct()), err
+}
+
+type ServiceToSpawner_getLiveCapability_Results capnp.Struct
+
+// ServiceToSpawner_getLiveCapability_Results_TypeID is the unique identifier for the type ServiceToSpawner_getLiveCapability_Results.
+const ServiceToSpawner_getLiveCapability_Results_TypeID = 0xa0b906d6fc710b26
+
+func NewServiceToSpawner_getLiveCapability_Results(s *capnp.Segment) (ServiceToSpawner_getLiveCapability_Results, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getLiveCapability_Results(st), err
+}
+
+func NewRootServiceToSpawner_getLiveCapability_Results(s *capnp.Segment) (ServiceToSpawner_getLiveCapability_Results, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getLiveCapability_Results(st), err
+}
+
+func ReadRootServiceToSpawner_getLiveCapability_Results(msg *capnp.Message) (ServiceToSpawner_getLiveCapability_Results, error) {
+	root, err := msg.Root()
+	return ServiceToSpawner_getLiveCapability_Results(root.Struct()), err
+}
+
+func (s ServiceToSpawner_getLiveCapability_Results) String() string {
+	str, _ := text.Marshal(0xa0b906d6fc710b26, capnp.Struct(s))
+	return str
+}
+
+func (s ServiceToSpawner_getLiveCapability_Results) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (ServiceToSpawner_getLiveCapability_Results) DecodeFromPtr(p capnp.Ptr) ServiceToSpawner_getLiveCapability_Results {
+	return ServiceToSpawner_getLiveCapability_Results(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s ServiceToSpawner_getLiveCapability_Results) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s ServiceToSpawner_getLiveCapability_Results) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s ServiceToSpawner_getLiveCapability_Results) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s ServiceToSpawner_getLiveCapability_Results) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s ServiceToSpawner_getLiveCapability_Results) ResolvedCapability() capnp.Client {
+	p, _ := capnp.Struct(s).Ptr(0)
+	return p.Interface().Client()
+}
+
+func (s ServiceToSpawner_getLiveCapability_Results) HasResolvedCapability() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s ServiceToSpawner_getLiveCapability_Results) SetResolvedCapability(c capnp.Client) error {
+	if !c.IsValid() {
+		return capnp.Struct(s).SetPtr(0, capnp.Ptr{})
+	}
+	seg := s.Segment()
+	in := capnp.NewInterface(seg, seg.Message().CapTable().Add(c))
+	return capnp.Struct(s).SetPtr(0, in.ToPtr())
+}
+
+// ServiceToSpawner_getLiveCapability_Results_List is a list of ServiceToSpawner_getLiveCapability_Results.
+type ServiceToSpawner_getLiveCapability_Results_List = capnp.StructList[ServiceToSpawner_getLiveCapability_Results]
+
+// NewServiceToSpawner_getLiveCapability_Results creates a new list of ServiceToSpawner_getLiveCapability_Results.
+func NewServiceToSpawner_getLiveCapability_Results_List(s *capnp.Segment, sz int32) (ServiceToSpawner_getLiveCapability_Results_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	return capnp.StructList[ServiceToSpawner_getLiveCapability_Results](l), err
+}
+
+// ServiceToSpawner_getLiveCapability_Results_Future is a wrapper for a ServiceToSpawner_getLiveCapability_Results promised by a client call.
+type ServiceToSpawner_getLiveCapability_Results_Future struct{ *capnp.Future }
+
+func (f ServiceToSpawner_getLiveCapability_Results_Future) Struct() (ServiceToSpawner_getLiveCapability_Results, error) {
+	p, err := f.Future.Ptr()
+	return ServiceToSpawner_getLiveCapability_Results(p.Struct()), err
+}
+func (p ServiceToSpawner_getLiveCapability_Results_Future) ResolvedCapability() capnp.Client {
+	return p.Future.Field(0, nil).Client()
+}
+
+type ServiceToSpawner_getServiceView_Params capnp.Struct
+
+// ServiceToSpawner_getServiceView_Params_TypeID is the unique identifier for the type ServiceToSpawner_getServiceView_Params.
+const ServiceToSpawner_getServiceView_Params_TypeID = 0xa5c93c28ec3bff37
+
+func NewServiceToSpawner_getServiceView_Params(s *capnp.Segment) (ServiceToSpawner_getServiceView_Params, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return ServiceToSpawner_getServiceView_Params(st), err
+}
+
+func NewRootServiceToSpawner_getServiceView_Params(s *capnp.Segment) (ServiceToSpawner_getServiceView_Params, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return ServiceToSpawner_getServiceView_Params(st), err
+}
+
+func ReadRootServiceToSpawner_getServiceView_Params(msg *capnp.Message) (ServiceToSpawner_getServiceView_Params, error) {
+	root, err := msg.Root()
+	return ServiceToSpawner_getServiceView_Params(root.Struct()), err
+}
+
+func (s ServiceToSpawner_getServiceView_Params) String() string {
+	str, _ := text.Marshal(0xa5c93c28ec3bff37, capnp.Struct(s))
+	return str
+}
+
+func (s ServiceToSpawner_getServiceView_Params) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (ServiceToSpawner_getServiceView_Params) DecodeFromPtr(p capnp.Ptr) ServiceToSpawner_getServiceView_Params {
+	return ServiceToSpawner_getServiceView_Params(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s ServiceToSpawner_getServiceView_Params) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s ServiceToSpawner_getServiceView_Params) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s ServiceToSpawner_getServiceView_Params) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s ServiceToSpawner_getServiceView_Params) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+
+// ServiceToSpawner_getServiceView_Params_List is a list of ServiceToSpawner_getServiceView_Params.
+type ServiceToSpawner_getServiceView_Params_List = capnp.StructList[ServiceToSpawner_getServiceView_Params]
+
+// NewServiceToSpawner_getServiceView_Params creates a new list of ServiceToSpawner_getServiceView_Params.
+func NewServiceToSpawner_getServiceView_Params_List(s *capnp.Segment, sz int32) (ServiceToSpawner_getServiceView_Params_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0}, sz)
+	return capnp.StructList[ServiceToSpawner_getServiceView_Params](l), err
+}
+
+// ServiceToSpawner_getServiceView_Params_Future is a wrapper for a ServiceToSpawner_getServiceView_Params promised by a client call.
+type ServiceToSpawner_getServiceView_Params_Future struct{ *capnp.Future }
+
+func (f ServiceToSpawner_getServiceView_Params_Future) Struct() (ServiceToSpawner_getServiceView_Params, error) {
+	p, err := f.Future.Ptr()
+	return ServiceToSpawner_getServiceView_Params(p.Struct()), err
+}
+
+type ServiceToSpawner_getServiceView_Results capnp.Struct
+
+// ServiceToSpawner_getServiceView_Results_TypeID is the unique identifier for the type ServiceToSpawner_getServiceView_Results.
+const ServiceToSpawner_getServiceView_Results_TypeID = 0xa7cf2147d9cc59af
+
+func NewServiceToSpawner_getServiceView_Results(s *capnp.Segment) (ServiceToSpawner_getServiceView_Results, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getServiceView_Results(st), err
+}
+
+func NewRootServiceToSpawner_getServiceView_Results(s *capnp.Segment) (ServiceToSpawner_getServiceView_Results, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getServiceView_Results(st), err
+}
+
+func ReadRootServiceToSpawner_getServiceView_Results(msg *capnp.Message) (ServiceToSpawner_getServiceView_Results, error) {
+	root, err := msg.Root()
+	return ServiceToSpawner_getServiceView_Results(root.Struct()), err
+}
+
+func (s ServiceToSpawner_getServiceView_Results) String() string {
+	str, _ := text.Marshal(0xa7cf2147d9cc59af, capnp.Struct(s))
+	return str
+}
+
+func (s ServiceToSpawner_getServiceView_Results) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (ServiceToSpawner_getServiceView_Results) DecodeFromPtr(p capnp.Ptr) ServiceToSpawner_getServiceView_Results {
+	return ServiceToSpawner_getServiceView_Results(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s ServiceToSpawner_getServiceView_Results) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s ServiceToSpawner_getServiceView_Results) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s ServiceToSpawner_getServiceView_Results) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s ServiceToSpawner_getServiceView_Results) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s ServiceToSpawner_getServiceView_Results) ServiceView() capnp.Client {
+	p, _ := capnp.Struct(s).Ptr(0)
+	return p.Interface().Client()
+}
+
+func (s ServiceToSpawner_getServiceView_Results) HasServiceView() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s ServiceToSpawner_getServiceView_Results) SetServiceView(c capnp.Client) error {
+	if !c.IsValid() {
+		return capnp.Struct(s).SetPtr(0, capnp.Ptr{})
+	}
+	seg := s.Segment()
+	in := capnp.NewInterface(seg, seg.Message().CapTable().Add(c))
+	return capnp.Struct(s).SetPtr(0, in.ToPtr())
+}
+
+// ServiceToSpawner_getServiceView_Results_List is a list of ServiceToSpawner_getServiceView_Results.
+type ServiceToSpawner_getServiceView_Results_List = capnp.StructList[ServiceToSpawner_getServiceView_Results]
+
+// NewServiceToSpawner_getServiceView_Results creates a new list of ServiceToSpawner_getServiceView_Results.
+func NewServiceToSpawner_getServiceView_Results_List(s *capnp.Segment, sz int32) (ServiceToSpawner_getServiceView_Results_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	return capnp.StructList[ServiceToSpawner_getServiceView_Results](l), err
+}
+
+// ServiceToSpawner_getServiceView_Results_Future is a wrapper for a ServiceToSpawner_getServiceView_Results promised by a client call.
+type ServiceToSpawner_getServiceView_Results_Future struct{ *capnp.Future }
+
+func (f ServiceToSpawner_getServiceView_Results_Future) Struct() (ServiceToSpawner_getServiceView_Results, error) {
+	p, err := f.Future.Ptr()
+	return ServiceToSpawner_getServiceView_Results(p.Struct()), err
+}
+func (p ServiceToSpawner_getServiceView_Results_Future) ServiceView() capnp.Client {
+	return p.Future.Field(0, nil).Client()
+}
+
+type ServiceToSpawner_getResolvablePayload_Params capnp.Struct
+
+// ServiceToSpawner_getResolvablePayload_Params_TypeID is the unique identifier for the type ServiceToSpawner_getResolvablePayload_Params.
+const ServiceToSpawner_getResolvablePayload_Params_TypeID = 0x94bc378999489207
+
+func NewServiceToSpawner_getResolvablePayload_Params(s *capnp.Segment) (ServiceToSpawner_getResolvablePayload_Params, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getResolvablePayload_Params(st), err
+}
+
+func NewRootServiceToSpawner_getResolvablePayload_Params(s *capnp.Segment) (ServiceToSpawner_getResolvablePayload_Params, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getResolvablePayload_Params(st), err
+}
+
+func ReadRootServiceToSpawner_getResolvablePayload_Params(msg *capnp.Message) (ServiceToSpawner_getResolvablePayload_Params, error) {
+	root, err := msg.Root()
+	return ServiceToSpawner_getResolvablePayload_Params(root.Struct()), err
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Params) String() string {
+	str, _ := text.Marshal(0x94bc378999489207, capnp.Struct(s))
+	return str
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Params) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (ServiceToSpawner_getResolvablePayload_Params) DecodeFromPtr(p capnp.Ptr) ServiceToSpawner_getResolvablePayload_Params {
+	return ServiceToSpawner_getResolvablePayload_Params(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Params) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s ServiceToSpawner_getResolvablePayload_Params) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Params) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Params) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s ServiceToSpawner_getResolvablePayload_Params) Specification() (string, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.Text(), err
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Params) HasSpecification() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Params) SpecificationBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.TextBytes(), err
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Params) SetSpecification(v string) error {
+	return capnp.Struct(s).SetText(0, v)
+}
+
+// ServiceToSpawner_getResolvablePayload_Params_List is a list of ServiceToSpawner_getResolvablePayload_Params.
+type ServiceToSpawner_getResolvablePayload_Params_List = capnp.StructList[ServiceToSpawner_getResolvablePayload_Params]
+
+// NewServiceToSpawner_getResolvablePayload_Params creates a new list of ServiceToSpawner_getResolvablePayload_Params.
+func NewServiceToSpawner_getResolvablePayload_Params_List(s *capnp.Segment, sz int32) (ServiceToSpawner_getResolvablePayload_Params_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	return capnp.StructList[ServiceToSpawner_getResolvablePayload_Params](l), err
+}
+
+// ServiceToSpawner_getResolvablePayload_Params_Future is a wrapper for a ServiceToSpawner_getResolvablePayload_Params promised by a client call.
+type ServiceToSpawner_getResolvablePayload_Params_Future struct{ *capnp.Future }
+
+func (f ServiceToSpawner_getResolvablePayload_Params_Future) Struct() (ServiceToSpawner_getResolvablePayload_Params, error) {
+	p, err := f.Future.Ptr()
+	return ServiceToSpawner_getResolvablePayload_Params(p.Struct()), err
+}
+
+type ServiceToSpawner_getResolvablePayload_Results capnp.Struct
+
+// ServiceToSpawner_getResolvablePayload_Results_TypeID is the unique identifier for the type ServiceToSpawner_getResolvablePayload_Results.
+const ServiceToSpawner_getResolvablePayload_Results_TypeID = 0x809812024ef9dbb2
+
+func NewServiceToSpawner_getResolvablePayload_Results(s *capnp.Segment) (ServiceToSpawner_getResolvablePayload_Results, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getResolvablePayload_Results(st), err
+}
+
+func NewRootServiceToSpawner_getResolvablePayload_Results(s *capnp.Segment) (ServiceToSpawner_getResolvablePayload_Results, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return ServiceToSpawner_getResolvablePayload_Results(st), err
+}
+
+func ReadRootServiceToSpawner_getResolvablePayload_Results(msg *capnp.Message) (ServiceToSpawner_getResolvablePayload_Results, error) {
+	root, err := msg.Root()
+	return ServiceToSpawner_getResolvablePayload_Results(root.Struct()), err
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Results) String() string {
+	str, _ := text.Marshal(0x809812024ef9dbb2, capnp.Struct(s))
+	return str
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Results) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (ServiceToSpawner_getResolvablePayload_Results) DecodeFromPtr(p capnp.Ptr) ServiceToSpawner_getResolvablePayload_Results {
+	return ServiceToSpawner_getResolvablePayload_Results(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Results) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s ServiceToSpawner_getResolvablePayload_Results) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Results) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Results) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s ServiceToSpawner_getResolvablePayload_Results) Payload() (string, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.Text(), err
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Results) HasPayload() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Results) PayloadBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.TextBytes(), err
+}
+
+func (s ServiceToSpawner_getResolvablePayload_Results) SetPayload(v string) error {
+	return capnp.Struct(s).SetText(0, v)
+}
+
+// ServiceToSpawner_getResolvablePayload_Results_List is a list of ServiceToSpawner_getResolvablePayload_Results.
+type ServiceToSpawner_getResolvablePayload_Results_List = capnp.StructList[ServiceToSpawner_getResolvablePayload_Results]
+
+// NewServiceToSpawner_getResolvablePayload_Results creates a new list of ServiceToSpawner_getResolvablePayload_Results.
+func NewServiceToSpawner_getResolvablePayload_Results_List(s *capnp.Segment, sz int32) (ServiceToSpawner_getResolvablePayload_Results_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	return capnp.StructList[ServiceToSpawner_getResolvablePayload_Results](l), err
+}
+
+// ServiceToSpawner_getResolvablePayload_Results_Future is a wrapper for a ServiceToSpawner_getResolvablePayload_Results promised by a client call.
+type ServiceToSpawner_getResolvablePayload_Results_Future struct{ *capnp.Future }
+
+func (f ServiceToSpawner_getResolvablePayload_Results_Future) Struct() (ServiceToSpawner_getResolvablePayload_Results, error) {
+	p, err := f.Future.Ptr()
+	return ServiceToSpawner_getResolvablePayload_Results(p.Struct()), err
+}

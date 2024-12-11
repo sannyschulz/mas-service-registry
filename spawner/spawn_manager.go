@@ -26,8 +26,9 @@ type SpawnManager struct {
 	stoppedMsgC             chan *stoppedMsg             // service stopped (trigger
 
 	// config
-	serviceConfig map[string]map[string]interface{} // serviceId -> serviceConfig(to start the service)
-	spawnMode     string
+	serviceConfig       map[string]map[string]interface{} // serviceId -> serviceConfig(to start the service)
+	spawnMode           string
+	serviceDescriptions []*serviceDescription // list of possible services
 }
 
 type RegisteredService struct {
@@ -69,6 +70,7 @@ func NewSpawnManager(serviceConfig map[string]map[string]interface{}) *SpawnMana
 		stoppedMsgC:             make(chan *stoppedMsg),
 		spawnMode:               spawnMode,
 	}
+	sp.prepareServiceList()
 	go sp.messageHandlerLoop()
 
 	return sp
@@ -93,19 +95,19 @@ func (sm *SpawnManager) messageHandlerLoop() {
 							service: service.bootstrapClient,
 							err:     nil,
 						}
-						break
 					case awaitRegistration:
 						found = true
 						// add to waiting list
 						sm.reqWaitingForService[req.serviceId] = append(sm.reqWaitingForService[req.serviceId], req)
-						break
 					case missconfigured:
 						found = true
 						// service will never be available, return error
 						req.answer <- &requestAnswer{
-							service: capnp.ErrorClient(errors.New("Service missconfigured")),
-							err:     errors.New("Service missconfigured"),
+							service: capnp.ErrorClient(errors.New("service missconfigured")),
+							err:     errors.New("service missconfigured"),
 						}
+					}
+					if found {
 						break
 					}
 				}
@@ -238,7 +240,7 @@ func (sm *SpawnManager) addNewService(serviceId string, serviceConfig map[string
 }
 
 // RequestService returns a service by its id
-func (sm *SpawnManager) RequestService(serviceId string) capnp.Client {
+func (sm *SpawnManager) RequestService(serviceId string) (capnp.Client, error) {
 	// get service from running services or await for registration
 	requestServiceMsg := &requestServiceMsg{
 		serviceId: serviceId,
@@ -249,9 +251,39 @@ func (sm *SpawnManager) RequestService(serviceId string) capnp.Client {
 	// if service is not started yet, this may hang for a while
 	answer := <-requestServiceMsg.answer
 	if answer.err != nil {
-		return capnp.ErrorClient(answer.err)
+		return capnp.ErrorClient(answer.err), answer.err
 	}
-	return answer.service
+	return answer.service, nil
+}
+
+// list possible services
+func (sm *SpawnManager) prepareServiceList() {
+
+	services := make([]*serviceDescription, 0, len(sm.serviceConfig))
+	for key := range sm.serviceConfig {
+		config := sm.serviceConfig[key]
+		services = append(services, &serviceDescription{
+			Name:        config["Name"].(string),
+			Id:          config["Id"].(string),
+			Type:        config["Type"].(string),
+			Description: config["Description"].(string),
+		})
+	}
+	sm.serviceDescriptions = services
+}
+
+type serviceDescription struct {
+	Name        string
+	Id          string
+	Type        string
+	Description string
+}
+
+func (sm *SpawnManager) listServices() []*serviceDescription {
+	// warning: this list is not allowed to change during runtime
+	// if the implementation changes, the list has to be addressed over the message loop
+
+	return sm.serviceDescriptions
 }
 
 func (sm *SpawnManager) registerService(token string, service capnp.Client) {

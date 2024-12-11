@@ -9,7 +9,7 @@ struct ResolvableServiceRequest {
   payload @1 :Text;
 }
 
-# interface to add a sturyref to the registry
+# interface to resolve a service by its id and specification
 interface ServiceResolver {
 
     # resolve a service
@@ -32,4 +32,22 @@ interface ServiceViewer {
     getServiceView @1 (serviceID :Text) -> (serviceView :Capability);
     # get resolvable service reference as context of a sturdyRef, stored in storage service
     getResolvableService @2 (serviceID :Text, specification :Text) -> (service :ResolvableServiceRequest);
+}
+
+interface ServiceRegistry {
+
+    # register a service
+    registerService @0 (serviceToken :Text) -> ();
+
+}
+
+interface ServiceToSpawner {
+
+    # resolve payload to capability
+    getLiveCapability @0 (payload :Text) -> (resolvedCapability :Capability);
+    # get a service view, it is up to the service to define its view 
+    getServiceView @1 () -> (serviceView :Capability);
+    # get a specification to a service and receive a payload, with which it can be resolved
+    getResolvablePayload @2 (specification :Text) -> (payload :Text);
+
 }
