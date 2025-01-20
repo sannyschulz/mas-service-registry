@@ -1390,7 +1390,7 @@ func (c ServiceRegistry) RegisterService(ctx context.Context, params func(Servic
 		},
 	}
 	if params != nil {
-		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 1}
+		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 2}
 		s.PlaceArgs = func(s capnp.Struct) error { return params(ServiceRegistry_registerService_Params(s)) }
 	}
 
@@ -1541,12 +1541,12 @@ type ServiceRegistry_registerService_Params capnp.Struct
 const ServiceRegistry_registerService_Params_TypeID = 0x94993c86506a5e40
 
 func NewServiceRegistry_registerService_Params(s *capnp.Segment) (ServiceRegistry_registerService_Params, error) {
-	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2})
 	return ServiceRegistry_registerService_Params(st), err
 }
 
 func NewRootServiceRegistry_registerService_Params(s *capnp.Segment) (ServiceRegistry_registerService_Params, error) {
-	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2})
 	return ServiceRegistry_registerService_Params(st), err
 }
 
@@ -1600,12 +1600,30 @@ func (s ServiceRegistry_registerService_Params) SetServiceToken(v string) error 
 	return capnp.Struct(s).SetText(0, v)
 }
 
+func (s ServiceRegistry_registerService_Params) Service() capnp.Client {
+	p, _ := capnp.Struct(s).Ptr(1)
+	return p.Interface().Client()
+}
+
+func (s ServiceRegistry_registerService_Params) HasService() bool {
+	return capnp.Struct(s).HasPtr(1)
+}
+
+func (s ServiceRegistry_registerService_Params) SetService(c capnp.Client) error {
+	if !c.IsValid() {
+		return capnp.Struct(s).SetPtr(1, capnp.Ptr{})
+	}
+	seg := s.Segment()
+	in := capnp.NewInterface(seg, seg.Message().CapTable().Add(c))
+	return capnp.Struct(s).SetPtr(1, in.ToPtr())
+}
+
 // ServiceRegistry_registerService_Params_List is a list of ServiceRegistry_registerService_Params.
 type ServiceRegistry_registerService_Params_List = capnp.StructList[ServiceRegistry_registerService_Params]
 
 // NewServiceRegistry_registerService_Params creates a new list of ServiceRegistry_registerService_Params.
 func NewServiceRegistry_registerService_Params_List(s *capnp.Segment, sz int32) (ServiceRegistry_registerService_Params_List, error) {
-	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2}, sz)
 	return capnp.StructList[ServiceRegistry_registerService_Params](l), err
 }
 
@@ -1615,6 +1633,9 @@ type ServiceRegistry_registerService_Params_Future struct{ *capnp.Future }
 func (f ServiceRegistry_registerService_Params_Future) Struct() (ServiceRegistry_registerService_Params, error) {
 	p, err := f.Future.Ptr()
 	return ServiceRegistry_registerService_Params(p.Struct()), err
+}
+func (p ServiceRegistry_registerService_Params_Future) Service() capnp.Client {
+	return p.Future.Field(1, nil).Client()
 }
 
 type ServiceRegistry_registerService_Results capnp.Struct

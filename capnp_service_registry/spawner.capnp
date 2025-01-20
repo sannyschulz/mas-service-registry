@@ -37,7 +37,7 @@ interface ServiceViewer {
 interface ServiceRegistry {
 
     # register a service
-    registerService @0 (serviceToken :Text) -> ();
+    registerService @0 (serviceToken :Text, service :Capability) -> ();
 
 }
 

@@ -4,14 +4,32 @@ import (
 	"context"
 	"errors"
 
+	"capnproto.org/go/capnp/v3"
 	capnp_service_registry "github.com/sannyschulz/mas-service-registry/capnp_service_registry"
+	"github.com/zalf-rpm/mas-infrastructure/src/go/commonlib"
 )
 
 // implement interface ServiceViewer server
+type serviceViewer struct {
+	spawnManager *SpawnManager
+	persistable  *commonlib.Persistable
+}
 
-func (sp *SpawnManager) ListServices(ctx context.Context, call capnp_service_registry.ServiceViewer_listServices) error {
+func newServiceViewer(restorer *commonlib.Restorer, spawnManager *SpawnManager) *serviceViewer {
+	viewer := &serviceViewer{
+		spawnManager: spawnManager,
+		persistable:  commonlib.NewPersistable(restorer),
+	}
+	restoreFunc := func() capnp.Client {
+		return capnp.Client(capnp_service_registry.ServiceViewer_ServerToClient(viewer))
+	}
+	viewer.persistable.Cap = restoreFunc
+	return viewer
+}
 
-	list := sp.listServices()
+func (sp *serviceViewer) ListServices(ctx context.Context, call capnp_service_registry.ServiceViewer_listServices) error {
+
+	list := sp.spawnManager.listServices()
 
 	result, err := call.AllocResults()
 	if err != nil {
@@ -49,7 +67,7 @@ func (sp *SpawnManager) ListServices(ctx context.Context, call capnp_service_reg
 	return result.SetServices(structList)
 }
 
-func (sp *SpawnManager) GetServiceView(ctx context.Context, call capnp_service_registry.ServiceViewer_getServiceView) error {
+func (sp *serviceViewer) GetServiceView(ctx context.Context, call capnp_service_registry.ServiceViewer_getServiceView) error {
 
 	if !call.Args().HasServiceID() {
 		return errors.New("no service id provided")
@@ -58,7 +76,7 @@ func (sp *SpawnManager) GetServiceView(ctx context.Context, call capnp_service_r
 	if err != nil {
 		return err
 	}
-	serviceBootstrap, err := sp.RequestService(serviceId)
+	serviceBootstrap, err := sp.spawnManager.RequestService(serviceId)
 	if err != nil {
 		return err
 	}
@@ -79,7 +97,7 @@ func (sp *SpawnManager) GetServiceView(ctx context.Context, call capnp_service_r
 	return result.SetServiceView(liveCap.ServiceView().AddRef())
 }
 
-func (sp *SpawnManager) GetResolvableService(ctx context.Context, call capnp_service_registry.ServiceViewer_getResolvableService) error {
+func (sp *serviceViewer) GetResolvableService(ctx context.Context, call capnp_service_registry.ServiceViewer_getResolvableService) error {
 
 	if !call.Args().HasServiceID() {
 		return errors.New("no service id provided")
@@ -88,7 +106,7 @@ func (sp *SpawnManager) GetResolvableService(ctx context.Context, call capnp_ser
 	if err != nil {
 		return err
 	}
-	serviceBootstrap, err := sp.RequestService(serviceId)
+	serviceBootstrap, err := sp.spawnManager.RequestService(serviceId)
 	if err != nil {
 		return err
 	}
@@ -135,8 +153,24 @@ func (sp *SpawnManager) GetResolvableService(ctx context.Context, call capnp_ser
 }
 
 // implement interface ServiceResolver server
+type serviceResolver struct {
+	spawnManager *SpawnManager
+	persistable  *commonlib.Persistable
+}
 
-func (sp *SpawnManager) GetLiveCapability(ctx context.Context, call capnp_service_registry.ServiceResolver_getLiveCapability) error {
+func newServiceResolver(restorer *commonlib.Restorer, spawnManager *SpawnManager) *serviceResolver {
+	resolver := &serviceResolver{
+		spawnManager: spawnManager,
+		persistable:  commonlib.NewPersistable(restorer),
+	}
+	restoreFunc := func() capnp.Client {
+		return capnp.Client(capnp_service_registry.ServiceResolver_ServerToClient(resolver))
+	}
+	resolver.persistable.Cap = restoreFunc
+	return resolver
+}
+
+func (sp *serviceResolver) GetLiveCapability(ctx context.Context, call capnp_service_registry.ServiceResolver_getLiveCapability) error {
 
 	req, err := call.Args().Request()
 	if err != nil {
@@ -155,7 +189,7 @@ func (sp *SpawnManager) GetLiveCapability(ctx context.Context, call capnp_servic
 		return err
 	}
 
-	serviceBootstrap, err := sp.RequestService(serviceId)
+	serviceBootstrap, err := sp.spawnManager.RequestService(serviceId)
 	if err != nil {
 		return err
 	}
@@ -177,4 +211,42 @@ func (sp *SpawnManager) GetLiveCapability(ctx context.Context, call capnp_servic
 	}
 
 	return result.SetResolvedCapability(liveCap.ResolvedCapability().AddRef())
+}
+
+// implement interface ServiceRegistry server
+type serviceRegistry struct {
+	spawnManager *SpawnManager
+	persistable  *commonlib.Persistable
+}
+
+func newServiceRegistry(restorer *commonlib.Restorer, spawnManager *SpawnManager) *serviceRegistry {
+	registry := &serviceRegistry{
+		spawnManager: spawnManager,
+		persistable:  commonlib.NewPersistable(restorer),
+	}
+	restoreFunc := func() capnp.Client {
+		return capnp.Client(capnp_service_registry.ServiceRegistry_ServerToClient(registry))
+	}
+	registry.persistable.Cap = restoreFunc
+	return registry
+}
+
+func (sp *serviceRegistry) RegisterService(ctx context.Context, call capnp_service_registry.ServiceRegistry_registerService) error {
+
+	if !call.Args().HasServiceToken() {
+		return errors.New("no service token provided")
+	}
+	token, err := call.Args().ServiceToken()
+	if err != nil {
+		return err
+	}
+	if !call.Args().HasService() {
+		return errors.New("no service provided")
+	}
+
+	clientBootstrap := call.Args().Service()
+
+	sp.spawnManager.registerService(token, clientBootstrap)
+
+	return nil
 }

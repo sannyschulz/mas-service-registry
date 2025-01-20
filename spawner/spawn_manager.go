@@ -201,13 +201,13 @@ func (sm *SpawnManager) messageHandlerLoop() {
 func (sm *SpawnManager) addNewService(serviceId string, serviceConfig map[string]interface{}) (*RegisteredService, error) {
 
 	if _, ok := sm.serviceConfig[serviceId]; !ok {
-		return nil, errors.New("Service configuration not found")
+		return nil, errors.New("service configuration not found")
 	}
 	startTimeout := 100 // default start timeout in seconds
 	if serviceConfig["StartTimeout"] != nil {
 		startTimeout = serviceConfig["StartTimeout"].(int)
 		if startTimeout < 0 || startTimeout > 600 {
-			return nil, errors.New("Invalid StartTimeout")
+			return nil, errors.New("invalid StartTimeout")
 		}
 	}
 

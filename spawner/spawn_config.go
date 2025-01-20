@@ -17,6 +17,7 @@ func (c *ConfigConfiguratorImpl) GetDefaultConfig() *commonlib.Config {
 	defaultConfig.Data["Service"].(map[string]interface{})["Host"] = "localhost"
 	defaultConfig.Data["Service"].(map[string]interface{})["Description"] = "spawn new services"
 	defaultConfig.Data["Service"].(map[string]interface{})["Mode"] = "LocalWindows" // LocalWindows, LocalUnix, Slurm
+	defaultConfig.Data["Service"].(map[string]interface{})["OutSturdyRefFile"] = "sturdyref.toml"
 
 	// this is an example of a service that can be spawned, should be overwritten before starting the service
 	defaultConfig.Data["Spawn"].(map[string]interface{})["ClimateService1"] = map[string]interface{}{
