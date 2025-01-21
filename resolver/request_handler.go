@@ -9,6 +9,7 @@ import (
 	"github.com/sannyschulz/mas-service-registry/capnp_service_registry"
 )
 
+// interface for capability forwarding handler (from commonlib)
 type resolveHandler struct {
 	storageCap capnp.Client
 	spawnerCap capnp.Client
@@ -71,15 +72,38 @@ func (rh *resolveHandler) ResolveSturdyRef(srToken string) (capnp.Client, error)
 	fmt.Print("ServiceID: ", serviceID)
 	fmt.Print("Payload: ", payload)
 
-	// get the spawner service
-	// fut, release = capnp_service_registry.Spawner(rh.spawnerCap)
-	// if err != nil {
-	// 	return capnp.ErrorClient(err), err
-	// }
-	// defer release()
+	//get the spawner service and resolve the capability
+	futResolve, releaseResolve := capnp_service_registry.ServiceResolver(rh.spawnerCap).GetLiveCapability(context.Background(),
+		func(params capnp_service_registry.ServiceResolver_getLiveCapability_Params) error {
 
-	// TODO:need to implement the spawner service
-	err = errors.New("not implemented")
+			// create a request struct
+			resquest, err := params.NewRequest()
+			if err != nil {
+				return err
+			}
+			err = resquest.SetServiceID(serviceID)
+			if err != nil {
+				return err
+			}
+			err = resquest.SetPayload(payload)
+			if err != nil {
+				return err
+			}
 
-	return capnp.ErrorClient(err), err
+			return params.SetRequest(resquest)
+		})
+
+	defer releaseResolve()
+
+	futResolveStruct, err := futResolve.Struct()
+	if err != nil {
+		return capnp.ErrorClient(err), err
+	}
+	if !futResolveStruct.HasResolvedCapability() {
+		err := errors.New("capability cannot be resolved")
+		return capnp.ErrorClient(err), err
+	}
+	resolvedCap := futResolveStruct.ResolvedCapability().AddRef()
+
+	return resolvedCap, nil
 }
