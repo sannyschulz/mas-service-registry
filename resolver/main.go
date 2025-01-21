@@ -23,11 +23,12 @@ func main() {
 	if *configGen {
 		gen := &ConfigConfiguratorImpl{}
 		// generate a config file if it does not exist yet
-		config, err = commonlib.ConfigGen(*configPath, gen)
+		_, err = commonlib.ConfigGen(*configPath, gen)
 		if err != nil {
 			log.Fatal(err)
 		}
 		fmt.Println("Config file generated at:", *configPath)
+		return // exit after generating the config file
 	} else {
 		config, err = commonlib.ReadConfig(*configPath, nil)
 		if err != nil {
@@ -35,23 +36,24 @@ func main() {
 		}
 	}
 	mgr := commonlib.NewConnectionManager(*configPath)
-	// establish a connection to storage service
+	// connect to storage service
 	storageSturdyRef := config.Data["Storage"].(map[string]interface{})["SturdyRef"].(string)
 	if storageSturdyRef == "" {
 		log.Fatal("No storage sturdy ref provided")
 	}
-
+	// establish a connection (retry 10 times, wait 1 second between retries)
 	storageCap, err := mgr.TryConnect(storageSturdyRef, 10, 1, true)
 	if err != nil {
 		log.Fatal(err)
 	}
 	defer storageCap.Release()
 
-	// establish a connection to spawner service
+	// connect to spawner service
 	spawnerSturdyRef := config.Data["Spawner"].(map[string]interface{})["SturdyRef"].(string)
 	if spawnerSturdyRef == "" {
 		log.Fatal("No spawner sturdy ref provided")
 	}
+	// establish a connection (retry 10 times, wait 1 second between retries)
 	spawnerCap, err := mgr.TryConnect(spawnerSturdyRef, 10, 1, true)
 	if err != nil {
 		log.Fatal(err)
@@ -66,18 +68,22 @@ func main() {
 }
 
 func listenForRequests(config *commonlib.Config, storageCap, spawnerCap *capnp.Client) error {
+
 	host := config.Data["Service"].(map[string]interface{})["Host"].(string)
 	port := config.Data["Service"].(map[string]interface{})["Port"].(int)
+	// sturdy ref resolving part (from commonlib)
 	restorer := commonlib.NewRestorer(host, uint16(port))
 
+	// this handler will look up the SturdyRef in the storage service
+	// request a live capability from the spawner service
+	// and return the capability to the client
 	resolveHandler := &resolveHandler{
 		storageCap: *storageCap,
 		spawnerCap: *spawnerCap,
 	}
 	restorer.AddForwardingHandler(resolveHandler)
-	// sturdy ref resolving part
 
-	// start listening for connections
+	// start listening for incoming connections from clients
 	listener, err := config.ListenForConnections(restorer.Host(), restorer.Port())
 	if err != nil {
 		return err
