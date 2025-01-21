@@ -3,18 +3,17 @@ using Go = import "/go.capnp";
 $Go.package("capnp_service_registry");
 $Go.import("github.com/sannyschulz/mas-service-registry/capnp_service_registry");
 
-# struct to store a sturdyref
+# struct for content assigned to a sturdyref
 struct ResolvableServiceRequest {
   serviceID @0 :Text;
   payload @1 :Text;
 }
 
-# interface to resolve a service by its id and specification
+# interface to resolve a service by its id and specification to a capability
 interface ServiceResolver {
 
     # resolve a service
     getLiveCapability @0 (request :ResolvableServiceRequest) -> (resolvedCapability :Capability);
-
 }   
 
 struct ServiceDescription {
@@ -24,6 +23,7 @@ struct ServiceDescription {
   serviceDescription @3 :Text;
 }
 
+# interface to view services that are available in the spawner
 interface ServiceViewer {
 
     # list all services
@@ -34,6 +34,7 @@ interface ServiceViewer {
     getResolvableService @2 (serviceID :Text, specification :Text) -> (service :ResolvableServiceRequest);
 }
 
+# interface to register a service at the spawner
 interface ServiceRegistry {
 
     # register a service
@@ -41,6 +42,7 @@ interface ServiceRegistry {
 
 }
 
+# this interface has to be implemented by a service to be spawned
 interface ServiceToSpawner {
 
     # resolve payload to capability
