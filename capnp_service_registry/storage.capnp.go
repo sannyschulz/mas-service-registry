@@ -1645,225 +1645,1523 @@ func (p StorageReader_getSturdyRef_Results_Future) Sturdyref() SturdyRefStored_F
 	return SturdyRefStored_Future{Future: p.Future.Field(0, nil)}
 }
 
-const schema_dca555fc76741dc1 = "x\xda\xd4\x1a{tS\xf5\xf9\xf7\xe5\xa6\x044ms" +
-	"{\x0b}S{Vv`\x13\x94\xa1\x07\xaa\xb2\xd2Y" +
-	",U\xab\xbdi\xa3\xc2\x99HJnY4m\xc2M" +
-	"\xdaZ\x0e\x9dPE-X\x07\x15\x1fE\x98\xcfn\x02" +
-	"v\x8e*\x9b\x8a\xe8\xaaS\xc4\xd1\xc1P\xea\xe1\xa5\x82" +
-	":\xe6\x03\x1f\xa8\x03|e\xe7\xfb\xdd\xfcn~In" +
-	"\x9b\x04\xe5\x8f\xfd\xd7\xde|\xf7{\xbf\xbf{n\xe3\x19" +
-	"3\xcc\x93S\xb3\xb2\x89\xa9&\x1bRF\x04\xfb\xf6\x9f" +
-	"\xbc\xc2\x94q\xdf\x12\"\x16\x02!)`!d\xca\xe7" +
-	"g\x1e\x06\x02R\x8a\xb5\x94@\xf0H\xf3\xc6\xe0\xcf\xe5" +
-	"yK\x89\x98\xa7\x03\x8c\xb3.G\x80\xf3)\xc0\xf4Q" +
-	"/\xbcy\xe0E\xdf-\x1a\x80\x19\x7f\x9fm}\x18\x88" +
-	"9\xf8\xea;\xff^\x92\xdf\xf2\xf12\"\x8ee\xbfT" +
-	"Z\xfb\xf0\x97\x1b\xc6]6\xd6\xac\xac\xb8\x8d\x88\xb9\x88" +
-	"\xd4\x84?\x95XUD:\xd3\xdaB X\xddVq" +
-	"\xc2{e\xe5\xf2\x10\x00\xa5\xba\xde\xda\x8e\x00\x9b\x91\xea" +
-	"\xf77\xd6M{\xfe\xcboV\x88\xf9\x0c\xf3^\x8d\xe6" +
-	"\xc4\x82\xb9S[\xb7\xaaw\x121\x0d\x82\x81\xe3[\x0f" +
-	"<p\xce\xc6]$E@\x90\xedV\x13H{\xac\x16" +
-	"B\xa4\x7fY\x9f \x10\xfc\xe5}S?{\xee\xd7\xad" +
-	"+y\xd9ZS\xa9l\x1d\xa9(\xdb\x9a\xce\xa5#_" +
-	"r\xdf\x15\x01\xd0\x9b\xba\x08\x01\x9e\xa1\x00\xb5\xbd\xab\xa5" +
-	"\xa2\x9eY]\x842\xa2\x01\x1cL\xedC\x80\xa3\x14`" +
-	"\xc6\xdc\xeb\xabo\xbd\xa8{\xb5\xa6\x03M\xd2\xa2\xb4\x0d" +
-	"\x0809\x0d%\xb5t\xcd\xea\xee\x98\xfa\xdcj\xde\x00" +
-	"\xab\xd2\xf6!@O\x1abx\xea\xf8\xef\xfb\xbf\xb9\xff" +
-	"\x8e{x\x12\xdb\xd3\xa8*\xf6P\x80\x8f\xef<\xfa\xf0" +
-	"\xf3\xfb|\xf7\x121M\x08\xf6\x17\x04\x9a\xbfu\xf4\x1c" +
-	" \x04\xa4\x93i\x87\xa5\x94t\x84\x87\xf4\x0a\x90\xde\xc7" +
-	"?\x83s\x7f\xe7\xdc\xdf]\xf4\xe9\xfd\xbcf\x07\xd2\xa9" +
-	"\xcc\x07\xd3\x11\xdd\x14\xc7\xa1c\xc5\xfb\xdf_\xcb\xd3\x13" +
-	"m\x94^\x81\x0d\x01~z\xe6\xc2o\x07G<\xf3 " +
-	"\xcfq\x99\xed5\x04pP\x80'\xdbO\xde\xf3\xf6G" +
-	"\xd3\x1f\xe2<\xa2\xcd\xb6\x06\xad#}\xab\xbeWrs" +
-	"\xdfC\x94U\xe7\x98\xcdOg\xed\xdd\xf2&\xb2\xda`" +
-	";&\xb5\xda\xd02M\xb6\x0a\xa9\x07\xff\x0a~\x92\xd7" +
-	"y\xfc\xd0 <\xcas\xdai\xa3\x9c\xae\xa3t\xda7" +
-	"\xdb\xdbn\x1b\xbc\xf1Q\x9e\xd3~\x8d\xd3\x01\x0a0\xb7" +
-	"s\xe7\x95\x9f\x0d\xdc\x1a\x01\xf0\xb9\xad\x0b\x01@D\x80" +
-	"WK\x8a\xcc5\x0fe\xf7\x90\xb0\x1f\x8d\x137 \xa7" +
-	"\xae\xd2\x8e\xfdo=\xf9H\x0fO|\xb4H-_D" +
-	"_\x9d\x1a\xbc\xf0\xe3\xf1\x17m\xef\xd1\xb4@_uh" +
-	"\xaf\xfa:\xfd;\xef;\xd0\xf2\x87\x90\xd3P\x93\xcf\x14" +
-	")U\x87\x88&\x7fb\xf6\x8e\xbd\x15E;\xff\xc8+" +
-	"\xf0\x19\x91:\xcdv\x8d\xad\xce\xea\xc6\xf2\x7f\xa6?\xc6" +
-	"\x13?*R\xc9\xbf\xa3\x00\x1fN\xbfkc\x89y\xce" +
-	"F^\xb0\xa2\x0c\x0a09\x83:nIS\xf1\x87\xdd" +
-	"\xee\xc7\xa3\xc2\x00\xd9\x94\x94\x8c\xaf\xa5\x85\x19\xf8WC" +
-	"\xc6\x11\x02\xc1\x99\x0f\xcc\xf3\xf9\xd2\xfazyd\x0e\x89" +
-	"\xda\xd3-!\xb2\xeb\xcawx\xd6\xe6\xfcv\x13E\xa6" +
-	"[\x8d\"\x9b\xd2)\x9d\x01\xd2:\x09\xb1uK\x88-" +
-	"\xa5\xf6\xb5\x15\x7f\x9d\xf3\xe0&\x9e\xf7\xa5\x99Tq\x9d" +
-	"\x99\x88\xeda\xa9\xf0\xb3\x82\xc1Q\x9by\xe97e\xbe" +
-	"\x88\x00\xfd\x14\xa0*\xaf\xa8\xf8\xa9\x8c'\x9e\xe6\x83\xee" +
-	"P&\xd5\xdf\xe7\x14\xe0\xddm\xff\x98v\xc7\xa2E[" +
-	"\xa2\x84K\xa16\x1a}\x06H\xe3FS\x85\x8c.\x04" +
-	"\x02\xc1\xfbw\xef+\xe9\xf8\xb0g+\x8fn\xe6\x18\xea" +
-	"%\xf2\x18Dw\xfc\xd6\xe59\xf7\\\xf9\xec+\xbc\xfc" +
-	"\xcb4\x80U\x14`p\xd6\xf6m\x8b\x0f\xcc\xd8\x11\xc2" +
-	"@s\xc9\xe61T\xa4\xfe1\x98G\x1e\xed\x9d\xf8\xc9" +
-	"\x9a\xc17\x0787R\xb2\x96\xa3/\xfc\xf9\xac#m" +
-	"\xe3?x~'O\xdc\x91EeQ\xb2\x10\xf7R\xf3" +
-	"\xe2\x91c\x8e\xbd\xbd\x8b'\xde\x9dE-\xb9\x9e\x02\\" +
-	"\xfc\xe9\xb6\xbb\xf3\xafxw\x17\x15V\x8fn\xcd\x92\x03" +
-	"Y\xc7\xa4\xbdY\xf8\xd7\x9e,\xd4}\xc7O.x+" +
-	"0o\xcd\xeb4\xbct\xc5`\xce\xcc\xde-\xf5g#" +
-	"\xee\xad\xd9\x15 u\xe7X\x08y\xe1D\xf6\xeb\xd3\x0b" +
-	".\xdc\xc3\xdb)\x87\xa6\xe0\xce\x1c$<g\xc5\xec7" +
-	"^\xf6\xef\xda\xa3\x19\x92\x0a\xb5)\xa7\x1d\x85\xaa\xbc\xf9" +
-	"\x11\xfb\x8e\xff\xbc\xbc/\xca\x1f\xa8\xa3\xaf\xcb\xb9\x00\xa4" +
-	"^\xc4/\xad\xcfAg\xafh\xaf\xb2\xec\x181w\x7f" +
-	"(\x01R:\xa3r\xa9\xb9sr\x91\x8e{\xf0\xc4J" +
-	"\xd7+\xdf\xef\x8f\xc9\x09e\xb9_KU\xb9\x88\xa92" +
-	"w\x9b\xb4\x07\xff\x0a\x1e\xae\x9d\xe68\xfb\xac\xa9\x07y" +
-	"l[s\x9f\xa5!O\xb1\xfd=\xa5\xf0\xc0\xb5\xbb\x85" +
-	"wb\xb0\x1d\xcd=,\x9d\xa4\xd8\xbe\xca\xdd&\xb5\xe5" +
-	"!\xb6\x89\x8b\x97TLw\x8dz\x9fW\xbe\x92G\x95" +
-	"\xdf\x94\x87\xd8&\x8c+\\\xf5\x8b9\x05Gx\xf3u" +
-	"\xe7\xd1\xec\xbd\x9e\x02\xcc\xba\xca\xf7\xb7\xf3\xb6M\x8b\x00" +
-	"8\x98G}\xe7\x03\x0ap\xe7\x96}7\x8cn=~" +
-	"\x84'\x91\x9a\xbf\x86f\xd3|\xea\xcc\x1b\x9c\x8e\x9f\xed" +
-	"\x1e\xfbQL\xf6.\xcb?,U\xe5S\xf1\xf3+\xa4" +
-	"&\xfc+\xf8\xd2\xb4\xf7\xc4%\xb9\xb5_p6\xb96" +
-	"\xbf\x0bmr^\xff9\x8f\xff\xa9\xb7\xefK\x9eN\x95" +
-	"F\xe7ZJ\xe7\xf6\xbf\\\xb7\xe2\xe6\x15W\x7f\x15\xe3" +
-	"\x1bK\xf3\xf7I\x9d\x88}JG\xfem \xdd]\x80" +
-	"\x84v\xbc\x91v\xe9\x99y\xed\xff\x8dQc[\xc11" +
-	"\xa9\x03A\xa4e\x05\x15\xd2&\x0a\xfc\xc5\xbd['\x9f" +
-	"\x9d\x96r\"\xc2\x87\x0bh\x02\xe9-@\xda\x8bJ\xb6" +
-	"\\\x96[\xe7\xf8\x9a\x07\x18(\xd8\x8d\x00\x87(\xc0\xda" +
-	"\xc1\xe2Q\xaf>6\xf0]\x08\x80z\xd2\xe8\xb1\xd4I" +
-	"\xc6\x8dm!\x17\x07\xfd>gK\xa3\xa2N\x1a1\xdf" +
-	"\xe9k\xf4]P\xa3\xa8\xcd\xee\xf9J\xad\xb7&\xf4|" +
-	"\x81\x12\xb0+~\xaf\xa7\xd9Y\xe7Q\xaa\x9d\xad\x1e\xaf" +
-	"\xd3UlW\xfcM\x16O\xc0/\x9b\x053!f " +
-	"DL\xfd\x15!\xf2H\x01\xe4L\x13\xdc\xe4\xd3\xe0\xc0" +
-	"JL`%\x10lQ\xea\x9a\xddJ\xcb\xa4\x14\x8d\xc8" +
-	"\xd5J\xddUn\xa5\xa5\xcc\xd5\xe0nD\x02!\xa2\xf8" +
-	"\xac\xb8\xda\xa9:\x1b\xfc\x84\xf0\xa8\xed\x84\xc8V\x01\xe4" +
-	"l\x13\x04\xfd\x1al%\x81\xf2\x84\xd0{\xdc\xfe@\x99" +
-	"\xc7S\x13hR]\xadv\xa5\xde\x8f\x14,\xce\x06\xbf" +
-	".yJ\x84\xe4ve\x81\xdb\x1fP['\xa9\xf4\x0f" +
-	"E\x0d=/\xb6+\x85\xfe&O\xc0\xafS3GP" +
-	"s\xf8\x15uR\xa3\xd2\xa2\x13*\xae.\xa4\xa2\xc8#" +
-	"uA&\xa0 \xe3\x05\x90\xcf3\x81\x08\x90\x09\xf8p" +
-	"\xb2J\x88|\xae\x00\xf2ECH\xe7\xf7)\xf3\xdd\xf5" +
-	"\xee\xf9\xa4\xd0\x19p{\x1b\xe3HM\xf90\xd6i2" +
-	"*\xf5\x07\xbc\xaas\x81\xa2+G\xfbw\xa6\xcb\x1d\xf0" +
-	"\xaa\x93\\\x8aG\x09(aI\x99;\xe8,\x09\xec\xad" +
-	"\x10\x042\x85\x9c\x90j\x00\xd9\xaas1\xb3\x8e\x10\xb9" +
-	"\\\x00\xb9\x9a\xd3G\x15\xb2v\xb9\x00\xf25&\x10M" +
-	"\xa6L0\x11\":\xba\x08\x91\xaf\x11@v!\xbf!" +
-	"\xb4\xc4R_\xc9ql \x85\xe6\x87\xe5\x0a\xf8\xe7\xab" +
-	"n_\xc0\xed\x85\xc6\x84\x9d&\xd2cb|R\xe5\x14" +
-	"\xd8\xe4WT\xbf{A#Z\xa8IUbH\x98\x87" +
-	"\"\xa1\xb1\xec/.\xd5(\xf0\xf8\xebb\x0dTK," +
-	"\xad>%1\x13\xc5\xba=\xf3_\x9e\xc8\x9c\x10\x91\xf1" +
-	"\xbaVU\x85\x08\xf5~H#P-\x00\xd8\xc2E\x92" +
-	"\x00>L6h\xaa\x9d\xe9\xd11p\xbdQ\x0c`\xf2" +
-	"8[\x00y\x1a/m\xba\xf7\x06E\xb7\xd7M\xa1\xc7" +
-	"\x90a\x16\x08@\x06\xc7KR\xa9\x0b5-D\xaa\x9a" +
-	"7\xe5P\xc16\xac\xb21\xdc\xc2a\x1f\x1bl\x11\xb6" +
-	"4v\xde\x10zS4zK\xc0\xabb\xd0d\x0a)" +
-	"\x84\xe8\x13\x04\xb0\xbeH\\u=1\x89\x1d\x16\x08O" +
-	"3\xc0j\xaf\xd8\x86\xbf5Y\xc0\xa47\xa2\xc0\xea\x85" +
-	"\xe8\xee#&Q\xb1\x80\xa0w\xea\xc0&.qv\x17" +
-	"1\x89\x0e\x0b\x84k\x1f\x106\x15V\xb6\x13\x93Xf" +
-	"\x09:].*2IG\xa1g@\x90\xe9@\x7f\xc0" +
-	"b\x084\xff\xbb\xc4[\xa8b\x1a\x08\xfd\x82\xbe\x09L" +
-	"g\xe0\x9f\x01A\x96T \xf4\x90\xcc\x80j\x186\xcb" +
-	"EE)f!O *Lc=\xdc\x1e\xe5\xe1\xfa" +
-	"\\\xcb<|8K3\xb1\x87\xb2\xb4=\xc6\xd2\xaaB" +
-	"\xa0>*\x90l\x899\xef\xe5\xeef\xe5b\xa7\xcfY" +
-	"\xe7\xf6\xb8\x03\xad\xc6\xf2\xad!D\xb6\x09 \xe7\x9b " +
-	"\xa8RgW\\\xc0^\x12\x02\xad\\\xb8\x0c\x97\xf0T" +
-	"\xa5\xc1\xdb\x1c\x95\xd1=B \\$MQ\xf1\xee/" +
-	"DR\xd45\xcd\xd45Y\xff\x08\xac-\x15Et\xa3" +
-	"TK\x90I\x02L\x14h\x8dk\xdah~\xe2v\x05" +
-	"\xcc\xb4P\x1f'd\xed\x8a\xd3\xa5\xfc(!k\x98\x09" +
-	"Q\x82!\x0a0\xf8\x7f\xb4\x02l\xd4\xd4\xd0D;\\" +
-	"s\x12Qq\xec\xa5JL5\xb8\x94\x8f\x95\x10 !" +
-	"$\x1c*\xfa\xec;l1\x88\xf0\xe1H-D\xf2\x98" +
-	"\x88#2\xcdq\x05D5* v\xae\x89\x1a\xaa\x1c" +
-	"\x1b:Ir\"\x18\x15Q\x83J}\x15\xb1\xb8\x95\x96" +
-	"\xb8\xb1g\xd4\xab\x19Fy\"$\x86\xf5\xc7H\xdb\x1b" +
-	"\x91\x88k|}W\x112>\x13):3\xd4\x97*" +
-	"\xaa\xd28_\xc1\xd4`\xd3\xf1;\xd1@\xf3\x04\x90=" +
-	"\x9c\xd5\xdc(\xd7o\x04\x90\x03\\\xab\xb7\x10\x1f\xfa\x04" +
-	"\x90\x17\x9b@\x14\x84L\x10\x08\x11[1\xcf-\x16@" +
-	"\xbe}\xa8p1n\x91\xb4\xa7W\x10\x8b\xb3!\xe6i" +
-	"9(\xa1\xb6P0(\xf4#\x86\x8a\xbbp\xd0]\xe2" +
-	"\xa5\x15\xed\x94\xdbCf1!B\x83\xe5\x8c+o#" +
-	"!\xff\xa7JLtD2\xcaBq\xd3z\xd2\x85\xd3" +
-	" \xbd\xffH\xc3\xaa\x16Ip\xca\xe9 zN\xa2D" +
-	"\xe8\xa0D\xb4\xa6\x8fam\xab\x0b\x9bN\xb7\xfc2T" +
-	"\xd5-\x02\xc8+9\xcbw\xa2h\xb7\x0b \xaf\xe6," +
-	"\xbf\x0a\xddq\xa5\x00\xf2Z\x13\x88fs&\x98\x09\x11" +
-	"\xbbq\xa6Z+\x80\xfcX23U\x8c\xba\x86\xf2\xee" +
-	"\x1f4{E\xa7\xaa\xd3P\xa6\x8c2c\xbcF\xc00" +
-	">\x86\x9b\xf2\"\xbc\x9dMy\xdc\x00\xac&<\x00#" +
-	"d\xad\x00\xf2\xbc\xe1\x12J\x12\xdb\x83\xc4\xdb\\\xbd\\" +
-	"$32\x1bEF\xfc^\\\xdf?\x0f\xdb\x8b\x1b\xb5" +
-	"p\x865-\x89n<z\xfe\x0a\xe1\xad)\x0cxU" +
-	"\xc5\x15\x95\x86\xeb\x8c\xd2\xb0\xdd(\x0dc0z\x04\x90" +
-	"o\xe4\x82\xb1\x09M\x19\x10@^rZ\xe2.\xaa." +
-	"\x87s/\x84\x07I\xb6\xa1\xe6\x8e1\xe1A\x92]\x08" +
-	"\x81\x1dK\xc4\xb6El\x90d\xe7E`\xc7\x08\xd1\x8d" +
-	"\xef9q\x90dW%`\xbbT\xd1\x81\xc3b\x15\x0e" +
-	"\x92l\xe5\x0d\xecH&\x96!\xce\x12K\x90\xc5\x1fI" +
-	"\xc7\x08\x0c\x0d\x92(>)\xd5bt\x06\x04Y\x14\xe9" +
-	"\xb3%\xeb\x12\xb9YQ\x9f7I\xa9\xe6\x82\x913F" +
-	"\xbc~\x98-\xebN)\xf2G\xc5\x9dMC\x89\x85e" +
-	"\"\x0d>\xbc\x9c`\xcdS\xa9\xb2\xb0I\xf1\x07\xd0N" +
-	"\xf1\xb6\x86\x06\x1b\x93a\xdd\xc5\xb8lj,\x0c;n" +
-	"\x9e\xe2\xb4i<8\xd6zkJ\xb5\x1f\xb4M N" +
-	"\x8e\xecl\x05\xec\xfc)\xca]\x9a\xdf\x84o\x81\xc0." +
-	"{\xcco\xc0\xa4\xdfw\x81]\xda\xc5\x89\x1b\x88I\x9c" +
-	"0\xc4\xc4i\xe4XlC\x04lE\x94\x8e:\xd3<" +
-	"g\xa8M\xd7\x90\x0a3X\xe2\xf1m\x86\xaa\xd9\x16l" +
-	"\xe1+O\xd4*\xc0\x14]\x9f,-\xbc\x9e\xd85\x0d" +
-	"\xd8\x8dR\x941\xf6*QO\xec\x1e\x0b\xec*\"N" +
-	"G=\x9d\x8fzb'\x00`\xd7\x04q\x02\xeai\\" +
-	"b\xb1\x17\xa9\xa2\x1aEMG\xe6B*Jx)\xf6" +
-	"\x03\xd3sr\x0b~\xbb\xe2O\x8f\xbf\xe9\x8cW{\x86" +
-	"\xa3\x19\xd9\xc4\x1a\x04J\xa2Ml\"\xcb\x03\xb6\x8bI" +
-	"z 4\xdc)\xda\x15\xa7\xc5\xc5/n\xd8\xad\x1f\xd8" +
-	"\xc1T\x14\xd1\xadFYbVzI\xeelX\x0b\x90" +
-	"\xdc-\xc1`?\x1b\x7f\x17c\\\xf3\xca\\\x0d\x82\xbb" +
-	"\x11%\xcd\xa6\x92\xb2oN\x80\x1d\xae\xc5M(\xe9z" +
-	"\x0c \xf61\x0e\xb0\x1b\xb9\xb8\x0e\x03\xe8n\x0c v" +
-	"\xa5\x06v\x93\x14;\xf0\xbd\xa5X\xf4\xd8'\x09\xc0>" +
-	"\xcd\x10\x9b\xb0\xe85`\xd1c\x1f\xc1\x00\xbbU\x8bN" +
-	"\xc49\xdb\x02)\xfa\xb7=\xc0\x0e\xa1bU\x17\x0d\xe6" +
-	"\xd3Y\x10\x8d7\xaf|\xb2\x8b\x1e\xe6\x17\x14\xd2\xbd~" +
-	"\xd8[\xd8W7\xc0>A\x12\xc5v\xcd[\xd8\xea\x1f" +
-	"B/\x93H\xcc#\x86\xf0\xf4\x98\"h\x9c+\xf8L" +
-	"\xca.\x01\x06\x994\xf9\xe1=\xb1F5\xd1\xb3H\xe2" +
-	"R\xb2Q\xe34]\x07\xff\x17\x00\x00\xff\xff\xc4\xc9(" +
-	"k"
+type UserStored capnp.Struct
+
+// UserStored_TypeID is the unique identifier for the type UserStored.
+const UserStored_TypeID = 0x8ef7e2521d75bf04
+
+func NewUserStored(s *capnp.Segment) (UserStored, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2})
+	return UserStored(st), err
+}
+
+func NewRootUserStored(s *capnp.Segment) (UserStored, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2})
+	return UserStored(st), err
+}
+
+func ReadRootUserStored(msg *capnp.Message) (UserStored, error) {
+	root, err := msg.Root()
+	return UserStored(root.Struct()), err
+}
+
+func (s UserStored) String() string {
+	str, _ := text.Marshal(0x8ef7e2521d75bf04, capnp.Struct(s))
+	return str
+}
+
+func (s UserStored) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (UserStored) DecodeFromPtr(p capnp.Ptr) UserStored {
+	return UserStored(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s UserStored) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s UserStored) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s UserStored) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s UserStored) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s UserStored) Usersignature() (string, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.Text(), err
+}
+
+func (s UserStored) HasUsersignature() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s UserStored) UsersignatureBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.TextBytes(), err
+}
+
+func (s UserStored) SetUsersignature(v string) error {
+	return capnp.Struct(s).SetText(0, v)
+}
+
+func (s UserStored) SturdyRefToken() (string, error) {
+	p, err := capnp.Struct(s).Ptr(1)
+	return p.Text(), err
+}
+
+func (s UserStored) HasSturdyRefToken() bool {
+	return capnp.Struct(s).HasPtr(1)
+}
+
+func (s UserStored) SturdyRefTokenBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(1)
+	return p.TextBytes(), err
+}
+
+func (s UserStored) SetSturdyRefToken(v string) error {
+	return capnp.Struct(s).SetText(1, v)
+}
+
+// UserStored_List is a list of UserStored.
+type UserStored_List = capnp.StructList[UserStored]
+
+// NewUserStored creates a new list of UserStored.
+func NewUserStored_List(s *capnp.Segment, sz int32) (UserStored_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2}, sz)
+	return capnp.StructList[UserStored](l), err
+}
+
+// UserStored_Future is a wrapper for a UserStored promised by a client call.
+type UserStored_Future struct{ *capnp.Future }
+
+func (f UserStored_Future) Struct() (UserStored, error) {
+	p, err := f.Future.Ptr()
+	return UserStored(p.Struct()), err
+}
+
+type UserEditor capnp.Client
+
+// UserEditor_TypeID is the unique identifier for the type UserEditor.
+const UserEditor_TypeID = 0x84761835db7b4b72
+
+func (c UserEditor) NewUser(ctx context.Context, params func(UserEditor_newUser_Params) error) (UserEditor_newUser_Results_Future, capnp.ReleaseFunc) {
+
+	s := capnp.Send{
+		Method: capnp.Method{
+			InterfaceID:   0x84761835db7b4b72,
+			MethodID:      0,
+			InterfaceName: "storage.capnp:UserEditor",
+			MethodName:    "newUser",
+		},
+	}
+	if params != nil {
+		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 0}
+		s.PlaceArgs = func(s capnp.Struct) error { return params(UserEditor_newUser_Params(s)) }
+	}
+
+	ans, release := capnp.Client(c).SendCall(ctx, s)
+	return UserEditor_newUser_Results_Future{Future: ans.Future()}, release
+
+}
+
+func (c UserEditor) DeleteUser(ctx context.Context, params func(UserEditor_deleteUser_Params) error) (UserEditor_deleteUser_Results_Future, capnp.ReleaseFunc) {
+
+	s := capnp.Send{
+		Method: capnp.Method{
+			InterfaceID:   0x84761835db7b4b72,
+			MethodID:      1,
+			InterfaceName: "storage.capnp:UserEditor",
+			MethodName:    "deleteUser",
+		},
+	}
+	if params != nil {
+		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 1}
+		s.PlaceArgs = func(s capnp.Struct) error { return params(UserEditor_deleteUser_Params(s)) }
+	}
+
+	ans, release := capnp.Client(c).SendCall(ctx, s)
+	return UserEditor_deleteUser_Results_Future{Future: ans.Future()}, release
+
+}
+
+func (c UserEditor) FindByToken(ctx context.Context, params func(UserEditor_findByToken_Params) error) (UserEditor_findByToken_Results_Future, capnp.ReleaseFunc) {
+
+	s := capnp.Send{
+		Method: capnp.Method{
+			InterfaceID:   0x84761835db7b4b72,
+			MethodID:      2,
+			InterfaceName: "storage.capnp:UserEditor",
+			MethodName:    "findByToken",
+		},
+	}
+	if params != nil {
+		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 1}
+		s.PlaceArgs = func(s capnp.Struct) error { return params(UserEditor_findByToken_Params(s)) }
+	}
+
+	ans, release := capnp.Client(c).SendCall(ctx, s)
+	return UserEditor_findByToken_Results_Future{Future: ans.Future()}, release
+
+}
+
+func (c UserEditor) FindBySignature(ctx context.Context, params func(UserEditor_findBySignature_Params) error) (UserEditor_findBySignature_Results_Future, capnp.ReleaseFunc) {
+
+	s := capnp.Send{
+		Method: capnp.Method{
+			InterfaceID:   0x84761835db7b4b72,
+			MethodID:      3,
+			InterfaceName: "storage.capnp:UserEditor",
+			MethodName:    "findBySignature",
+		},
+	}
+	if params != nil {
+		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 1}
+		s.PlaceArgs = func(s capnp.Struct) error { return params(UserEditor_findBySignature_Params(s)) }
+	}
+
+	ans, release := capnp.Client(c).SendCall(ctx, s)
+	return UserEditor_findBySignature_Results_Future{Future: ans.Future()}, release
+
+}
+
+func (c UserEditor) AddSeal(ctx context.Context, params func(UserEditor_addSeal_Params) error) (UserEditor_addSeal_Results_Future, capnp.ReleaseFunc) {
+
+	s := capnp.Send{
+		Method: capnp.Method{
+			InterfaceID:   0x84761835db7b4b72,
+			MethodID:      4,
+			InterfaceName: "storage.capnp:UserEditor",
+			MethodName:    "addSeal",
+		},
+	}
+	if params != nil {
+		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 2}
+		s.PlaceArgs = func(s capnp.Struct) error { return params(UserEditor_addSeal_Params(s)) }
+	}
+
+	ans, release := capnp.Client(c).SendCall(ctx, s)
+	return UserEditor_addSeal_Results_Future{Future: ans.Future()}, release
+
+}
+
+func (c UserEditor) WaitStreaming() error {
+	return capnp.Client(c).WaitStreaming()
+}
+
+// String returns a string that identifies this capability for debugging
+// purposes.  Its format should not be depended on: in particular, it
+// should not be used to compare clients.  Use IsSame to compare clients
+// for equality.
+func (c UserEditor) String() string {
+	return "UserEditor(" + capnp.Client(c).String() + ")"
+}
+
+// AddRef creates a new Client that refers to the same capability as c.
+// If c is nil or has resolved to null, then AddRef returns nil.
+func (c UserEditor) AddRef() UserEditor {
+	return UserEditor(capnp.Client(c).AddRef())
+}
+
+// Release releases a capability reference.  If this is the last
+// reference to the capability, then the underlying resources associated
+// with the capability will be released.
+//
+// Release will panic if c has already been released, but not if c is
+// nil or resolved to null.
+func (c UserEditor) Release() {
+	capnp.Client(c).Release()
+}
+
+// Resolve blocks until the capability is fully resolved or the Context
+// expires.
+func (c UserEditor) Resolve(ctx context.Context) error {
+	return capnp.Client(c).Resolve(ctx)
+}
+
+func (c UserEditor) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Client(c).EncodeAsPtr(seg)
+}
+
+func (UserEditor) DecodeFromPtr(p capnp.Ptr) UserEditor {
+	return UserEditor(capnp.Client{}.DecodeFromPtr(p))
+}
+
+// IsValid reports whether c is a valid reference to a capability.
+// A reference is invalid if it is nil, has resolved to null, or has
+// been released.
+func (c UserEditor) IsValid() bool {
+	return capnp.Client(c).IsValid()
+}
+
+// IsSame reports whether c and other refer to a capability created by the
+// same call to NewClient.  This can return false negatives if c or other
+// are not fully resolved: use Resolve if this is an issue.  If either
+// c or other are released, then IsSame panics.
+func (c UserEditor) IsSame(other UserEditor) bool {
+	return capnp.Client(c).IsSame(capnp.Client(other))
+}
+
+// Update the flowcontrol.FlowLimiter used to manage flow control for
+// this client. This affects all future calls, but not calls already
+// waiting to send. Passing nil sets the value to flowcontrol.NopLimiter,
+// which is also the default.
+func (c UserEditor) SetFlowLimiter(lim fc.FlowLimiter) {
+	capnp.Client(c).SetFlowLimiter(lim)
+}
+
+// Get the current flowcontrol.FlowLimiter used to manage flow control
+// for this client.
+func (c UserEditor) GetFlowLimiter() fc.FlowLimiter {
+	return capnp.Client(c).GetFlowLimiter()
+}
+
+// A UserEditor_Server is a UserEditor with a local implementation.
+type UserEditor_Server interface {
+	NewUser(context.Context, UserEditor_newUser) error
+
+	DeleteUser(context.Context, UserEditor_deleteUser) error
+
+	FindByToken(context.Context, UserEditor_findByToken) error
+
+	FindBySignature(context.Context, UserEditor_findBySignature) error
+
+	AddSeal(context.Context, UserEditor_addSeal) error
+}
+
+// UserEditor_NewServer creates a new Server from an implementation of UserEditor_Server.
+func UserEditor_NewServer(s UserEditor_Server) *server.Server {
+	c, _ := s.(server.Shutdowner)
+	return server.New(UserEditor_Methods(nil, s), s, c)
+}
+
+// UserEditor_ServerToClient creates a new Client from an implementation of UserEditor_Server.
+// The caller is responsible for calling Release on the returned Client.
+func UserEditor_ServerToClient(s UserEditor_Server) UserEditor {
+	return UserEditor(capnp.NewClient(UserEditor_NewServer(s)))
+}
+
+// UserEditor_Methods appends Methods to a slice that invoke the methods on s.
+// This can be used to create a more complicated Server.
+func UserEditor_Methods(methods []server.Method, s UserEditor_Server) []server.Method {
+	if cap(methods) == 0 {
+		methods = make([]server.Method, 0, 5)
+	}
+
+	methods = append(methods, server.Method{
+		Method: capnp.Method{
+			InterfaceID:   0x84761835db7b4b72,
+			MethodID:      0,
+			InterfaceName: "storage.capnp:UserEditor",
+			MethodName:    "newUser",
+		},
+		Impl: func(ctx context.Context, call *server.Call) error {
+			return s.NewUser(ctx, UserEditor_newUser{call})
+		},
+	})
+
+	methods = append(methods, server.Method{
+		Method: capnp.Method{
+			InterfaceID:   0x84761835db7b4b72,
+			MethodID:      1,
+			InterfaceName: "storage.capnp:UserEditor",
+			MethodName:    "deleteUser",
+		},
+		Impl: func(ctx context.Context, call *server.Call) error {
+			return s.DeleteUser(ctx, UserEditor_deleteUser{call})
+		},
+	})
+
+	methods = append(methods, server.Method{
+		Method: capnp.Method{
+			InterfaceID:   0x84761835db7b4b72,
+			MethodID:      2,
+			InterfaceName: "storage.capnp:UserEditor",
+			MethodName:    "findByToken",
+		},
+		Impl: func(ctx context.Context, call *server.Call) error {
+			return s.FindByToken(ctx, UserEditor_findByToken{call})
+		},
+	})
+
+	methods = append(methods, server.Method{
+		Method: capnp.Method{
+			InterfaceID:   0x84761835db7b4b72,
+			MethodID:      3,
+			InterfaceName: "storage.capnp:UserEditor",
+			MethodName:    "findBySignature",
+		},
+		Impl: func(ctx context.Context, call *server.Call) error {
+			return s.FindBySignature(ctx, UserEditor_findBySignature{call})
+		},
+	})
+
+	methods = append(methods, server.Method{
+		Method: capnp.Method{
+			InterfaceID:   0x84761835db7b4b72,
+			MethodID:      4,
+			InterfaceName: "storage.capnp:UserEditor",
+			MethodName:    "addSeal",
+		},
+		Impl: func(ctx context.Context, call *server.Call) error {
+			return s.AddSeal(ctx, UserEditor_addSeal{call})
+		},
+	})
+
+	return methods
+}
+
+// UserEditor_newUser holds the state for a server call to UserEditor.newUser.
+// See server.Call for documentation.
+type UserEditor_newUser struct {
+	*server.Call
+}
+
+// Args returns the call's arguments.
+func (c UserEditor_newUser) Args() UserEditor_newUser_Params {
+	return UserEditor_newUser_Params(c.Call.Args())
+}
+
+// AllocResults allocates the results struct.
+func (c UserEditor_newUser) AllocResults() (UserEditor_newUser_Results, error) {
+	r, err := c.Call.AllocResults(capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_newUser_Results(r), err
+}
+
+// UserEditor_deleteUser holds the state for a server call to UserEditor.deleteUser.
+// See server.Call for documentation.
+type UserEditor_deleteUser struct {
+	*server.Call
+}
+
+// Args returns the call's arguments.
+func (c UserEditor_deleteUser) Args() UserEditor_deleteUser_Params {
+	return UserEditor_deleteUser_Params(c.Call.Args())
+}
+
+// AllocResults allocates the results struct.
+func (c UserEditor_deleteUser) AllocResults() (UserEditor_deleteUser_Results, error) {
+	r, err := c.Call.AllocResults(capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return UserEditor_deleteUser_Results(r), err
+}
+
+// UserEditor_findByToken holds the state for a server call to UserEditor.findByToken.
+// See server.Call for documentation.
+type UserEditor_findByToken struct {
+	*server.Call
+}
+
+// Args returns the call's arguments.
+func (c UserEditor_findByToken) Args() UserEditor_findByToken_Params {
+	return UserEditor_findByToken_Params(c.Call.Args())
+}
+
+// AllocResults allocates the results struct.
+func (c UserEditor_findByToken) AllocResults() (UserEditor_findByToken_Results, error) {
+	r, err := c.Call.AllocResults(capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_findByToken_Results(r), err
+}
+
+// UserEditor_findBySignature holds the state for a server call to UserEditor.findBySignature.
+// See server.Call for documentation.
+type UserEditor_findBySignature struct {
+	*server.Call
+}
+
+// Args returns the call's arguments.
+func (c UserEditor_findBySignature) Args() UserEditor_findBySignature_Params {
+	return UserEditor_findBySignature_Params(c.Call.Args())
+}
+
+// AllocResults allocates the results struct.
+func (c UserEditor_findBySignature) AllocResults() (UserEditor_findBySignature_Results, error) {
+	r, err := c.Call.AllocResults(capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_findBySignature_Results(r), err
+}
+
+// UserEditor_addSeal holds the state for a server call to UserEditor.addSeal.
+// See server.Call for documentation.
+type UserEditor_addSeal struct {
+	*server.Call
+}
+
+// Args returns the call's arguments.
+func (c UserEditor_addSeal) Args() UserEditor_addSeal_Params {
+	return UserEditor_addSeal_Params(c.Call.Args())
+}
+
+// AllocResults allocates the results struct.
+func (c UserEditor_addSeal) AllocResults() (UserEditor_addSeal_Results, error) {
+	r, err := c.Call.AllocResults(capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return UserEditor_addSeal_Results(r), err
+}
+
+// UserEditor_List is a list of UserEditor.
+type UserEditor_List = capnp.CapList[UserEditor]
+
+// NewUserEditor_List creates a new list of UserEditor.
+func NewUserEditor_List(s *capnp.Segment, sz int32) (UserEditor_List, error) {
+	l, err := capnp.NewPointerList(s, sz)
+	return capnp.CapList[UserEditor](l), err
+}
+
+type UserEditor_newUser_Params capnp.Struct
+
+// UserEditor_newUser_Params_TypeID is the unique identifier for the type UserEditor_newUser_Params.
+const UserEditor_newUser_Params_TypeID = 0xb8926ab3e343717f
+
+func NewUserEditor_newUser_Params(s *capnp.Segment) (UserEditor_newUser_Params, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return UserEditor_newUser_Params(st), err
+}
+
+func NewRootUserEditor_newUser_Params(s *capnp.Segment) (UserEditor_newUser_Params, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return UserEditor_newUser_Params(st), err
+}
+
+func ReadRootUserEditor_newUser_Params(msg *capnp.Message) (UserEditor_newUser_Params, error) {
+	root, err := msg.Root()
+	return UserEditor_newUser_Params(root.Struct()), err
+}
+
+func (s UserEditor_newUser_Params) String() string {
+	str, _ := text.Marshal(0xb8926ab3e343717f, capnp.Struct(s))
+	return str
+}
+
+func (s UserEditor_newUser_Params) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (UserEditor_newUser_Params) DecodeFromPtr(p capnp.Ptr) UserEditor_newUser_Params {
+	return UserEditor_newUser_Params(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s UserEditor_newUser_Params) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s UserEditor_newUser_Params) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s UserEditor_newUser_Params) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s UserEditor_newUser_Params) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+
+// UserEditor_newUser_Params_List is a list of UserEditor_newUser_Params.
+type UserEditor_newUser_Params_List = capnp.StructList[UserEditor_newUser_Params]
+
+// NewUserEditor_newUser_Params creates a new list of UserEditor_newUser_Params.
+func NewUserEditor_newUser_Params_List(s *capnp.Segment, sz int32) (UserEditor_newUser_Params_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0}, sz)
+	return capnp.StructList[UserEditor_newUser_Params](l), err
+}
+
+// UserEditor_newUser_Params_Future is a wrapper for a UserEditor_newUser_Params promised by a client call.
+type UserEditor_newUser_Params_Future struct{ *capnp.Future }
+
+func (f UserEditor_newUser_Params_Future) Struct() (UserEditor_newUser_Params, error) {
+	p, err := f.Future.Ptr()
+	return UserEditor_newUser_Params(p.Struct()), err
+}
+
+type UserEditor_newUser_Results capnp.Struct
+
+// UserEditor_newUser_Results_TypeID is the unique identifier for the type UserEditor_newUser_Results.
+const UserEditor_newUser_Results_TypeID = 0xbdeca414321680f4
+
+func NewUserEditor_newUser_Results(s *capnp.Segment) (UserEditor_newUser_Results, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_newUser_Results(st), err
+}
+
+func NewRootUserEditor_newUser_Results(s *capnp.Segment) (UserEditor_newUser_Results, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_newUser_Results(st), err
+}
+
+func ReadRootUserEditor_newUser_Results(msg *capnp.Message) (UserEditor_newUser_Results, error) {
+	root, err := msg.Root()
+	return UserEditor_newUser_Results(root.Struct()), err
+}
+
+func (s UserEditor_newUser_Results) String() string {
+	str, _ := text.Marshal(0xbdeca414321680f4, capnp.Struct(s))
+	return str
+}
+
+func (s UserEditor_newUser_Results) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (UserEditor_newUser_Results) DecodeFromPtr(p capnp.Ptr) UserEditor_newUser_Results {
+	return UserEditor_newUser_Results(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s UserEditor_newUser_Results) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s UserEditor_newUser_Results) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s UserEditor_newUser_Results) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s UserEditor_newUser_Results) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s UserEditor_newUser_Results) User() (UserStored, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return UserStored(p.Struct()), err
+}
+
+func (s UserEditor_newUser_Results) HasUser() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s UserEditor_newUser_Results) SetUser(v UserStored) error {
+	return capnp.Struct(s).SetPtr(0, capnp.Struct(v).ToPtr())
+}
+
+// NewUser sets the user field to a newly
+// allocated UserStored struct, preferring placement in s's segment.
+func (s UserEditor_newUser_Results) NewUser() (UserStored, error) {
+	ss, err := NewUserStored(capnp.Struct(s).Segment())
+	if err != nil {
+		return UserStored{}, err
+	}
+	err = capnp.Struct(s).SetPtr(0, capnp.Struct(ss).ToPtr())
+	return ss, err
+}
+
+// UserEditor_newUser_Results_List is a list of UserEditor_newUser_Results.
+type UserEditor_newUser_Results_List = capnp.StructList[UserEditor_newUser_Results]
+
+// NewUserEditor_newUser_Results creates a new list of UserEditor_newUser_Results.
+func NewUserEditor_newUser_Results_List(s *capnp.Segment, sz int32) (UserEditor_newUser_Results_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	return capnp.StructList[UserEditor_newUser_Results](l), err
+}
+
+// UserEditor_newUser_Results_Future is a wrapper for a UserEditor_newUser_Results promised by a client call.
+type UserEditor_newUser_Results_Future struct{ *capnp.Future }
+
+func (f UserEditor_newUser_Results_Future) Struct() (UserEditor_newUser_Results, error) {
+	p, err := f.Future.Ptr()
+	return UserEditor_newUser_Results(p.Struct()), err
+}
+func (p UserEditor_newUser_Results_Future) User() UserStored_Future {
+	return UserStored_Future{Future: p.Future.Field(0, nil)}
+}
+
+type UserEditor_deleteUser_Params capnp.Struct
+
+// UserEditor_deleteUser_Params_TypeID is the unique identifier for the type UserEditor_deleteUser_Params.
+const UserEditor_deleteUser_Params_TypeID = 0x8e9be0a3d79fa1a0
+
+func NewUserEditor_deleteUser_Params(s *capnp.Segment) (UserEditor_deleteUser_Params, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_deleteUser_Params(st), err
+}
+
+func NewRootUserEditor_deleteUser_Params(s *capnp.Segment) (UserEditor_deleteUser_Params, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_deleteUser_Params(st), err
+}
+
+func ReadRootUserEditor_deleteUser_Params(msg *capnp.Message) (UserEditor_deleteUser_Params, error) {
+	root, err := msg.Root()
+	return UserEditor_deleteUser_Params(root.Struct()), err
+}
+
+func (s UserEditor_deleteUser_Params) String() string {
+	str, _ := text.Marshal(0x8e9be0a3d79fa1a0, capnp.Struct(s))
+	return str
+}
+
+func (s UserEditor_deleteUser_Params) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (UserEditor_deleteUser_Params) DecodeFromPtr(p capnp.Ptr) UserEditor_deleteUser_Params {
+	return UserEditor_deleteUser_Params(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s UserEditor_deleteUser_Params) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s UserEditor_deleteUser_Params) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s UserEditor_deleteUser_Params) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s UserEditor_deleteUser_Params) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s UserEditor_deleteUser_Params) Usersignature() (string, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.Text(), err
+}
+
+func (s UserEditor_deleteUser_Params) HasUsersignature() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s UserEditor_deleteUser_Params) UsersignatureBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.TextBytes(), err
+}
+
+func (s UserEditor_deleteUser_Params) SetUsersignature(v string) error {
+	return capnp.Struct(s).SetText(0, v)
+}
+
+// UserEditor_deleteUser_Params_List is a list of UserEditor_deleteUser_Params.
+type UserEditor_deleteUser_Params_List = capnp.StructList[UserEditor_deleteUser_Params]
+
+// NewUserEditor_deleteUser_Params creates a new list of UserEditor_deleteUser_Params.
+func NewUserEditor_deleteUser_Params_List(s *capnp.Segment, sz int32) (UserEditor_deleteUser_Params_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	return capnp.StructList[UserEditor_deleteUser_Params](l), err
+}
+
+// UserEditor_deleteUser_Params_Future is a wrapper for a UserEditor_deleteUser_Params promised by a client call.
+type UserEditor_deleteUser_Params_Future struct{ *capnp.Future }
+
+func (f UserEditor_deleteUser_Params_Future) Struct() (UserEditor_deleteUser_Params, error) {
+	p, err := f.Future.Ptr()
+	return UserEditor_deleteUser_Params(p.Struct()), err
+}
+
+type UserEditor_deleteUser_Results capnp.Struct
+
+// UserEditor_deleteUser_Results_TypeID is the unique identifier for the type UserEditor_deleteUser_Results.
+const UserEditor_deleteUser_Results_TypeID = 0xbb64bbd4b54a0ac7
+
+func NewUserEditor_deleteUser_Results(s *capnp.Segment) (UserEditor_deleteUser_Results, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return UserEditor_deleteUser_Results(st), err
+}
+
+func NewRootUserEditor_deleteUser_Results(s *capnp.Segment) (UserEditor_deleteUser_Results, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return UserEditor_deleteUser_Results(st), err
+}
+
+func ReadRootUserEditor_deleteUser_Results(msg *capnp.Message) (UserEditor_deleteUser_Results, error) {
+	root, err := msg.Root()
+	return UserEditor_deleteUser_Results(root.Struct()), err
+}
+
+func (s UserEditor_deleteUser_Results) String() string {
+	str, _ := text.Marshal(0xbb64bbd4b54a0ac7, capnp.Struct(s))
+	return str
+}
+
+func (s UserEditor_deleteUser_Results) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (UserEditor_deleteUser_Results) DecodeFromPtr(p capnp.Ptr) UserEditor_deleteUser_Results {
+	return UserEditor_deleteUser_Results(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s UserEditor_deleteUser_Results) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s UserEditor_deleteUser_Results) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s UserEditor_deleteUser_Results) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s UserEditor_deleteUser_Results) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+
+// UserEditor_deleteUser_Results_List is a list of UserEditor_deleteUser_Results.
+type UserEditor_deleteUser_Results_List = capnp.StructList[UserEditor_deleteUser_Results]
+
+// NewUserEditor_deleteUser_Results creates a new list of UserEditor_deleteUser_Results.
+func NewUserEditor_deleteUser_Results_List(s *capnp.Segment, sz int32) (UserEditor_deleteUser_Results_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0}, sz)
+	return capnp.StructList[UserEditor_deleteUser_Results](l), err
+}
+
+// UserEditor_deleteUser_Results_Future is a wrapper for a UserEditor_deleteUser_Results promised by a client call.
+type UserEditor_deleteUser_Results_Future struct{ *capnp.Future }
+
+func (f UserEditor_deleteUser_Results_Future) Struct() (UserEditor_deleteUser_Results, error) {
+	p, err := f.Future.Ptr()
+	return UserEditor_deleteUser_Results(p.Struct()), err
+}
+
+type UserEditor_findByToken_Params capnp.Struct
+
+// UserEditor_findByToken_Params_TypeID is the unique identifier for the type UserEditor_findByToken_Params.
+const UserEditor_findByToken_Params_TypeID = 0xc758e2223661f240
+
+func NewUserEditor_findByToken_Params(s *capnp.Segment) (UserEditor_findByToken_Params, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_findByToken_Params(st), err
+}
+
+func NewRootUserEditor_findByToken_Params(s *capnp.Segment) (UserEditor_findByToken_Params, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_findByToken_Params(st), err
+}
+
+func ReadRootUserEditor_findByToken_Params(msg *capnp.Message) (UserEditor_findByToken_Params, error) {
+	root, err := msg.Root()
+	return UserEditor_findByToken_Params(root.Struct()), err
+}
+
+func (s UserEditor_findByToken_Params) String() string {
+	str, _ := text.Marshal(0xc758e2223661f240, capnp.Struct(s))
+	return str
+}
+
+func (s UserEditor_findByToken_Params) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (UserEditor_findByToken_Params) DecodeFromPtr(p capnp.Ptr) UserEditor_findByToken_Params {
+	return UserEditor_findByToken_Params(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s UserEditor_findByToken_Params) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s UserEditor_findByToken_Params) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s UserEditor_findByToken_Params) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s UserEditor_findByToken_Params) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s UserEditor_findByToken_Params) SturdyRefToken() (string, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.Text(), err
+}
+
+func (s UserEditor_findByToken_Params) HasSturdyRefToken() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s UserEditor_findByToken_Params) SturdyRefTokenBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.TextBytes(), err
+}
+
+func (s UserEditor_findByToken_Params) SetSturdyRefToken(v string) error {
+	return capnp.Struct(s).SetText(0, v)
+}
+
+// UserEditor_findByToken_Params_List is a list of UserEditor_findByToken_Params.
+type UserEditor_findByToken_Params_List = capnp.StructList[UserEditor_findByToken_Params]
+
+// NewUserEditor_findByToken_Params creates a new list of UserEditor_findByToken_Params.
+func NewUserEditor_findByToken_Params_List(s *capnp.Segment, sz int32) (UserEditor_findByToken_Params_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	return capnp.StructList[UserEditor_findByToken_Params](l), err
+}
+
+// UserEditor_findByToken_Params_Future is a wrapper for a UserEditor_findByToken_Params promised by a client call.
+type UserEditor_findByToken_Params_Future struct{ *capnp.Future }
+
+func (f UserEditor_findByToken_Params_Future) Struct() (UserEditor_findByToken_Params, error) {
+	p, err := f.Future.Ptr()
+	return UserEditor_findByToken_Params(p.Struct()), err
+}
+
+type UserEditor_findByToken_Results capnp.Struct
+
+// UserEditor_findByToken_Results_TypeID is the unique identifier for the type UserEditor_findByToken_Results.
+const UserEditor_findByToken_Results_TypeID = 0x83b4805dae03e8f2
+
+func NewUserEditor_findByToken_Results(s *capnp.Segment) (UserEditor_findByToken_Results, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_findByToken_Results(st), err
+}
+
+func NewRootUserEditor_findByToken_Results(s *capnp.Segment) (UserEditor_findByToken_Results, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_findByToken_Results(st), err
+}
+
+func ReadRootUserEditor_findByToken_Results(msg *capnp.Message) (UserEditor_findByToken_Results, error) {
+	root, err := msg.Root()
+	return UserEditor_findByToken_Results(root.Struct()), err
+}
+
+func (s UserEditor_findByToken_Results) String() string {
+	str, _ := text.Marshal(0x83b4805dae03e8f2, capnp.Struct(s))
+	return str
+}
+
+func (s UserEditor_findByToken_Results) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (UserEditor_findByToken_Results) DecodeFromPtr(p capnp.Ptr) UserEditor_findByToken_Results {
+	return UserEditor_findByToken_Results(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s UserEditor_findByToken_Results) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s UserEditor_findByToken_Results) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s UserEditor_findByToken_Results) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s UserEditor_findByToken_Results) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s UserEditor_findByToken_Results) Usersignature() (string, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.Text(), err
+}
+
+func (s UserEditor_findByToken_Results) HasUsersignature() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s UserEditor_findByToken_Results) UsersignatureBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.TextBytes(), err
+}
+
+func (s UserEditor_findByToken_Results) SetUsersignature(v string) error {
+	return capnp.Struct(s).SetText(0, v)
+}
+
+// UserEditor_findByToken_Results_List is a list of UserEditor_findByToken_Results.
+type UserEditor_findByToken_Results_List = capnp.StructList[UserEditor_findByToken_Results]
+
+// NewUserEditor_findByToken_Results creates a new list of UserEditor_findByToken_Results.
+func NewUserEditor_findByToken_Results_List(s *capnp.Segment, sz int32) (UserEditor_findByToken_Results_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	return capnp.StructList[UserEditor_findByToken_Results](l), err
+}
+
+// UserEditor_findByToken_Results_Future is a wrapper for a UserEditor_findByToken_Results promised by a client call.
+type UserEditor_findByToken_Results_Future struct{ *capnp.Future }
+
+func (f UserEditor_findByToken_Results_Future) Struct() (UserEditor_findByToken_Results, error) {
+	p, err := f.Future.Ptr()
+	return UserEditor_findByToken_Results(p.Struct()), err
+}
+
+type UserEditor_findBySignature_Params capnp.Struct
+
+// UserEditor_findBySignature_Params_TypeID is the unique identifier for the type UserEditor_findBySignature_Params.
+const UserEditor_findBySignature_Params_TypeID = 0xdd3326f2fdb223a9
+
+func NewUserEditor_findBySignature_Params(s *capnp.Segment) (UserEditor_findBySignature_Params, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_findBySignature_Params(st), err
+}
+
+func NewRootUserEditor_findBySignature_Params(s *capnp.Segment) (UserEditor_findBySignature_Params, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_findBySignature_Params(st), err
+}
+
+func ReadRootUserEditor_findBySignature_Params(msg *capnp.Message) (UserEditor_findBySignature_Params, error) {
+	root, err := msg.Root()
+	return UserEditor_findBySignature_Params(root.Struct()), err
+}
+
+func (s UserEditor_findBySignature_Params) String() string {
+	str, _ := text.Marshal(0xdd3326f2fdb223a9, capnp.Struct(s))
+	return str
+}
+
+func (s UserEditor_findBySignature_Params) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (UserEditor_findBySignature_Params) DecodeFromPtr(p capnp.Ptr) UserEditor_findBySignature_Params {
+	return UserEditor_findBySignature_Params(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s UserEditor_findBySignature_Params) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s UserEditor_findBySignature_Params) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s UserEditor_findBySignature_Params) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s UserEditor_findBySignature_Params) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s UserEditor_findBySignature_Params) Usersignature() (string, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.Text(), err
+}
+
+func (s UserEditor_findBySignature_Params) HasUsersignature() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s UserEditor_findBySignature_Params) UsersignatureBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.TextBytes(), err
+}
+
+func (s UserEditor_findBySignature_Params) SetUsersignature(v string) error {
+	return capnp.Struct(s).SetText(0, v)
+}
+
+// UserEditor_findBySignature_Params_List is a list of UserEditor_findBySignature_Params.
+type UserEditor_findBySignature_Params_List = capnp.StructList[UserEditor_findBySignature_Params]
+
+// NewUserEditor_findBySignature_Params creates a new list of UserEditor_findBySignature_Params.
+func NewUserEditor_findBySignature_Params_List(s *capnp.Segment, sz int32) (UserEditor_findBySignature_Params_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	return capnp.StructList[UserEditor_findBySignature_Params](l), err
+}
+
+// UserEditor_findBySignature_Params_Future is a wrapper for a UserEditor_findBySignature_Params promised by a client call.
+type UserEditor_findBySignature_Params_Future struct{ *capnp.Future }
+
+func (f UserEditor_findBySignature_Params_Future) Struct() (UserEditor_findBySignature_Params, error) {
+	p, err := f.Future.Ptr()
+	return UserEditor_findBySignature_Params(p.Struct()), err
+}
+
+type UserEditor_findBySignature_Results capnp.Struct
+
+// UserEditor_findBySignature_Results_TypeID is the unique identifier for the type UserEditor_findBySignature_Results.
+const UserEditor_findBySignature_Results_TypeID = 0xb34c006f915d9adb
+
+func NewUserEditor_findBySignature_Results(s *capnp.Segment) (UserEditor_findBySignature_Results, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_findBySignature_Results(st), err
+}
+
+func NewRootUserEditor_findBySignature_Results(s *capnp.Segment) (UserEditor_findBySignature_Results, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	return UserEditor_findBySignature_Results(st), err
+}
+
+func ReadRootUserEditor_findBySignature_Results(msg *capnp.Message) (UserEditor_findBySignature_Results, error) {
+	root, err := msg.Root()
+	return UserEditor_findBySignature_Results(root.Struct()), err
+}
+
+func (s UserEditor_findBySignature_Results) String() string {
+	str, _ := text.Marshal(0xb34c006f915d9adb, capnp.Struct(s))
+	return str
+}
+
+func (s UserEditor_findBySignature_Results) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (UserEditor_findBySignature_Results) DecodeFromPtr(p capnp.Ptr) UserEditor_findBySignature_Results {
+	return UserEditor_findBySignature_Results(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s UserEditor_findBySignature_Results) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s UserEditor_findBySignature_Results) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s UserEditor_findBySignature_Results) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s UserEditor_findBySignature_Results) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s UserEditor_findBySignature_Results) SturdyRefToken() (string, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.Text(), err
+}
+
+func (s UserEditor_findBySignature_Results) HasSturdyRefToken() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s UserEditor_findBySignature_Results) SturdyRefTokenBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.TextBytes(), err
+}
+
+func (s UserEditor_findBySignature_Results) SetSturdyRefToken(v string) error {
+	return capnp.Struct(s).SetText(0, v)
+}
+
+// UserEditor_findBySignature_Results_List is a list of UserEditor_findBySignature_Results.
+type UserEditor_findBySignature_Results_List = capnp.StructList[UserEditor_findBySignature_Results]
+
+// NewUserEditor_findBySignature_Results creates a new list of UserEditor_findBySignature_Results.
+func NewUserEditor_findBySignature_Results_List(s *capnp.Segment, sz int32) (UserEditor_findBySignature_Results_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	return capnp.StructList[UserEditor_findBySignature_Results](l), err
+}
+
+// UserEditor_findBySignature_Results_Future is a wrapper for a UserEditor_findBySignature_Results promised by a client call.
+type UserEditor_findBySignature_Results_Future struct{ *capnp.Future }
+
+func (f UserEditor_findBySignature_Results_Future) Struct() (UserEditor_findBySignature_Results, error) {
+	p, err := f.Future.Ptr()
+	return UserEditor_findBySignature_Results(p.Struct()), err
+}
+
+type UserEditor_addSeal_Params capnp.Struct
+
+// UserEditor_addSeal_Params_TypeID is the unique identifier for the type UserEditor_addSeal_Params.
+const UserEditor_addSeal_Params_TypeID = 0x97eb1b20191db78a
+
+func NewUserEditor_addSeal_Params(s *capnp.Segment) (UserEditor_addSeal_Params, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2})
+	return UserEditor_addSeal_Params(st), err
+}
+
+func NewRootUserEditor_addSeal_Params(s *capnp.Segment) (UserEditor_addSeal_Params, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2})
+	return UserEditor_addSeal_Params(st), err
+}
+
+func ReadRootUserEditor_addSeal_Params(msg *capnp.Message) (UserEditor_addSeal_Params, error) {
+	root, err := msg.Root()
+	return UserEditor_addSeal_Params(root.Struct()), err
+}
+
+func (s UserEditor_addSeal_Params) String() string {
+	str, _ := text.Marshal(0x97eb1b20191db78a, capnp.Struct(s))
+	return str
+}
+
+func (s UserEditor_addSeal_Params) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (UserEditor_addSeal_Params) DecodeFromPtr(p capnp.Ptr) UserEditor_addSeal_Params {
+	return UserEditor_addSeal_Params(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s UserEditor_addSeal_Params) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s UserEditor_addSeal_Params) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s UserEditor_addSeal_Params) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s UserEditor_addSeal_Params) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+func (s UserEditor_addSeal_Params) Usersignature() (string, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.Text(), err
+}
+
+func (s UserEditor_addSeal_Params) HasUsersignature() bool {
+	return capnp.Struct(s).HasPtr(0)
+}
+
+func (s UserEditor_addSeal_Params) UsersignatureBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(0)
+	return p.TextBytes(), err
+}
+
+func (s UserEditor_addSeal_Params) SetUsersignature(v string) error {
+	return capnp.Struct(s).SetText(0, v)
+}
+
+func (s UserEditor_addSeal_Params) Seal() (string, error) {
+	p, err := capnp.Struct(s).Ptr(1)
+	return p.Text(), err
+}
+
+func (s UserEditor_addSeal_Params) HasSeal() bool {
+	return capnp.Struct(s).HasPtr(1)
+}
+
+func (s UserEditor_addSeal_Params) SealBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(1)
+	return p.TextBytes(), err
+}
+
+func (s UserEditor_addSeal_Params) SetSeal(v string) error {
+	return capnp.Struct(s).SetText(1, v)
+}
+
+// UserEditor_addSeal_Params_List is a list of UserEditor_addSeal_Params.
+type UserEditor_addSeal_Params_List = capnp.StructList[UserEditor_addSeal_Params]
+
+// NewUserEditor_addSeal_Params creates a new list of UserEditor_addSeal_Params.
+func NewUserEditor_addSeal_Params_List(s *capnp.Segment, sz int32) (UserEditor_addSeal_Params_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2}, sz)
+	return capnp.StructList[UserEditor_addSeal_Params](l), err
+}
+
+// UserEditor_addSeal_Params_Future is a wrapper for a UserEditor_addSeal_Params promised by a client call.
+type UserEditor_addSeal_Params_Future struct{ *capnp.Future }
+
+func (f UserEditor_addSeal_Params_Future) Struct() (UserEditor_addSeal_Params, error) {
+	p, err := f.Future.Ptr()
+	return UserEditor_addSeal_Params(p.Struct()), err
+}
+
+type UserEditor_addSeal_Results capnp.Struct
+
+// UserEditor_addSeal_Results_TypeID is the unique identifier for the type UserEditor_addSeal_Results.
+const UserEditor_addSeal_Results_TypeID = 0xfd8477ce39853249
+
+func NewUserEditor_addSeal_Results(s *capnp.Segment) (UserEditor_addSeal_Results, error) {
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return UserEditor_addSeal_Results(st), err
+}
+
+func NewRootUserEditor_addSeal_Results(s *capnp.Segment) (UserEditor_addSeal_Results, error) {
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0})
+	return UserEditor_addSeal_Results(st), err
+}
+
+func ReadRootUserEditor_addSeal_Results(msg *capnp.Message) (UserEditor_addSeal_Results, error) {
+	root, err := msg.Root()
+	return UserEditor_addSeal_Results(root.Struct()), err
+}
+
+func (s UserEditor_addSeal_Results) String() string {
+	str, _ := text.Marshal(0xfd8477ce39853249, capnp.Struct(s))
+	return str
+}
+
+func (s UserEditor_addSeal_Results) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
+	return capnp.Struct(s).EncodeAsPtr(seg)
+}
+
+func (UserEditor_addSeal_Results) DecodeFromPtr(p capnp.Ptr) UserEditor_addSeal_Results {
+	return UserEditor_addSeal_Results(capnp.Struct{}.DecodeFromPtr(p))
+}
+
+func (s UserEditor_addSeal_Results) ToPtr() capnp.Ptr {
+	return capnp.Struct(s).ToPtr()
+}
+func (s UserEditor_addSeal_Results) IsValid() bool {
+	return capnp.Struct(s).IsValid()
+}
+
+func (s UserEditor_addSeal_Results) Message() *capnp.Message {
+	return capnp.Struct(s).Message()
+}
+
+func (s UserEditor_addSeal_Results) Segment() *capnp.Segment {
+	return capnp.Struct(s).Segment()
+}
+
+// UserEditor_addSeal_Results_List is a list of UserEditor_addSeal_Results.
+type UserEditor_addSeal_Results_List = capnp.StructList[UserEditor_addSeal_Results]
+
+// NewUserEditor_addSeal_Results creates a new list of UserEditor_addSeal_Results.
+func NewUserEditor_addSeal_Results_List(s *capnp.Segment, sz int32) (UserEditor_addSeal_Results_List, error) {
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0}, sz)
+	return capnp.StructList[UserEditor_addSeal_Results](l), err
+}
+
+// UserEditor_addSeal_Results_Future is a wrapper for a UserEditor_addSeal_Results promised by a client call.
+type UserEditor_addSeal_Results_Future struct{ *capnp.Future }
+
+func (f UserEditor_addSeal_Results_Future) Struct() (UserEditor_addSeal_Results, error) {
+	p, err := f.Future.Ptr()
+	return UserEditor_addSeal_Results(p.Struct()), err
+}
+
+const schema_dca555fc76741dc1 = "x\xda\xd4Z}xT\xd5\x99?\xef\xdc\x09cP2" +
+	"9\xdcI`\xf25\x09\x8d}\x8c-\xb4\x11]\x895" +
+	"\x9b\x04\x831\x085w\x92X\xe1Y\x90\x9b\xcc\x0d;" +
+	"0\x99If&\x89\x93%\x0bD\x11\x81\xe2\x1a\xaa\xb4" +
+	"DY\x8d\xcan\xfd\xa0. [\x95\xa2K\xbb\x16q" +
+	"\xb1\xfaP\xc1\xa7\x01\xaa`-\xae\x1f\xad\xcd\xda\xc5Z" +
+	"\xed\xec\xf3\x9e{\xcf\x9d;37\xf3\x81\xee\x1f\xfdo" +
+	"2y\xe7\xfd\xfc\xbd\x1f\xe7=\xe7\x9b\xa7/\xae\xb7V" +
+	"O{\xb3\x98XZ\x1b!gJ\xf4\\\xff\x13\xd1\xaf" +
+	"I+\xd6\x13Z\x0c\x84\xe4\x80\x8d\x90\xb9\xc7\xa7m\x06" +
+	"\x02\xe2;\xd3\xea\x08D'\xde\x15~\xb4l\xdd\xd3\xb7" +
+	"\x13\xea\xd4\x09r\xf3V!AA\x1e\x12\xd4\xe6\xbe\xf0" +
+	"\xc6\xa9\x9f\xf6\xdca\xe4P\x93\xc7843\x82\xe0\x8d" +
+	"\xffp\xf2\xaa\x99\xfdw\x10\x9a'D\x0f\x95\x86\xfb?" +
+	"k\xdfu\x8a\x10\x10\xbb\xf3^\x16#yH\xdf\x97\xd7" +
+	"\x04b\xb3\xddFH\xf4\xa5\xb7~\xbb\xaed\xe0\x83\x0d" +
+	"\x84\x96\x01!V\xfco\xb5}/\x10kt\xf5\xa57" +
+	"\x96Y\x95-\x1b\x09-BA\x16\xfcW\x85=\x88\x82" +
+	"f\xdb\x07\x08D[\x86\x9a>\x09\xdc\xd4\xbcY#`" +
+	"\x9a\x8c\xd8\x87\x91`\xa7\xbd\x8e\xc0_n\xeb\x98\xf7\xfc" +
+	"\xc7\x7f\xdeBK8\xe7C\xf6\x87\x91\xf3\xec\xd2\xe5W" +
+	"G\x0e\x06\xef&4\x0f\xa2\xe1\xf3\x07O=\xf8\x8d'" +
+	"^#9\x02\x92\xec\xb1[@<\x88\xaa\x89\xcf\xda\x9f" +
+	"\"\x10}h\xec\xc17\x1ey\xeb\xfe\xbb\x8d\x0e\x91\xf3" +
+	"\x97\xa2\x94\xee|\xb4\xd7\xfaB_\xa9\xfb\xecy\x95\x9b" +
+	"n/\xd3W\x1c\xc9\x7fY\xdc\x99\x8f\x9fv\xe4\xa3\xca" +
+	"\x7f\xfb\x83\xab?\xfa\xc9\xdfE\xee1:\xef\xf3\xfc\x87" +
+	"\x91\xd94\x8a\xccF\xb7\xae\xbf\xe8g\xde\xef\xc5\x114" +
+	"\xd0A$X\xcc\x08\xdav\xdf+V\xec\xbaa\x1ba" +
+	"V\xa9\x04\xbdt/\x12\xacg\x04\xf5\xcbW\xb5\xdcy" +
+	"\xed\x8e{U\x87\xaan\xdbO\x1fG\x82\x17)\xea\xf0" +
+	"\xf4\xf9\x7f>\xf4\xe7\xfb\xbf\xbb\xdd\xc8\xe1\xd2\xe9\xccm" +
+	"\xd5\xd3\x91\xc3\x07w\x7f\xf8\xf0\xf3\xe3=\xdfO\x0a`" +
+	"\xfb\xf4\xb3\xa2<\x1d\xe9\x97Mo\x02\xb1A\xc4\x00n" +
+	"\xfeq\xa9\xb3\xbc\xf8\xfd\xefk\xfea\xf2\xaa\xc4\xf9\x8c" +
+	"\x9d\x88\xf2\x96\xff\x93|rG\xc5\xef\xef\x8f\x0b\x93\xc8" +
+	"\x003&\xa2\xbc\xb9\xedg&*O\xbe\xf3\x80Q\xa1" +
+	"\xe3\"S\xe8\x0c#\xf8\xea\xc5\xbd\x9f\x9d\x98\xf2\xecC" +
+	"\x84\xbat\x82\x1c\xc7\xcbH\xe0t \xc1\xbe\xe1?m" +
+	"\x7f\xf3\xfd\xda1\xd5k,\xd4\x0d\x8eQ\x0c\xb5\xf8Y" +
+	"\xf075\xb7\xef\x1dc\xb6\xc8\x85\xfb\x9f\x99\xf1\xab\x03" +
+	"o\xa0-\xd5\x8e\x09\xb1\xd6\x81\x91\xa9q4\x89^\xfc" +
+	"\x14\xfd]\xf1\xd6\xf3gN\xc0\xa3FM%\x07\xd3T" +
+	"fr\x86\xf7\xbb\x876\x9e\xb8\xedQ\xa3\xa6\x1b\x1cL" +
+	"\xd3\x11F\xb0|\xeb\xab7}\xf4\xca\x9d\x9c@u\xbe" +
+	"c\x1bs\xbe\x03\x9d\xf1RM\x85\xb5ul\xe6.\x12" +
+	"\x03eU\xc1\xe3\xa8\xa9\xa7n\xd3\xc9_\xef{d\x97" +
+	"Q\xb8\xb3\x80E\xfe\xd2\x02\xe4}u\xf4[\x1f\\v" +
+	"\xed\x91]F/,)`\x81\xf52\x82\x9e\xad\xa1W" +
+	"\x7fpj\xe0_4\xec0\xe1[\x0b\x98\xf0\x9d\x05(" +
+	"\xfc\xa9%G\x7f\xd5T\xf1\xea\xbf\x1a9@!\xc3\x0e" +
+	"-D\x0e/mm\xf17\xfe\xc2\xfeC\xa3\x0eW\x15" +
+	"2\x07,`\x04\xef\xd5~\xef\x89\x1a\xeb\xd2'\x8c\x0e" +
+	"\xf0\xaa\x04\x11F0Z\xd3W\xf9\xde\x0e\xef\x93\x09\xa9" +
+	"\x85\x86\x8a\xbb\x0b?\x15\x9f-\xc4O\xfb\x0b\xcf\x11\x88" +
+	".xpEOO\xde\xde\xddFf;g\xb0\xb0\xee" +
+	"\x99\x81\xccnm<\xea{\xc0\xf9\x8f{\x183=x" +
+	"\x8c\xd9\xdc\xe33\xa6\x82\xf8\xce\x0c\xe4vf\x06r\xcb" +
+	"i{y\xcb\x8f\x97>\xb4\xc7\xa8\xfb\x91\x99\xcc\x7f\xc7" +
+	"g\xd6\x11x\xf3\xe4\xe8\xb2\x91\xc0\xa2}\x864\xfe\xd3" +
+	"L\xa6y\xae\x13\x85=,\xba>*=\x91\xbb\xdf\xe8" +
+	"\x9c\xd9\xce\x9f\"A-#X\xdb{\xdd\xdb\xfbVm" +
+	"{F\x05:Sb\x99s>\x86nqqE\xe5\xd3" +
+	"\xd3\x9fz\xc6\x98\xb4\x0b\x9c\xcc\xf1\xed\xec\xa7\xb9\xe3\xb7" +
+	"\xfe\xf6\xa9\xaf\xbd\xfb\x9c\x91 \xe2\xbc\x86%-#8" +
+	"<u\xe1\xfe\xd7\x0fx\x0e\x18x\x8f9;\x90\xf7\xdb" +
+	"\x87\xffk\xdew\x07\x07\x0f$84\x87\x05\xd79\x15" +
+	"\xc4\x9dN\xfc\xb8\xc3\xe9\x02\x02\xd1\xfc\x91'\xff\xb8]" +
+	"\xfa\xf8'Ip?X4.\x1e)Bo\xbdX\xd4" +
+	"$~\x88\x9f\xa2\xf7\x1f\x1b\xaf\xd9\xf4\xde\xae\x83q\xbd" +
+	"\xa0H\xcd\xbb\"\xd4\xea\xe3u\x85W8\x1e\xfd\xe0\xa0" +
+	"\xb1\xf4\x15\x14/D\x82\x8ab$\xd8\xbehh~\xa9" +
+	"c\xfcyc\xde\x153\x97\x9c\xbfs\xb3s\xfbM\xcf" +
+	"\xfd\xdc\x18\xdb\xaab\xc6\xfb*\xf6\xd3\xfa\x09\xf9of" +
+	"\x9d\xbd\xe5\xb0\x91\xf7\x92\xe2\x0e$P\x18\xc1\x89\x1b\x8e" +
+	"\x1c^s\xaa\xfe\xa8\xa6\x1d+\xce\x9b\x8aY<\xef+" +
+	"\xc6\xc2\xfc\xe8\xee\xd9\xbf\x1b=\xf1\xc6+\x86T\xaa)" +
+	"\xd9\x8c\xc2\xff\xad\xfc\xdc\xd0e\xff\xfd\xfc\xabF\xc3\xaa" +
+	"JX\xa6\xd4\x94 \xef\xf5\xd65\x17\x15N\xbc\xf9\x9a" +
+	"Q\xbb\xee\x12\x06\x86!Fp\xdd\xef\x0f\xdfW\xf2\xed" +
+	"\xb7_K\xa8\xe9\x0c\xc6c%\x13\xe2\xee\x12\xfc\xf4X" +
+	"\x09\x02o\xd3W\xae\xf9ux\xc5\xe8/\x99\xcf\xf5\x08" +
+	"\x11\x107\x95\x1e\x13\xef+e\xe5\xae\xb4\x09\xc4\xee2" +
+	"\x1b!/|2\xf3\x97\xb5\xa5\xdf:n\x00i{\x19" +
+	"\xebir\x19\x0a^\xbae\xc9\xeb/\x86^;\xae\xa2" +
+	"\x98\x19\xb5\xa1l\x18\x8dj\xbe\xfd\x11\xf7\xd1w_\x1c" +
+	"OH\x06\x96\xe5\xbde\xd7\x80\xb8\x1e\xf9\x8bCe\x98" +
+	"\xe9M\xc3\x8bmG\xa7,?\xa95\x01&\xe7t\x19" +
+	"\x03\xf3\x87L\x8e\xf7\xc4'\xf7x~\xfe\x97\x93I@" +
+	")p}*V\xb8\x90S\xa9k\xa3\x18\xc1O\xd1\xc7" +
+	"\xbe\xb2\xf7\xf3\x89\xaf\xce=\x1d\xd7\x02],\x98\xdd." +
+	"\xe4v\xb6m^\xfb\xd7\xcb\xaf>m\x147\xe2z\x8e" +
+	"\x95xF\xf0\x9f9\xaeS\xcb\x8e\x09o%\x89;\xe4" +
+	":+\xbe\xc2\xc4\x1dqm\x14+\xcaQ\xdc\xec5\xeb" +
+	"\x9aj=\xb9\xef\x18\xa3\x93[\xce\xa2\xe3,GnU" +
+	"\x97\xbaF\xaeXZz\xce\x18\xdf\xdar\x96o\x8b\x19" +
+	"\xc1\x0d7\xf7\xfc\xc7\x95\x87\xe7\xc5\x11\xf4\x963\x85\x87" +
+	"\x18\xc1\xdd\x07\xc6W\x17D\xce\x9f3\x8a\x18+\x1fe" +
+	"\xa5\x87\x11\xbc\xfd\xb8\xdc~\xf9\xb1\xb2\xf7\x93z\xe0\xf1" +
+	"\xf2\xb3\xe2\x19TS<]\xde$\xe6V\xa0\xc2?\x9b" +
+	"\xf7\x1b\xba\xae\xa8\xed\x7f\x0cA\xfb\x03\xaac\x8d^y" +
+	"\xe8\x1bO\xfeh\xf7\xde\x8f\x8dr\xce\xa8r\xfe\xc0\xe4" +
+	"\xdc\xf5\xef\xb7n\xb9}\xcbw\xfe\x98\x04\x9e\x82\x8aq" +
+	"\xb1\x02\xb9\xcf-\xad\xd8\x08b\xd5,\x14t\xf4\xf5\xbc" +
+	"\x85\x17\x17\x0f\xffo\x92\x1b\xe9\xac\x09\xb1\x14ID\xe7" +
+	"\xac&q\x01#\x1e\xac9pcQG\xfb\xa7F\xd9" +
+	"\xb3g\x1dC\xd9\x0d\xb3Pv\xf3\x15\x1bj~1p" +
+	"\xc7\xe7\x86\xa2\xd37k!\x90\xeb\xa3\x03JG\xbfW" +
+	"\x19\x98\x93\xd3)\xf7\xf8{\xae\xf9\x8e\xd2q\xb3W\x19" +
+	"h\xf0t{\xfdsV*\xe1V%\xd8\xef\xedT\xf0" +
+	"\xbb\xca\x169(w\x87\x08\x91\xac\x82\x95\x10+\x10B" +
+	"\xa7\xb9\x09\x91.\x11@\x9ai\x81hH\xa5m&\xd0" +
+	"\x08\x97\x10\x0b\\B \x1a\x0a\x07\x82\xf2Je\x8eU" +
+	"e\xdf\x1eR\x82\x0b<\xdep 8\xa7\xcb\xeb\xf7\xcc" +
+	"\x8f\xb4\x05V+\xfeJ\xb7\x12\xb2\xf7\xf9\xc2!#\xe7" +
+	"\xa0\x81s_H\x09\x86\xbc+\xfd\xc4%\x87\xfb\x82\x8a" +
+	"\xce=\x95\xf2~e@\xfb\x1b\x85\x9a*\x9f\x89\x08n" +
+	"\x80%\xd1\x00BZ\x00$\x87\x90C\x88\xde/\x80\x97" +
+	"Q:2\x9fX\xe8\x06\x1b\xc4\x86J\xe0\x85\x9fF\x96" +
+	"\x12\x0b\xed\xb5\x81E\xaf\x8c\xc0Gq\xaat\x10\x0b]" +
+	"f\x03A\xcfD`\xcd\x8c,\xdaG\xa5ab\xa1\xcd" +
+	"6\xb0\xea\x83\x18\xf0\xb8\xd2Z\x94Wm[\xebW\xcd" +
+	"\xad\x87\xa8G\xf1)a\xa5=D\x04\xf6'w7\xb1" +
+	"\xadV\xfc\xfa\xdf\xad^X\xe9g\x06\x93zX+{" +
+	"<\xad\x8a\xec\xab\x87\x16\x80h\xa8G\x1e\xf0+A\xee" +
+	"[\x0d\x08ne\xa57\x14\x0eF\xe6\x04\xd9\x07%\xa8" +
+	"}_\xe9V\\!\x0c\xa1\x1e\x13k\\LP)\x0c" +
+	"Ik\xb8/\xe8\x89\xb8\x95\xae\xca\x16\x17\x8b\x88t\x91" +
+	"\x1e\x8f*\x04\xd3e\x02HWZ\x80\x028\x00\xbf\xac" +
+	"\xc6 }S\x00\xe9\xda\xc9\x10\xd6\xa3tz\xbb\xbc\x9d" +
+	"\x188o\xc0\x9f\x06\x1bL\x0fs\\_\x08\xac\xb9s" +
+	"\xd4?5d\xab\x9e\x8fY\xeaVB}6\xa3k\x04" +
+	"\xfe+\x8d\x02\x95BM\x18\xa2.\xd1\xb5X\xd0A\x88" +
+	"\xd4(\x80\xd4b\xf0\xc7bTm\x91\x00\xd2-\x16\xa0" +
+	"\x16\x8b\x03,\x84\xd0\xf6m\x84H\xb7\x08 yP_" +
+	"\x8d-\xb1u5\x1b46\xb1\xa2G\x8e\xf8\x02r\xa3" +
+	"\x02\xa1\xce\xa0\xb7'\xec\x0d\x80?\x83\xc4\xe5\xc0\xd2\x92" +
+	"J\xe8\x0e}\x099\x85\x1eT<jN\x19\x10\x114" +
+	"C\xc4\xa0\x01\x11\x93\x8b\xd0\x9cP\xd7\xc5JLF%" +
+	"\xc3\xe7\x0d\x85\x1b|>=.!4\xd0&\xc7\x1b\xb8" +
+	"T3\xf02M\xfa\xf5^_\x18s\x0c\xf2\x08\xb4\x08" +
+	"\xc0\x04\xe5\x19\x04Y'\x11\xa4!0TY\xa7\xe2\xcf" +
+	"(\xa3#\x19~m\xc4\x16\xe9Q2\x03`\xb2\x1d<" +
+	";'3DuWP!BW\x88\x1b\x92\x1f\x1b\x8d" +
+	"\x080\x93\xb2,\x09-\xb2=1\xc3W\x99\xc5s>" +
+	"!\xd2\xd7\x05\x90\xe6\x19\xad\xb5\x1b\xa3\xb6V\xfb\x1ah" +
+	"l\x9a!\x004\x9d#0\xd1c\x05'9\xcd\xe3\xfc" +
+	"l\x9e6\xf1P\x8d\xb1\xb7\x85\x03\xc1X\x03\xe0\xe7Z" +
+	"\xe0\x93*\x1dYE,t\x136\x00~\x08\x07>\xec" +
+	"\xd0!\xfc_\x1f6\x00~.\x02\xde\xc1\xa9w/\xb1" +
+	"P\x05\x1b\x00??\x02\xdf\x03\xd0%\xdb\x88\x85\xb6c" +
+	"\x03\xe0\xc3\x06\x10\xbe\xf8h\xc6\xe6\xd0`\x8bb\x0dG" +
+	"K\x88\x1d\x8d\xae\x87(\xf7\x81\xfe\x05\x03_\xb8/\x08" +
+	"*6\xae\x0f\xb8\x82Z\xcb\xe0\xb8\x01\xee3\x08\xe9\x8d" +
+	"\xa45\x0c\xda\x97D\xeb\x0f\x93\x16\x08\xad\x8d\xe8\x0eO" +
+	"\x97\xcf\x97\x1b\xe2?I>\xdbC\x8a\xec\xcb\xa4\xb4s" +
+	"\xe3t\xdc3\xd8\xc7\xb7\xfdd\xe0\xbb\x13\x80\xafo\x8d" +
+	"8\xf0S\x81\x8c{|2\x90\xb9\x93@\x16T\x08t" +
+	"%\xe4W\xbe!\xbf\xa6\xc4\xe5W[\xa0U\xfb~\xa5" +
+	"\x12^\xe4\xedW\xae\x93{\xe4\x0e\xaf\xcf\x1b\x8e\x98\xdb" +
+	"7J\x88\x94/\x80Tb\x81hP\x09\x05|\xfd\x8a" +
+	"\x07\xf8\x8f\x84p\x04\xa6[\x05\x020=M5\x0c*" +
+	"\xdd\x81\xfe\x846\xe6\x13\xc2!]MKB\x19\x08\xb9" +
+	"P\x14\xcb\x0a+\xcb\x0a~V\x00~F\xa1\x14\x11<" +
+	"\xcd\x16\xe5\x96\x007\x05\"*\xaaR\x846Q\x9f\xb4" +
+	"\xe3(\x0f-t\xa5)\x9bnE\xf6(_J\xb50" +
+	"-\x90h\xc1$S\x07\xa4\x9f\x7f\x16\xa6\x99\x7f:e" +
+	"\x9f\xafC\xee\\M\x08\x01\x1a\xdb\x0adR\x1e\xcd\xfa" +
+	"\x1d+\xd9\xa9\x86\xb8\xb8\xde\xe5\xaeS\x92\xfa\xcaBc" +
+	"zi\x84\xa8\x9c\x9e]\xfa\xe2(e[\x89\x83}\xbc" +
+	"\xe3\xec\x89\xfdr\xa1!2\xa9\xfd\x91\x0d\xe0M\"d" +
+	"Z\xbf\xdc\xd9\xcc#F0fg\xb7Y\x0f7\x19\x14" +
+	"n&6\xaf2\x906\xc7\xcd\x06a\xd3j\x92\x89\x88" +
+	"\x94\xb8\x8f\x07\x8c\x99\x88\xb4\x88\xd1\xb7\x83\x1ab\xb8I" +
+	"\x89\x15\xa8\xabN\x09*\xfeN\x05KP\xbe\xce_\xc6" +
+	"\x00\xad\x10@\xf2\x19\xa2\xe6E\xbb\xfe^\x00)l\x98" +
+	"\xa3{\xf1\xcb\x1e\x01\xa45\x16\xa0\x82\xe0\x00\x81\x10\x1a" +
+	"\xc1z\xbaF\x00\xe9\xae\xc9\x0e\x03\xe6\x13\x9a\xfa\xed\xb7" +
+	"\x89M\xeeN\xfa\xb6\x11\x14m\xe6\x16\x02\xc93\xf7\x94" +
+	"\xc9\x925\x96\xa9\xd7\x07\x82_\xecX\xabEL\x88\xf3" +
+	"`#\xd7*\xe0WG\xf1\xbfB'fz\xfe4+" +
+	"]Y\xb6\x8f\xa4mF\xabW;M\x9b\xe3|\xd0\x8c" +
+	"}\xe2\x01%\xfb!\xc0\xa4U\xe1H}\x91\x00\x92\xc3" +
+	"\x02k\xd5S\x9e'\xc9\x88\xa9IF\xf8\xe3w%\xdc" +
+	"\x93\xe97C\xaa\xb5\x10\xba\xd0\xba\xc1Q(\xa3]j" +
+	"\xf9\x9e\x13\x92\xfb\x15\xb3\xb3Q&\xa6\xa5<\xb4\xa6=" +
+	"\x8e3\x13\xd9y\\[\xf1p\xd9C\x1d1\x10\xeb9" +
+	"\xb0\x01As\x87\x00\xd2=\x86\x1c\xd8\x8aZ\xde%\x80" +
+	"t\xaf!\x07F01\xef\x11@z\xc0\x02\xd4ju" +
+	"\x80\x95\x10\xba\x03\x8f\xee\x0f\x08 \xfd0\x9b\xa3{\x92" +
+	"\xe5\x93\xe5y\xca#~\xc2\x1c\xa7{_\xe8\\\x1d\x1b" +
+	"\xe2\xf8\x85\x06\xf0\x1b\x00J/'\x16\x9ac\xb3c\x84" +
+	"RMm&g]\x9e\x16_l^\x984\xca\x1c\xc0" +
+	"\xa6\xd9wy\x0c8vt\x17\xe4\xc7\xees\x13\x06\xf0" +
+	"\xa9\x93\xe1\x913\xe6\x84i\xfb]\xba12\xe5\xe1>" +
+	"\xf5\xd2\xd4d7\x91Q\x81I\xb5\x98\x88\xab\x90<\xf9" +
+	"\x0c\x1b\xa9`\xc6\x1b)\xa4l\x13@Z\x91\xaa\x09e" +
+	"\xb1\xce\xcb\xfc\x08\xa6\x07?\xcb]\x8f\xd9\x12:\xfdQ" +
+	"Q\xbf\xb4KyT4;a\x98\x824\x8b\xc3b\xe2" +
+	"fB\xe3\xdb\xeab\xab\xb4\x84\xee\xdda\xd6\xbd\xddf" +
+	"\xdd\x1b+\x97O\x00\xe96C\xe5\xea\xc3h\x86\x05\x90" +
+	"\xd6\xfd\xbf\x14\xa9\x84q.\xd6\xb2!\xb6b\xe1\xb7i" +
+	"\x86\xcb\xf3\xd8\x8a\x85?\x0f\x01~\xabM\x87\x06\xf9\x8a" +
+	"\x85\xbf-\x01~kL\xbd\xf8;\xd9\x06\x82\xfe\x0a\x00" +
+	"\xf8\xb5\x0em\x1f&\x16\xba\xd8\x06V\xfdz\x0e\xf8\xa3" +
+	"\x06\xda\x80<klQ\x9e\xe0\xc4\x8e)\xae\xadX\xd0" +
+	"|R\xa7\x16\x81z\x88\xf2D\xd2\xb7.\xfcpa\xd8" +
+	"\xa2\xe8\x9b\x18R\xa7B0\xbe\x98\xa6;{\xf1\x05z" +
+	"V\xa5\x853\xcfM\xbb:\xd1*W|\xa5s\xb3u" +
+	"\x82\xdc\xe1S\xf8\xcc]\xa7\xf4\xf6)\xa1p\xc2\xde\xd6" +
+	"\x9d\xe1\x9e/%\\\xcc'!U\x85\x94\xdb\x90\x0b\\" +
+	"\x86\x98\xef5\xda\x02\xadu\xea?T\x1b\xb1'\xf2\x07" +
+	"\x04\xc0\x9f\xab\xd0\xeam\xc4Bg#\x16\xf9\xdb\x0d\xe0" +
+	"O0h\x05\xe2\xc69\xc9\xd2\xc3\x04<\xc6\xedZ\xfa" +
+	"I\xd3\xa4\xc3ds\x00\xc8\xc9\xd4\xb9iF\xb1\xa0\x8a" +
+	"\x03\xc8\x8f\xdd^'4UKb\xb3\xb4\x0d\x18}\xca" +
+	"\x9f\x11\x00\x7fxB\xab1O\xab\xd0\xa7\xfc\xad\x0d\xf0" +
+	"\xcb\\Z\x8a>-\xc8(\x17M\xdc\x99bK\xfc\x05" +
+	"\xabr\x167\x92\xe9\x86\xe6\x01\x8d\x96\xd8pX\xa1\xb1" +
+	"\xc7\x07\x19\xac2\xe2O:&i\x91\xf6\xa4\x93\xc5&" +
+	"\x8b/\x06\xb3\x9e\xfeMw\xebnE\xb6y\x8c[D" +
+	"\xfe\x12\x0b\xf8S\x0eJ\x11\x18\xb9\xb6\xa4\xd5v\x96\x0b" +
+	"D\x1e\x80\xecn\xf3L\xee\xbc\xd2/\x06\xcd;\\\x83" +
+	"\xa7[\xf0\xfa\xd1\xd2\x99\xccR\xfe\"\x10\xf8s\x1d\xba" +
+	"\x07-}\x0cS\x80\xbf\xe6\x04\xfe\x02\x89\xee\xc4\x14\xb8" +
+	"\x0f[\x1c\x7f?\x03\xfc1\x04\xdd\x84\xbf[\x8f-\x8e" +
+	"\xbf\x14\x03\xfep\x8e\xf6a\x8b\xeb\xc6\x16\xc7\x9f(\x02" +
+	"\x7fEC\xe5m\xea\xf5s\x8e\xfe\xf6\x13\xf8\x0b\x0c*" +
+	"\x0d\xb2\xeb\xe7/\xb7\xfd%_7\xf0,!u\xfc*" +
+	"\xdbx\x1b\x9d\xb8\xf1Y\xe9bwO1\xb4\xf07\x91" +
+	"\xc0_\x9bR:\xac\xa2\x85_O\x81\xf6\xe3\x84{\x8c" +
+	",\x96.f\x99{\x01\xb7ii/P\xf4Z\xf4\x7f" +
+	"\x01\x00\x00\xff\xff\\)\x9d\x12"
 
 func RegisterSchema(reg *schemas.Registry) {
 	reg.Register(&schemas.Schema{
 		String: schema_dca555fc76741dc1,
 		Nodes: []uint64{
-			0x809812024ef9dbb2,
 			0x8160512bffab76e7,
+			0x83b4805dae03e8f2,
 			0x8470c2dcd7bf093d,
+			0x84761835db7b4b72,
 			0x85ec771c80e6e0c8,
 			0x878b65041e4b256b,
 			0x8a494f6ff8477d50,
 			0x8bfbf4be38627800,
 			0x8e72bd79375e1d2d,
+			0x8e9be0a3d79fa1a0,
+			0x8ef7e2521d75bf04,
 			0x90795cbcf037983e,
 			0x909369c308818d9a,
 			0x9248a5211394ad54,
 			0x94993c86506a5e40,
-			0x94bc378999489207,
 			0x968c9bfbc19ef7b4,
 			0x9770dabea2ed8eec,
+			0x97eb1b20191db78a,
 			0x9bef2199db618f5e,
 			0x9ce5db24f2e15533,
 			0xa0b906d6fc710b26,
@@ -1883,11 +3181,19 @@ func RegisterSchema(reg *schemas.Registry) {
 			0xadb20e7070609f45,
 			0xb17e199c6ccc445f,
 			0xb1a05ab78bca5405,
+			0xb34c006f915d9adb,
 			0xb509d61df01f13a2,
+			0xb8926ab3e343717f,
 			0xb8af12b424211b4d,
+			0xbae82bafe65fda09,
+			0xbb64bbd4b54a0ac7,
 			0xbb7a7a8c38cbc7e3,
+			0xbcf45196f5ac9110,
 			0xbda5ea8939dad29b,
+			0xbdeca414321680f4,
+			0xbeda141d427d4c96,
 			0xc6ba4f96198a86f7,
+			0xc758e2223661f240,
 			0xcc40dc7cc7c948d6,
 			0xcdd7d69aee2dada4,
 			0xcfbee9287de720b0,
@@ -1899,6 +3205,7 @@ func RegisterSchema(reg *schemas.Registry) {
 			0xdac5e8cc52a38349,
 			0xdb5e06cc074d8247,
 			0xdbfec66490f8d669,
+			0xdd3326f2fdb223a9,
 			0xdd37202c553854e2,
 			0xe003d25ddc1f05c4,
 			0xe509643d47807c2d,
@@ -1910,9 +3217,8 @@ func RegisterSchema(reg *schemas.Registry) {
 			0xf4b2adaeac2fc134,
 			0xf5578b838b5fb688,
 			0xf6821b0b4a0ed4cc,
-			0xf8050e2c31bd97f3,
 			0xfa55621a4bbb397a,
-			0xfdcda8c80924d69c,
+			0xfd8477ce39853249,
 		},
 		Compressed: true,
 	})

@@ -56,9 +56,14 @@ interface WebViewAdmin {
     # remove a sturdyRef
     removeSturdyRef @3 (usersignature :Text, sturdyRef :Text) -> ();
 
-    # list user sturdyRefs
-    listSturdyRefs @4 (usersignature :Text) -> (sturdyRefs :List(SturdyRefAdminView));
-    # list all sturdyRefs
-    listAllSturdyRefs @5 () -> (sturdyRefs :List(SturdyRefAdminView));
+    # list all sturdyRefs 
+    # if userFilter is empty, list all
+    listAllSturdyRefs @4 (userFilter :List(Text)) -> (sturdyRefs :List(SturdyRefAdminView));
+
+    # get a new user for the webview, with a signature, if the user usersignature is empty, it will be created
+    # the Idea is that the admin will create the capability for the user
+    # if the user already exists, it should return the stored WebViewUser Capability
+    newWebViewUser @5 (usersignature :Text) -> (webViewUser :WebViewUser);
 
 }
+

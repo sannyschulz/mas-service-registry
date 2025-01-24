@@ -75,6 +75,15 @@ func listenForRequests(config *commonlib.Config, storageCap, serviceViewCap *cap
 	restorer := commonlib.NewRestorer(host, uint16(port))
 
 	// TODO: implement web service viewer for user and admin
+	webViewAdmin := newWebViewAdmin(restorer, storageCap, serviceViewCap)
+
+	webViewAdminSr, err := webViewAdmin.persistable.InitialSturdyRef()
+	if err != nil {
+		return err
+	}
+	fmt.Println("web view admin sturdy ref:", webViewAdminSr)
+
+	// todo: need to implement the web view user restorer
 
 	// start listening for incoming connections from clients
 	listener, err := config.ListenForConnections(restorer.Host(), restorer.Port())

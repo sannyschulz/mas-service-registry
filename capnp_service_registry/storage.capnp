@@ -8,7 +8,7 @@ struct SturdyRefStored {
   sturdyRefID @0 :Text;
   serviceID @1 :Text;
   payload @2 :Text;
-  usersignature @3 :Text;
+  usersignature @3 :Text; # TODO: rename, it is the userId, use signature for the sturdyRef owner signature
 }
 
 # interface to add a sturyref to the registry
@@ -23,5 +23,17 @@ interface StorageEditor {
 
 interface StorageReader {
   getSturdyRef @0 (sturdyRefID :Text) -> (sturdyref :SturdyRefStored) ;
-  # maybe later add more methods to read data
+}
+
+struct UserStored {
+  usersignature @0 :Text;
+  sturdyRefToken @1 :Text;
+}
+
+interface UserEditor {
+  newUser @0 () -> (user :UserStored);
+  deleteUser @1 (usersignature :Text) -> ();
+  findByToken @2 (sturdyRefToken :Text) -> (usersignature :Text);
+  findBySignature @3 (usersignature :Text) -> (sturdyRefToken :Text);
+  addSeal @4 (usersignature :Text, seal :Text) -> (); 
 }
