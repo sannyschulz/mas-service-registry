@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"capnproto.org/go/capnp/v3"
 	"github.com/google/uuid"
+	capnp_service_registry "github.com/sannyschulz/mas-service-registry/capnp_service_registry"
 )
 
 type SpawnManager struct {
@@ -35,7 +35,7 @@ type RegisteredService struct {
 	serviceId       string
 	token           string
 	state           state
-	bootstrapClient capnp.Client
+	bootstrapClient capnp_service_registry.ServiceToSpawner
 }
 
 type state int
@@ -92,7 +92,7 @@ func (sm *SpawnManager) messageHandlerLoop() {
 					case running:
 						found = true
 						req.answer <- &requestAnswer{
-							service: service.bootstrapClient,
+							service: &service.bootstrapClient,
 							err:     nil,
 						}
 					case awaitRegistration:
@@ -103,7 +103,7 @@ func (sm *SpawnManager) messageHandlerLoop() {
 						found = true
 						// service will never be available, return error
 						req.answer <- &requestAnswer{
-							service: capnp.ErrorClient(errors.New("service missconfigured")),
+							service: nil,
 							err:     errors.New("service missconfigured"),
 						}
 					}
@@ -119,7 +119,7 @@ func (sm *SpawnManager) messageHandlerLoop() {
 				if err != nil {
 					// missconfigured service
 					req.answer <- &requestAnswer{
-						service: capnp.ErrorClient(err),
+						service: nil,
 						err:     err,
 					}
 				} else {
@@ -134,12 +134,12 @@ func (sm *SpawnManager) messageHandlerLoop() {
 			if await, ok := sm.incommingRegistration[registration.serviceToken]; ok {
 				if await.service.state == awaitRegistration {
 					await.service.state = running
-					await.service.bootstrapClient = registration.bootstrapper
+					await.service.bootstrapClient = *registration.serviceCap
 
 					// notify awaiting requests
 					for _, req := range sm.reqWaitingForService[await.service.serviceId] {
 						req.answer <- &requestAnswer{
-							service: registration.bootstrapper,
+							service: registration.serviceCap,
 							err:     nil,
 						}
 					}
@@ -157,7 +157,7 @@ func (sm *SpawnManager) messageHandlerLoop() {
 					// notify awaiting requests, that the service is not available
 					for _, req := range sm.reqWaitingForService[await.service.serviceId] {
 						req.answer <- &requestAnswer{
-							service: capnp.ErrorClient(failReg.err),
+							service: nil,
 							err:     failReg.err,
 						}
 					}
@@ -240,7 +240,7 @@ func (sm *SpawnManager) addNewService(serviceId string, serviceConfig map[string
 }
 
 // RequestService returns a service by its id
-func (sm *SpawnManager) RequestService(serviceId string) (capnp.Client, error) {
+func (sm *SpawnManager) RequestService(serviceId string) (*capnp_service_registry.ServiceToSpawner, error) {
 	// get service from running services or await for registration
 	requestServiceMsg := &requestServiceMsg{
 		serviceId: serviceId,
@@ -251,7 +251,8 @@ func (sm *SpawnManager) RequestService(serviceId string) (capnp.Client, error) {
 	// if service is not started yet, this may hang for a while
 	answer := <-requestServiceMsg.answer
 	if answer.err != nil {
-		return capnp.ErrorClient(answer.err), answer.err
+
+		return nil, answer.err
 	}
 	return answer.service, nil
 }
@@ -286,12 +287,12 @@ func (sm *SpawnManager) listServices() []*serviceDescription {
 	return sm.serviceDescriptions
 }
 
-func (sm *SpawnManager) registerService(token string, service capnp.Client) {
+func (sm *SpawnManager) registerService(token string, service capnp_service_registry.ServiceToSpawner) {
 	// handle incomming registration requests from services
 	// send message to spawn manager
 	msg := &registerServiceMsg{
 		serviceToken: token,
-		bootstrapper: service,
+		serviceCap:   &service,
 	}
 	sm.registerServiceMsgC <- msg
 
@@ -369,13 +370,13 @@ type requestServiceMsg struct {
 }
 
 type requestAnswer struct {
-	service capnp.Client
+	service *capnp_service_registry.ServiceToSpawner
 	err     error
 }
 
 type registerServiceMsg struct {
 	serviceToken string
-	bootstrapper capnp.Client
+	serviceCap   *capnp_service_registry.ServiceToSpawner
 }
 
 type failRegisterServiceMsg struct {
