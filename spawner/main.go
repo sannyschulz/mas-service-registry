@@ -40,12 +40,11 @@ func main() {
 		log.Fatal(err)
 	}
 	spawnConfig := getSpawnServiceConfig(config)
+	// provide ServiceViewer and ServiceResolver capabilities
 	err = listenForRequests(NewSpawnManager(spawnConfig), config)
 	if err != nil {
 		log.Fatal(err)
 	}
-	// provide ServiceViewer and ServiceResolver capabilities
-
 }
 
 func listenForRequests(spM *SpawnManager, config *commonlib.Config) error {
