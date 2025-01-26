@@ -20,3 +20,5 @@ require (
 	golang.org/x/crypto v0.29.0 // indirect
 	golang.org/x/sync v0.9.0 // indirect
 )
+
+replace github.com/sannyschulz/mas-service-registry/capnp_service_registry => ../capnp_service_registry

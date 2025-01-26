@@ -4,6 +4,7 @@ go 1.23.3
 
 require (
 	capnproto.org/go/capnp/v3 v3.0.1-alpha.2
+	github.com/sannyschulz/mas-service-registry/capnp_service_registry v0.0.0-00010101000000-000000000000
 	github.com/zalf-rpm/mas-infrastructure/capnproto_schemas/gen/go/persistence v0.0.0-20250117170510-b66cc8c23d60
 	github.com/zalf-rpm/mas-infrastructure/src/go/commonlib v0.0.0-20250117170510-b66cc8c23d60
 )
@@ -18,3 +19,5 @@ require (
 	golang.org/x/crypto v0.6.0 // indirect
 	golang.org/x/sync v0.8.0 // indirect
 )
+
+replace github.com/sannyschulz/mas-service-registry/capnp_service_registry => ../capnp_service_registry
