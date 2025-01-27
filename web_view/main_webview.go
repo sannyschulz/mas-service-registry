@@ -50,6 +50,16 @@ func main() {
 	}
 	defer storageCap.Release()
 
+	// connect to storage service
+	userEditorSturdyRef := config.Data["UserEditor"].(string)
+
+	// establish a connection (retry 10 times, wait 1 second between retries)
+	userEditorCap, err := mgr.TryConnect(userEditorSturdyRef, 10, 1, true)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer userEditorCap.Release()
+
 	// connect to spawner service
 	serviceViewSturdyRef := config.Data["ServiceViewer"].(string)
 	// establish a connection (retry 10 times, wait 1 second between retries)
@@ -60,14 +70,14 @@ func main() {
 	defer serviceViewCap.Release()
 
 	// listen for requests from clients
-	err = listenForRequests(config, storageCap, serviceViewCap)
+	err = listenForRequests(config, storageCap, serviceViewCap, userEditorCap)
 
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
-func listenForRequests(config *commonlib.Config, storageCap, serviceViewCap *capnp.Client) error {
+func listenForRequests(config *commonlib.Config, storageCap, serviceViewCap, userEditorCap *capnp.Client) error {
 
 	host := config.Data["Service"].(map[string]interface{})["Host"].(string)
 	port := config.Data["Service"].(map[string]interface{})["Port"].(int)
@@ -75,7 +85,7 @@ func listenForRequests(config *commonlib.Config, storageCap, serviceViewCap *cap
 	restorer := commonlib.NewRestorer(host, uint16(port))
 
 	// TODO: implement web service viewer for user and admin
-	webViewAdmin := newWebViewAdmin(restorer, storageCap, serviceViewCap)
+	webViewAdmin := newWebViewAdmin(restorer, storageCap, serviceViewCap, userEditorCap)
 
 	webViewAdminSr, err := webViewAdmin.persistable.InitialSturdyRef()
 	if err != nil {
