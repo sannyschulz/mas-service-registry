@@ -11,31 +11,112 @@ import (
 
 // implement interface WebViewUser
 type webViewUser struct {
-	storedCap   capnp.Client
-	serviceView capnp.Client
-	userID      string
+	storageEditor    capnp_service_registry.StorageEditor
+	serviceView      capnp_service_registry.ServiceViewer
+	userID           string
+	loadedStrudyRefs []string
+	storeMsgChan     chan storeMsg
 }
 
-func newWebViewUser(storecap, viewerCap capnp.Client, userId string) *webViewUser {
+func newWebViewUser(storeEditorCap, viewerCap capnp.Client, userId string) *webViewUser {
 	wv := &webViewUser{
-		storedCap:   storecap,
-		serviceView: viewerCap,
-		userID:      userId,
+		storageEditor:    capnp_service_registry.StorageEditor(storeEditorCap),
+		serviceView:      capnp_service_registry.ServiceViewer(viewerCap),
+		userID:           userId,
+		loadedStrudyRefs: []string{},
 	}
+	go wv.webViewMessageLoop()
 	return wv
 }
 
-func webViewMessageLoop() {
+func (wv *webViewUser) webViewMessageLoop() {
 
 	for {
-		// do something
 		// handle store cap callbacks
-		// handle
+		select {
+		case storeMsg := <-wv.storeMsgChan:
+			wv.StoreSturdyRef(storeMsg)
+		}
 	}
 }
 
 // type WebViewUser_Server interface {
 func (wv *webViewUser) ListServices(ctx context.Context, call capnp_service_registry.WebViewUser_listServices) error {
+	fut, release := wv.serviceView.ListServices(ctx, func(sv capnp_service_registry.ServiceViewer_listServices_Params) error {
+		return nil
+	})
+	defer release()
+	result, err := fut.Struct()
+	if err != nil {
+		return err
+	}
+	if result.HasServices() {
+
+		// get services from serviceView
+		list, err := result.Services()
+		if err != nil {
+			return err
+		}
+		callResults, err := call.AllocResults()
+		if err != nil {
+			return err
+		}
+		listlen := list.Len()
+		serviceList, err := callResults.NewServices(int32(listlen))
+
+		if err != nil {
+			return err
+		}
+		for i := 0; i < list.Len(); i++ {
+			service := list.At(i)
+			if err != nil {
+				return err
+			}
+			ref, err := capnp_service_registry.NewServiceReference(serviceList.Segment())
+			if err != nil {
+				return err
+			}
+			serviceID, err := service.ServiceID()
+			if err != nil {
+				serviceID = "<unknown>"
+			}
+			serviceType, err := service.ServiceType()
+			if err != nil {
+				serviceType = "<unknown>"
+			}
+			serviceName, err := service.ServiceName()
+			if err != nil {
+				serviceName = "<unknown>"
+			}
+			serviceDescription, err := service.ServiceDescription()
+			if err != nil {
+				serviceDescription = "<unknown>"
+			}
+			err = ref.SetServiceID(serviceID)
+			if err != nil {
+				return nil
+			}
+			ref.SetServiceType(serviceType)
+			if err != nil {
+				return nil
+			}
+			ref.SetServiceName(serviceName)
+			if err != nil {
+				return nil
+			}
+			ref.SetServiceDescription(serviceDescription)
+			if err != nil {
+				return nil
+			}
+
+			err = serviceList.Set(i, ref)
+			if err != nil {
+				return nil
+			}
+		}
+		callResults.SetServices(serviceList)
+	}
+
 	return nil
 }
 
@@ -48,7 +129,52 @@ func (wv *webViewUser) RemoveSturdyRef(ctx context.Context, call capnp_service_r
 }
 
 func (wv *webViewUser) ListSturdyRefs(ctx context.Context, call capnp_service_registry.WebViewUser_listSturdyRefs) error {
+
 	return nil
+}
+
+type storeMsg struct {
+	sturdyRef string
+	payload   string
+	serviceId string
+	answer    chan error
+}
+
+func (wv *webViewUser) StoreSturdyRef(store storeMsg) {
+	// store message
+	sturdyRef := store.sturdyRef
+	payload := store.payload
+	serviceId := store.serviceId
+	// store sturdyRef in storage
+	fut, release := wv.storageEditor.AddSturdyRef(context.Background(), func(params capnp_service_registry.StorageEditor_addSturdyRef_Params) error {
+		storeSturdyRef, err := params.NewSturdyref()
+		err = storeSturdyRef.SetPayload(payload)
+		if err != nil {
+			return err
+		}
+		err = storeSturdyRef.SetSturdyRefID(sturdyRef)
+		if err != nil {
+			return err
+		}
+		err = storeSturdyRef.SetUsersignature(wv.userID)
+		if err != nil {
+			return err
+		}
+		err = storeSturdyRef.SetServiceID(serviceId)
+		params.SetSturdyref(storeSturdyRef)
+		return err
+	})
+	defer release()
+	_, err := fut.Struct()
+	if err != nil {
+		store.answer <- err
+	} else {
+		store.answer <- nil
+		// add to loadedSturdyRefs
+		wv.loadedStrudyRefs = append(wv.loadedStrudyRefs, sturdyRef)
+	}
+
+	return
 }
 
 // interface for capability forwarding handler (from commonlib)
