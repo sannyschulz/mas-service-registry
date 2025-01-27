@@ -7,30 +7,31 @@ import (
 
 	"capnproto.org/go/capnp/v3"
 	"github.com/sannyschulz/mas-service-registry/capnp_service_registry"
-	"github.com/zalf-rpm/mas-infrastructure/src/go/commonlib"
 )
 
 // implement interface WebViewUser
 type webViewUser struct {
-	storedCap   *capnp.Client
-	serviceView *capnp.Client
-	persistable *commonlib.Persistable
+	storedCap   capnp.Client
+	serviceView capnp.Client
 	userID      string
 }
 
-func newWebViewUser(restorer *commonlib.Restorer, storecap, viewerCap *capnp.Client, userId string) *webViewUser {
+func newWebViewUser(storecap, viewerCap capnp.Client, userId string) *webViewUser {
 	wv := &webViewUser{
-		persistable: commonlib.NewPersistable(restorer),
 		storedCap:   storecap,
 		serviceView: viewerCap,
 		userID:      userId,
 	}
-
-	restoreFunc := func() capnp.Client {
-		return capnp.Client(capnp_service_registry.WebViewUser_ServerToClient(wv))
-	}
-	wv.persistable.Cap = restoreFunc
 	return wv
+}
+
+func webViewMessageLoop() {
+
+	for {
+		// do something
+		// handle store cap callbacks
+		// handle
+	}
 }
 
 // type WebViewUser_Server interface {
@@ -39,10 +40,6 @@ func (wv *webViewUser) ListServices(ctx context.Context, call capnp_service_regi
 }
 
 func (wv *webViewUser) GetServiceView(ctx context.Context, call capnp_service_registry.WebViewUser_getServiceView) error {
-	return nil
-}
-
-func (wv *webViewUser) NewSturdyRef(ctx context.Context, call capnp_service_registry.WebViewUser_newSturdyRef) error {
 	return nil
 }
 
@@ -57,6 +54,38 @@ func (wv *webViewUser) ListSturdyRefs(ctx context.Context, call capnp_service_re
 // interface for capability forwarding handler (from commonlib)
 type restoreWebViewHandler struct {
 	userEditor capnp.Client
+	storedcap  capnp.Client
+	viewerCap  capnp.Client
+
+	loadedCaps map[string]*webViewUser
+	getCap     chan getCap
+}
+
+func newRestoreWebViewHandler(storecap, viewerCap, userEditor capnp.Client) *restoreWebViewHandler {
+	handler := &restoreWebViewHandler{
+		userEditor: userEditor,
+		storedcap:  storecap,
+		viewerCap:  viewerCap,
+		loadedCaps: make(map[string]*webViewUser),
+		getCap:     make(chan getCap),
+	}
+
+	// handle sturdyRef resolving
+	go func() {
+		for {
+			select {
+			case get := <-handler.getCap:
+				if _, ok := handler.loadedCaps[get.user]; !ok {
+					// create new webview user capability
+					wvU := newWebViewUser(handler.storedcap, handler.viewerCap, get.user)
+					handler.loadedCaps[get.user] = wvU
+				}
+				cap := capnp.Client(capnp_service_registry.WebViewUser_ServerToClient(handler.loadedCaps[get.user]))
+				get.answer <- cap
+			}
+		}
+	}()
+	return handler
 }
 
 // CanResolveSturdyRef checks if the SturdyRefToken exists in the storage
@@ -104,9 +133,14 @@ func (rh *restoreWebViewHandler) ResolveSturdyRef(srToken string) (capnp.Client,
 	}
 	fmt.Println("sturdyRef found in storage for user:", userID)
 	// TODO: make new capability to server as WebViewUser
-	// list sturdyrefs to the new capability
-	// add service list
-	// and capabilities to call views
+	capRestore := getCap{user: userID}
+	rh.getCap <- capRestore
+	cap := <-capRestore.answer
 
-	return capnp.ErrorClient(errors.New("not implemented")), err
+	return cap, err
+}
+
+type getCap struct {
+	user   string
+	answer chan capnp.Client
 }

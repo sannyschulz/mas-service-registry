@@ -16,11 +16,12 @@ type webViewAdmin struct {
 	persistable *commonlib.Persistable
 }
 
-func newWebViewAdmin(restorer *commonlib.Restorer, storecap, viewerCap *capnp.Client) *webViewAdmin {
+func newWebViewAdmin(restorer *commonlib.Restorer, storecap, viewerCap, userEditorCap *capnp.Client) *webViewAdmin {
 	wv := &webViewAdmin{
 		persistable: commonlib.NewPersistable(restorer),
 		storedCap:   storecap,
 		serviceView: viewerCap,
+		userEditor:  userEditorCap,
 	}
 
 	restoreFunc := func() capnp.Client {
@@ -36,10 +37,6 @@ func (wv *webViewAdmin) ListServices(ctx context.Context, call capnp_service_reg
 }
 
 func (wv *webViewAdmin) GetServiceView(ctx context.Context, call capnp_service_registry.WebViewAdmin_getServiceView) error {
-	return nil
-}
-
-func (wv *webViewAdmin) NewSturdyRef(ctx context.Context, call capnp_service_registry.WebViewAdmin_newSturdyRef) error {
 	return nil
 }
 
