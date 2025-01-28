@@ -38,24 +38,19 @@ interface WebViewUser {
     removeSturdyRef @2 (sturdyRef :Text) -> ();
     # list user sturdyRefs
     listSturdyRefs @3 () -> (sturdyRefs :List(SturdyRefUserView));
-
 }
 
 interface WebViewAdmin {
 
-    # list all services
-    listServices @0 (serviceType :Text) -> (services :List(ServiceReference));
-    # get a service view by id, it is up to the service to define its view 
-    getServiceView @1 (serviceID :Text) -> (serviceView :Capability);
     # remove a sturdyRef from user
-    removeSturdyRef @2 (usersignature :Text, sturdyRef :Text) -> ();
+    removeSturdyRef @0 (usersignature :Text, sturdyRef :Text) -> ();
     # list all sturdyRefs 
     # if userFilter is empty, list all
-    listAllSturdyRefs @3 (userFilter :List(Text)) -> (sturdyRefs :List(SturdyRefAdminView));
+    listAllSturdyRefs @1 (userFilter :List(Text)) -> (sturdyRefs :List(SturdyRefAdminView));
 
     # get a new user for the webview, with a signature, if the user usersignature is empty, it will be created
     # the Idea is that the admin will create the capability for the user
     # if the user already exists, it should return the stored WebViewUser Capability
-    newWebViewUser @4 (usersignature :Text) -> (webViewUser :WebViewUser);
+    newWebViewUser @2 (usersignature :Text) -> (webViewUser :WebViewUser);
 }
 

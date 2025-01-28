@@ -9,6 +9,7 @@ struct SturdyRefStored {
   serviceID @1 :Text;
   payload @2 :Text;
   usersignature @3 :Text; # TODO: rename, it is the userId, use signature for the sturdyRef owner signature
+  payloaDescription @4 :Text; # (optional) a payload description for the user to understand the stored service
 }
 
 # interface to add a sturyref to the registry
@@ -16,9 +17,8 @@ interface StorageEditor {
 
   addSturdyRef @0 (sturdyref :SturdyRefStored) -> ();
   getSturdyRef @1 (sturdyRefID :Text) -> (sturdyref :SturdyRefStored);
-  listSturdyRefsForUser @2 (usersignature :Text) -> (sturdyrefs :List(SturdyRefStored));
-  listAllSturdyRefs @3 () -> (sturdyrefs :List(SturdyRefStored));
-  deleteSturdyRef @4 (sturdyRefID :Text) -> ();
+  listSturdyRefs @2 (usersignature :Text) -> (sturdyrefs :List(SturdyRefStored));
+  deleteSturdyRef @3 (sturdyRefID :Text) -> ();
 }
 
 interface StorageReader {

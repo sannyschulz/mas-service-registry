@@ -1374,52 +1374,12 @@ type WebViewAdmin capnp.Client
 // WebViewAdmin_TypeID is the unique identifier for the type WebViewAdmin.
 const WebViewAdmin_TypeID = 0xf5578b838b5fb688
 
-func (c WebViewAdmin) ListServices(ctx context.Context, params func(WebViewAdmin_listServices_Params) error) (WebViewAdmin_listServices_Results_Future, capnp.ReleaseFunc) {
-
-	s := capnp.Send{
-		Method: capnp.Method{
-			InterfaceID:   0xf5578b838b5fb688,
-			MethodID:      0,
-			InterfaceName: "webview.capnp:WebViewAdmin",
-			MethodName:    "listServices",
-		},
-	}
-	if params != nil {
-		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 1}
-		s.PlaceArgs = func(s capnp.Struct) error { return params(WebViewAdmin_listServices_Params(s)) }
-	}
-
-	ans, release := capnp.Client(c).SendCall(ctx, s)
-	return WebViewAdmin_listServices_Results_Future{Future: ans.Future()}, release
-
-}
-
-func (c WebViewAdmin) GetServiceView(ctx context.Context, params func(WebViewAdmin_getServiceView_Params) error) (WebViewAdmin_getServiceView_Results_Future, capnp.ReleaseFunc) {
-
-	s := capnp.Send{
-		Method: capnp.Method{
-			InterfaceID:   0xf5578b838b5fb688,
-			MethodID:      1,
-			InterfaceName: "webview.capnp:WebViewAdmin",
-			MethodName:    "getServiceView",
-		},
-	}
-	if params != nil {
-		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 1}
-		s.PlaceArgs = func(s capnp.Struct) error { return params(WebViewAdmin_getServiceView_Params(s)) }
-	}
-
-	ans, release := capnp.Client(c).SendCall(ctx, s)
-	return WebViewAdmin_getServiceView_Results_Future{Future: ans.Future()}, release
-
-}
-
 func (c WebViewAdmin) RemoveSturdyRef(ctx context.Context, params func(WebViewAdmin_removeSturdyRef_Params) error) (WebViewAdmin_removeSturdyRef_Results_Future, capnp.ReleaseFunc) {
 
 	s := capnp.Send{
 		Method: capnp.Method{
 			InterfaceID:   0xf5578b838b5fb688,
-			MethodID:      2,
+			MethodID:      0,
 			InterfaceName: "webview.capnp:WebViewAdmin",
 			MethodName:    "removeSturdyRef",
 		},
@@ -1439,7 +1399,7 @@ func (c WebViewAdmin) ListAllSturdyRefs(ctx context.Context, params func(WebView
 	s := capnp.Send{
 		Method: capnp.Method{
 			InterfaceID:   0xf5578b838b5fb688,
-			MethodID:      3,
+			MethodID:      1,
 			InterfaceName: "webview.capnp:WebViewAdmin",
 			MethodName:    "listAllSturdyRefs",
 		},
@@ -1459,7 +1419,7 @@ func (c WebViewAdmin) NewWebViewUser(ctx context.Context, params func(WebViewAdm
 	s := capnp.Send{
 		Method: capnp.Method{
 			InterfaceID:   0xf5578b838b5fb688,
-			MethodID:      4,
+			MethodID:      2,
 			InterfaceName: "webview.capnp:WebViewAdmin",
 			MethodName:    "newWebViewUser",
 		},
@@ -1547,10 +1507,6 @@ func (c WebViewAdmin) GetFlowLimiter() fc.FlowLimiter {
 
 // A WebViewAdmin_Server is a WebViewAdmin with a local implementation.
 type WebViewAdmin_Server interface {
-	ListServices(context.Context, WebViewAdmin_listServices) error
-
-	GetServiceView(context.Context, WebViewAdmin_getServiceView) error
-
 	RemoveSturdyRef(context.Context, WebViewAdmin_removeSturdyRef) error
 
 	ListAllSturdyRefs(context.Context, WebViewAdmin_listAllSturdyRefs) error
@@ -1574,37 +1530,13 @@ func WebViewAdmin_ServerToClient(s WebViewAdmin_Server) WebViewAdmin {
 // This can be used to create a more complicated Server.
 func WebViewAdmin_Methods(methods []server.Method, s WebViewAdmin_Server) []server.Method {
 	if cap(methods) == 0 {
-		methods = make([]server.Method, 0, 5)
+		methods = make([]server.Method, 0, 3)
 	}
 
 	methods = append(methods, server.Method{
 		Method: capnp.Method{
 			InterfaceID:   0xf5578b838b5fb688,
 			MethodID:      0,
-			InterfaceName: "webview.capnp:WebViewAdmin",
-			MethodName:    "listServices",
-		},
-		Impl: func(ctx context.Context, call *server.Call) error {
-			return s.ListServices(ctx, WebViewAdmin_listServices{call})
-		},
-	})
-
-	methods = append(methods, server.Method{
-		Method: capnp.Method{
-			InterfaceID:   0xf5578b838b5fb688,
-			MethodID:      1,
-			InterfaceName: "webview.capnp:WebViewAdmin",
-			MethodName:    "getServiceView",
-		},
-		Impl: func(ctx context.Context, call *server.Call) error {
-			return s.GetServiceView(ctx, WebViewAdmin_getServiceView{call})
-		},
-	})
-
-	methods = append(methods, server.Method{
-		Method: capnp.Method{
-			InterfaceID:   0xf5578b838b5fb688,
-			MethodID:      2,
 			InterfaceName: "webview.capnp:WebViewAdmin",
 			MethodName:    "removeSturdyRef",
 		},
@@ -1616,7 +1548,7 @@ func WebViewAdmin_Methods(methods []server.Method, s WebViewAdmin_Server) []serv
 	methods = append(methods, server.Method{
 		Method: capnp.Method{
 			InterfaceID:   0xf5578b838b5fb688,
-			MethodID:      3,
+			MethodID:      1,
 			InterfaceName: "webview.capnp:WebViewAdmin",
 			MethodName:    "listAllSturdyRefs",
 		},
@@ -1628,7 +1560,7 @@ func WebViewAdmin_Methods(methods []server.Method, s WebViewAdmin_Server) []serv
 	methods = append(methods, server.Method{
 		Method: capnp.Method{
 			InterfaceID:   0xf5578b838b5fb688,
-			MethodID:      4,
+			MethodID:      2,
 			InterfaceName: "webview.capnp:WebViewAdmin",
 			MethodName:    "newWebViewUser",
 		},
@@ -1638,40 +1570,6 @@ func WebViewAdmin_Methods(methods []server.Method, s WebViewAdmin_Server) []serv
 	})
 
 	return methods
-}
-
-// WebViewAdmin_listServices holds the state for a server call to WebViewAdmin.listServices.
-// See server.Call for documentation.
-type WebViewAdmin_listServices struct {
-	*server.Call
-}
-
-// Args returns the call's arguments.
-func (c WebViewAdmin_listServices) Args() WebViewAdmin_listServices_Params {
-	return WebViewAdmin_listServices_Params(c.Call.Args())
-}
-
-// AllocResults allocates the results struct.
-func (c WebViewAdmin_listServices) AllocResults() (WebViewAdmin_listServices_Results, error) {
-	r, err := c.Call.AllocResults(capnp.ObjectSize{DataSize: 0, PointerCount: 1})
-	return WebViewAdmin_listServices_Results(r), err
-}
-
-// WebViewAdmin_getServiceView holds the state for a server call to WebViewAdmin.getServiceView.
-// See server.Call for documentation.
-type WebViewAdmin_getServiceView struct {
-	*server.Call
-}
-
-// Args returns the call's arguments.
-func (c WebViewAdmin_getServiceView) Args() WebViewAdmin_getServiceView_Params {
-	return WebViewAdmin_getServiceView_Params(c.Call.Args())
-}
-
-// AllocResults allocates the results struct.
-func (c WebViewAdmin_getServiceView) AllocResults() (WebViewAdmin_getServiceView_Results, error) {
-	r, err := c.Call.AllocResults(capnp.ObjectSize{DataSize: 0, PointerCount: 1})
-	return WebViewAdmin_getServiceView_Results(r), err
 }
 
 // WebViewAdmin_removeSturdyRef holds the state for a server call to WebViewAdmin.removeSturdyRef.
@@ -1734,347 +1632,10 @@ func NewWebViewAdmin_List(s *capnp.Segment, sz int32) (WebViewAdmin_List, error)
 	return capnp.CapList[WebViewAdmin](l), err
 }
 
-type WebViewAdmin_listServices_Params capnp.Struct
-
-// WebViewAdmin_listServices_Params_TypeID is the unique identifier for the type WebViewAdmin_listServices_Params.
-const WebViewAdmin_listServices_Params_TypeID = 0x909369c308818d9a
-
-func NewWebViewAdmin_listServices_Params(s *capnp.Segment) (WebViewAdmin_listServices_Params, error) {
-	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
-	return WebViewAdmin_listServices_Params(st), err
-}
-
-func NewRootWebViewAdmin_listServices_Params(s *capnp.Segment) (WebViewAdmin_listServices_Params, error) {
-	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
-	return WebViewAdmin_listServices_Params(st), err
-}
-
-func ReadRootWebViewAdmin_listServices_Params(msg *capnp.Message) (WebViewAdmin_listServices_Params, error) {
-	root, err := msg.Root()
-	return WebViewAdmin_listServices_Params(root.Struct()), err
-}
-
-func (s WebViewAdmin_listServices_Params) String() string {
-	str, _ := text.Marshal(0x909369c308818d9a, capnp.Struct(s))
-	return str
-}
-
-func (s WebViewAdmin_listServices_Params) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
-	return capnp.Struct(s).EncodeAsPtr(seg)
-}
-
-func (WebViewAdmin_listServices_Params) DecodeFromPtr(p capnp.Ptr) WebViewAdmin_listServices_Params {
-	return WebViewAdmin_listServices_Params(capnp.Struct{}.DecodeFromPtr(p))
-}
-
-func (s WebViewAdmin_listServices_Params) ToPtr() capnp.Ptr {
-	return capnp.Struct(s).ToPtr()
-}
-func (s WebViewAdmin_listServices_Params) IsValid() bool {
-	return capnp.Struct(s).IsValid()
-}
-
-func (s WebViewAdmin_listServices_Params) Message() *capnp.Message {
-	return capnp.Struct(s).Message()
-}
-
-func (s WebViewAdmin_listServices_Params) Segment() *capnp.Segment {
-	return capnp.Struct(s).Segment()
-}
-func (s WebViewAdmin_listServices_Params) ServiceType() (string, error) {
-	p, err := capnp.Struct(s).Ptr(0)
-	return p.Text(), err
-}
-
-func (s WebViewAdmin_listServices_Params) HasServiceType() bool {
-	return capnp.Struct(s).HasPtr(0)
-}
-
-func (s WebViewAdmin_listServices_Params) ServiceTypeBytes() ([]byte, error) {
-	p, err := capnp.Struct(s).Ptr(0)
-	return p.TextBytes(), err
-}
-
-func (s WebViewAdmin_listServices_Params) SetServiceType(v string) error {
-	return capnp.Struct(s).SetText(0, v)
-}
-
-// WebViewAdmin_listServices_Params_List is a list of WebViewAdmin_listServices_Params.
-type WebViewAdmin_listServices_Params_List = capnp.StructList[WebViewAdmin_listServices_Params]
-
-// NewWebViewAdmin_listServices_Params creates a new list of WebViewAdmin_listServices_Params.
-func NewWebViewAdmin_listServices_Params_List(s *capnp.Segment, sz int32) (WebViewAdmin_listServices_Params_List, error) {
-	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
-	return capnp.StructList[WebViewAdmin_listServices_Params](l), err
-}
-
-// WebViewAdmin_listServices_Params_Future is a wrapper for a WebViewAdmin_listServices_Params promised by a client call.
-type WebViewAdmin_listServices_Params_Future struct{ *capnp.Future }
-
-func (f WebViewAdmin_listServices_Params_Future) Struct() (WebViewAdmin_listServices_Params, error) {
-	p, err := f.Future.Ptr()
-	return WebViewAdmin_listServices_Params(p.Struct()), err
-}
-
-type WebViewAdmin_listServices_Results capnp.Struct
-
-// WebViewAdmin_listServices_Results_TypeID is the unique identifier for the type WebViewAdmin_listServices_Results.
-const WebViewAdmin_listServices_Results_TypeID = 0xbda5ea8939dad29b
-
-func NewWebViewAdmin_listServices_Results(s *capnp.Segment) (WebViewAdmin_listServices_Results, error) {
-	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
-	return WebViewAdmin_listServices_Results(st), err
-}
-
-func NewRootWebViewAdmin_listServices_Results(s *capnp.Segment) (WebViewAdmin_listServices_Results, error) {
-	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
-	return WebViewAdmin_listServices_Results(st), err
-}
-
-func ReadRootWebViewAdmin_listServices_Results(msg *capnp.Message) (WebViewAdmin_listServices_Results, error) {
-	root, err := msg.Root()
-	return WebViewAdmin_listServices_Results(root.Struct()), err
-}
-
-func (s WebViewAdmin_listServices_Results) String() string {
-	str, _ := text.Marshal(0xbda5ea8939dad29b, capnp.Struct(s))
-	return str
-}
-
-func (s WebViewAdmin_listServices_Results) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
-	return capnp.Struct(s).EncodeAsPtr(seg)
-}
-
-func (WebViewAdmin_listServices_Results) DecodeFromPtr(p capnp.Ptr) WebViewAdmin_listServices_Results {
-	return WebViewAdmin_listServices_Results(capnp.Struct{}.DecodeFromPtr(p))
-}
-
-func (s WebViewAdmin_listServices_Results) ToPtr() capnp.Ptr {
-	return capnp.Struct(s).ToPtr()
-}
-func (s WebViewAdmin_listServices_Results) IsValid() bool {
-	return capnp.Struct(s).IsValid()
-}
-
-func (s WebViewAdmin_listServices_Results) Message() *capnp.Message {
-	return capnp.Struct(s).Message()
-}
-
-func (s WebViewAdmin_listServices_Results) Segment() *capnp.Segment {
-	return capnp.Struct(s).Segment()
-}
-func (s WebViewAdmin_listServices_Results) Services() (ServiceReference_List, error) {
-	p, err := capnp.Struct(s).Ptr(0)
-	return ServiceReference_List(p.List()), err
-}
-
-func (s WebViewAdmin_listServices_Results) HasServices() bool {
-	return capnp.Struct(s).HasPtr(0)
-}
-
-func (s WebViewAdmin_listServices_Results) SetServices(v ServiceReference_List) error {
-	return capnp.Struct(s).SetPtr(0, v.ToPtr())
-}
-
-// NewServices sets the services field to a newly
-// allocated ServiceReference_List, preferring placement in s's segment.
-func (s WebViewAdmin_listServices_Results) NewServices(n int32) (ServiceReference_List, error) {
-	l, err := NewServiceReference_List(capnp.Struct(s).Segment(), n)
-	if err != nil {
-		return ServiceReference_List{}, err
-	}
-	err = capnp.Struct(s).SetPtr(0, l.ToPtr())
-	return l, err
-}
-
-// WebViewAdmin_listServices_Results_List is a list of WebViewAdmin_listServices_Results.
-type WebViewAdmin_listServices_Results_List = capnp.StructList[WebViewAdmin_listServices_Results]
-
-// NewWebViewAdmin_listServices_Results creates a new list of WebViewAdmin_listServices_Results.
-func NewWebViewAdmin_listServices_Results_List(s *capnp.Segment, sz int32) (WebViewAdmin_listServices_Results_List, error) {
-	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
-	return capnp.StructList[WebViewAdmin_listServices_Results](l), err
-}
-
-// WebViewAdmin_listServices_Results_Future is a wrapper for a WebViewAdmin_listServices_Results promised by a client call.
-type WebViewAdmin_listServices_Results_Future struct{ *capnp.Future }
-
-func (f WebViewAdmin_listServices_Results_Future) Struct() (WebViewAdmin_listServices_Results, error) {
-	p, err := f.Future.Ptr()
-	return WebViewAdmin_listServices_Results(p.Struct()), err
-}
-
-type WebViewAdmin_getServiceView_Params capnp.Struct
-
-// WebViewAdmin_getServiceView_Params_TypeID is the unique identifier for the type WebViewAdmin_getServiceView_Params.
-const WebViewAdmin_getServiceView_Params_TypeID = 0x8160512bffab76e7
-
-func NewWebViewAdmin_getServiceView_Params(s *capnp.Segment) (WebViewAdmin_getServiceView_Params, error) {
-	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
-	return WebViewAdmin_getServiceView_Params(st), err
-}
-
-func NewRootWebViewAdmin_getServiceView_Params(s *capnp.Segment) (WebViewAdmin_getServiceView_Params, error) {
-	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
-	return WebViewAdmin_getServiceView_Params(st), err
-}
-
-func ReadRootWebViewAdmin_getServiceView_Params(msg *capnp.Message) (WebViewAdmin_getServiceView_Params, error) {
-	root, err := msg.Root()
-	return WebViewAdmin_getServiceView_Params(root.Struct()), err
-}
-
-func (s WebViewAdmin_getServiceView_Params) String() string {
-	str, _ := text.Marshal(0x8160512bffab76e7, capnp.Struct(s))
-	return str
-}
-
-func (s WebViewAdmin_getServiceView_Params) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
-	return capnp.Struct(s).EncodeAsPtr(seg)
-}
-
-func (WebViewAdmin_getServiceView_Params) DecodeFromPtr(p capnp.Ptr) WebViewAdmin_getServiceView_Params {
-	return WebViewAdmin_getServiceView_Params(capnp.Struct{}.DecodeFromPtr(p))
-}
-
-func (s WebViewAdmin_getServiceView_Params) ToPtr() capnp.Ptr {
-	return capnp.Struct(s).ToPtr()
-}
-func (s WebViewAdmin_getServiceView_Params) IsValid() bool {
-	return capnp.Struct(s).IsValid()
-}
-
-func (s WebViewAdmin_getServiceView_Params) Message() *capnp.Message {
-	return capnp.Struct(s).Message()
-}
-
-func (s WebViewAdmin_getServiceView_Params) Segment() *capnp.Segment {
-	return capnp.Struct(s).Segment()
-}
-func (s WebViewAdmin_getServiceView_Params) ServiceID() (string, error) {
-	p, err := capnp.Struct(s).Ptr(0)
-	return p.Text(), err
-}
-
-func (s WebViewAdmin_getServiceView_Params) HasServiceID() bool {
-	return capnp.Struct(s).HasPtr(0)
-}
-
-func (s WebViewAdmin_getServiceView_Params) ServiceIDBytes() ([]byte, error) {
-	p, err := capnp.Struct(s).Ptr(0)
-	return p.TextBytes(), err
-}
-
-func (s WebViewAdmin_getServiceView_Params) SetServiceID(v string) error {
-	return capnp.Struct(s).SetText(0, v)
-}
-
-// WebViewAdmin_getServiceView_Params_List is a list of WebViewAdmin_getServiceView_Params.
-type WebViewAdmin_getServiceView_Params_List = capnp.StructList[WebViewAdmin_getServiceView_Params]
-
-// NewWebViewAdmin_getServiceView_Params creates a new list of WebViewAdmin_getServiceView_Params.
-func NewWebViewAdmin_getServiceView_Params_List(s *capnp.Segment, sz int32) (WebViewAdmin_getServiceView_Params_List, error) {
-	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
-	return capnp.StructList[WebViewAdmin_getServiceView_Params](l), err
-}
-
-// WebViewAdmin_getServiceView_Params_Future is a wrapper for a WebViewAdmin_getServiceView_Params promised by a client call.
-type WebViewAdmin_getServiceView_Params_Future struct{ *capnp.Future }
-
-func (f WebViewAdmin_getServiceView_Params_Future) Struct() (WebViewAdmin_getServiceView_Params, error) {
-	p, err := f.Future.Ptr()
-	return WebViewAdmin_getServiceView_Params(p.Struct()), err
-}
-
-type WebViewAdmin_getServiceView_Results capnp.Struct
-
-// WebViewAdmin_getServiceView_Results_TypeID is the unique identifier for the type WebViewAdmin_getServiceView_Results.
-const WebViewAdmin_getServiceView_Results_TypeID = 0xb8af12b424211b4d
-
-func NewWebViewAdmin_getServiceView_Results(s *capnp.Segment) (WebViewAdmin_getServiceView_Results, error) {
-	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
-	return WebViewAdmin_getServiceView_Results(st), err
-}
-
-func NewRootWebViewAdmin_getServiceView_Results(s *capnp.Segment) (WebViewAdmin_getServiceView_Results, error) {
-	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
-	return WebViewAdmin_getServiceView_Results(st), err
-}
-
-func ReadRootWebViewAdmin_getServiceView_Results(msg *capnp.Message) (WebViewAdmin_getServiceView_Results, error) {
-	root, err := msg.Root()
-	return WebViewAdmin_getServiceView_Results(root.Struct()), err
-}
-
-func (s WebViewAdmin_getServiceView_Results) String() string {
-	str, _ := text.Marshal(0xb8af12b424211b4d, capnp.Struct(s))
-	return str
-}
-
-func (s WebViewAdmin_getServiceView_Results) EncodeAsPtr(seg *capnp.Segment) capnp.Ptr {
-	return capnp.Struct(s).EncodeAsPtr(seg)
-}
-
-func (WebViewAdmin_getServiceView_Results) DecodeFromPtr(p capnp.Ptr) WebViewAdmin_getServiceView_Results {
-	return WebViewAdmin_getServiceView_Results(capnp.Struct{}.DecodeFromPtr(p))
-}
-
-func (s WebViewAdmin_getServiceView_Results) ToPtr() capnp.Ptr {
-	return capnp.Struct(s).ToPtr()
-}
-func (s WebViewAdmin_getServiceView_Results) IsValid() bool {
-	return capnp.Struct(s).IsValid()
-}
-
-func (s WebViewAdmin_getServiceView_Results) Message() *capnp.Message {
-	return capnp.Struct(s).Message()
-}
-
-func (s WebViewAdmin_getServiceView_Results) Segment() *capnp.Segment {
-	return capnp.Struct(s).Segment()
-}
-func (s WebViewAdmin_getServiceView_Results) ServiceView() capnp.Client {
-	p, _ := capnp.Struct(s).Ptr(0)
-	return p.Interface().Client()
-}
-
-func (s WebViewAdmin_getServiceView_Results) HasServiceView() bool {
-	return capnp.Struct(s).HasPtr(0)
-}
-
-func (s WebViewAdmin_getServiceView_Results) SetServiceView(c capnp.Client) error {
-	if !c.IsValid() {
-		return capnp.Struct(s).SetPtr(0, capnp.Ptr{})
-	}
-	seg := s.Segment()
-	in := capnp.NewInterface(seg, seg.Message().CapTable().Add(c))
-	return capnp.Struct(s).SetPtr(0, in.ToPtr())
-}
-
-// WebViewAdmin_getServiceView_Results_List is a list of WebViewAdmin_getServiceView_Results.
-type WebViewAdmin_getServiceView_Results_List = capnp.StructList[WebViewAdmin_getServiceView_Results]
-
-// NewWebViewAdmin_getServiceView_Results creates a new list of WebViewAdmin_getServiceView_Results.
-func NewWebViewAdmin_getServiceView_Results_List(s *capnp.Segment, sz int32) (WebViewAdmin_getServiceView_Results_List, error) {
-	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
-	return capnp.StructList[WebViewAdmin_getServiceView_Results](l), err
-}
-
-// WebViewAdmin_getServiceView_Results_Future is a wrapper for a WebViewAdmin_getServiceView_Results promised by a client call.
-type WebViewAdmin_getServiceView_Results_Future struct{ *capnp.Future }
-
-func (f WebViewAdmin_getServiceView_Results_Future) Struct() (WebViewAdmin_getServiceView_Results, error) {
-	p, err := f.Future.Ptr()
-	return WebViewAdmin_getServiceView_Results(p.Struct()), err
-}
-func (p WebViewAdmin_getServiceView_Results_Future) ServiceView() capnp.Client {
-	return p.Future.Field(0, nil).Client()
-}
-
 type WebViewAdmin_removeSturdyRef_Params capnp.Struct
 
 // WebViewAdmin_removeSturdyRef_Params_TypeID is the unique identifier for the type WebViewAdmin_removeSturdyRef_Params.
-const WebViewAdmin_removeSturdyRef_Params_TypeID = 0xcc40dc7cc7c948d6
+const WebViewAdmin_removeSturdyRef_Params_TypeID = 0x909369c308818d9a
 
 func NewWebViewAdmin_removeSturdyRef_Params(s *capnp.Segment) (WebViewAdmin_removeSturdyRef_Params, error) {
 	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2})
@@ -2092,7 +1653,7 @@ func ReadRootWebViewAdmin_removeSturdyRef_Params(msg *capnp.Message) (WebViewAdm
 }
 
 func (s WebViewAdmin_removeSturdyRef_Params) String() string {
-	str, _ := text.Marshal(0xcc40dc7cc7c948d6, capnp.Struct(s))
+	str, _ := text.Marshal(0x909369c308818d9a, capnp.Struct(s))
 	return str
 }
 
@@ -2174,7 +1735,7 @@ func (f WebViewAdmin_removeSturdyRef_Params_Future) Struct() (WebViewAdmin_remov
 type WebViewAdmin_removeSturdyRef_Results capnp.Struct
 
 // WebViewAdmin_removeSturdyRef_Results_TypeID is the unique identifier for the type WebViewAdmin_removeSturdyRef_Results.
-const WebViewAdmin_removeSturdyRef_Results_TypeID = 0xe738c734c0705648
+const WebViewAdmin_removeSturdyRef_Results_TypeID = 0xbda5ea8939dad29b
 
 func NewWebViewAdmin_removeSturdyRef_Results(s *capnp.Segment) (WebViewAdmin_removeSturdyRef_Results, error) {
 	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 0})
@@ -2192,7 +1753,7 @@ func ReadRootWebViewAdmin_removeSturdyRef_Results(msg *capnp.Message) (WebViewAd
 }
 
 func (s WebViewAdmin_removeSturdyRef_Results) String() string {
-	str, _ := text.Marshal(0xe738c734c0705648, capnp.Struct(s))
+	str, _ := text.Marshal(0xbda5ea8939dad29b, capnp.Struct(s))
 	return str
 }
 
@@ -2239,7 +1800,7 @@ func (f WebViewAdmin_removeSturdyRef_Results_Future) Struct() (WebViewAdmin_remo
 type WebViewAdmin_listAllSturdyRefs_Params capnp.Struct
 
 // WebViewAdmin_listAllSturdyRefs_Params_TypeID is the unique identifier for the type WebViewAdmin_listAllSturdyRefs_Params.
-const WebViewAdmin_listAllSturdyRefs_Params_TypeID = 0xa677dc98cf738d70
+const WebViewAdmin_listAllSturdyRefs_Params_TypeID = 0x8160512bffab76e7
 
 func NewWebViewAdmin_listAllSturdyRefs_Params(s *capnp.Segment) (WebViewAdmin_listAllSturdyRefs_Params, error) {
 	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
@@ -2257,7 +1818,7 @@ func ReadRootWebViewAdmin_listAllSturdyRefs_Params(msg *capnp.Message) (WebViewA
 }
 
 func (s WebViewAdmin_listAllSturdyRefs_Params) String() string {
-	str, _ := text.Marshal(0xa677dc98cf738d70, capnp.Struct(s))
+	str, _ := text.Marshal(0x8160512bffab76e7, capnp.Struct(s))
 	return str
 }
 
@@ -2327,7 +1888,7 @@ func (f WebViewAdmin_listAllSturdyRefs_Params_Future) Struct() (WebViewAdmin_lis
 type WebViewAdmin_listAllSturdyRefs_Results capnp.Struct
 
 // WebViewAdmin_listAllSturdyRefs_Results_TypeID is the unique identifier for the type WebViewAdmin_listAllSturdyRefs_Results.
-const WebViewAdmin_listAllSturdyRefs_Results_TypeID = 0xa13debdf96f982b3
+const WebViewAdmin_listAllSturdyRefs_Results_TypeID = 0xb8af12b424211b4d
 
 func NewWebViewAdmin_listAllSturdyRefs_Results(s *capnp.Segment) (WebViewAdmin_listAllSturdyRefs_Results, error) {
 	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
@@ -2345,7 +1906,7 @@ func ReadRootWebViewAdmin_listAllSturdyRefs_Results(msg *capnp.Message) (WebView
 }
 
 func (s WebViewAdmin_listAllSturdyRefs_Results) String() string {
-	str, _ := text.Marshal(0xa13debdf96f982b3, capnp.Struct(s))
+	str, _ := text.Marshal(0xb8af12b424211b4d, capnp.Struct(s))
 	return str
 }
 
@@ -2415,7 +1976,7 @@ func (f WebViewAdmin_listAllSturdyRefs_Results_Future) Struct() (WebViewAdmin_li
 type WebViewAdmin_newWebViewUser_Params capnp.Struct
 
 // WebViewAdmin_newWebViewUser_Params_TypeID is the unique identifier for the type WebViewAdmin_newWebViewUser_Params.
-const WebViewAdmin_newWebViewUser_Params_TypeID = 0x90795cbcf037983e
+const WebViewAdmin_newWebViewUser_Params_TypeID = 0xcc40dc7cc7c948d6
 
 func NewWebViewAdmin_newWebViewUser_Params(s *capnp.Segment) (WebViewAdmin_newWebViewUser_Params, error) {
 	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
@@ -2433,7 +1994,7 @@ func ReadRootWebViewAdmin_newWebViewUser_Params(msg *capnp.Message) (WebViewAdmi
 }
 
 func (s WebViewAdmin_newWebViewUser_Params) String() string {
-	str, _ := text.Marshal(0x90795cbcf037983e, capnp.Struct(s))
+	str, _ := text.Marshal(0xcc40dc7cc7c948d6, capnp.Struct(s))
 	return str
 }
 
@@ -2497,7 +2058,7 @@ func (f WebViewAdmin_newWebViewUser_Params_Future) Struct() (WebViewAdmin_newWeb
 type WebViewAdmin_newWebViewUser_Results capnp.Struct
 
 // WebViewAdmin_newWebViewUser_Results_TypeID is the unique identifier for the type WebViewAdmin_newWebViewUser_Results.
-const WebViewAdmin_newWebViewUser_Results_TypeID = 0xcfbee9287de720b0
+const WebViewAdmin_newWebViewUser_Results_TypeID = 0xe738c734c0705648
 
 func NewWebViewAdmin_newWebViewUser_Results(s *capnp.Segment) (WebViewAdmin_newWebViewUser_Results, error) {
 	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
@@ -2515,7 +2076,7 @@ func ReadRootWebViewAdmin_newWebViewUser_Results(msg *capnp.Message) (WebViewAdm
 }
 
 func (s WebViewAdmin_newWebViewUser_Results) String() string {
-	str, _ := text.Marshal(0xcfbee9287de720b0, capnp.Struct(s))
+	str, _ := text.Marshal(0xe738c734c0705648, capnp.Struct(s))
 	return str
 }
 

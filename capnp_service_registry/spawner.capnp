@@ -49,5 +49,5 @@ interface ServiceToSpawner {
 interface SaveCallback {
     # the payload describes a way the live capability can be restored in this specific service
     # save shall store the payload in the storage service
-    save @0 (payload :Text) -> ();
+    save @0 (payload :Text, desc :Text) -> ();
 }

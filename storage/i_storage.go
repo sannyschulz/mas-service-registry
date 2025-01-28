@@ -14,7 +14,7 @@ import (
 )
 
 // listen for requests from clients
-func listenForRequests(request chan dbRequest, respond chan dbResponse, config *commonlib.Config) error {
+func listenForRequests(request chan *dbRequest, config *commonlib.Config) error {
 	// accept incoming connections
 	host := config.Data["Service"].(map[string]interface{})["Host"].(string)
 	port := config.Data["Service"].(map[string]interface{})["Port"].(int)
@@ -27,8 +27,8 @@ func listenForRequests(request chan dbRequest, respond chan dbResponse, config *
 	}
 	defer listener.Close()
 
-	storeEd := newStorageEditor(restorer, request, respond)
-	storeRead := newStorageReader(restorer, request, respond)
+	storeEd := newStorageEditor(restorer, request)
+	storeRead := newStorageReader(restorer, request)
 	initialSturdyRef, err := storeEd.initialSturdyRef()
 	if err != nil {
 		return err
@@ -80,9 +80,8 @@ func serve(conn net.Conn, boot capnp.Client, errChan chan error, msgChan chan st
 // implement StorageEditor and StorageReader interfaces
 
 // create a new storageEditor
-func newStorageEditor(restorer *commonlib.Restorer, request chan dbRequest, respond chan dbResponse) *storageEditor {
+func newStorageEditor(restorer *commonlib.Restorer, request chan *dbRequest) *storageEditor {
 	storage := &storageEditor{
-		dbResponse:  respond,
 		dbRequest:   request,
 		persistable: commonlib.NewPersistable(restorer),
 	}
@@ -94,9 +93,8 @@ func newStorageEditor(restorer *commonlib.Restorer, request chan dbRequest, resp
 }
 
 // create a new storageReader
-func newStorageReader(restorer *commonlib.Restorer, request chan dbRequest, respond chan dbResponse) *storageReader {
+func newStorageReader(restorer *commonlib.Restorer, request chan *dbRequest) *storageReader {
 	storage := &storageReader{
-		dbResponse:  respond,
 		dbRequest:   request,
 		persistable: commonlib.NewPersistable(restorer),
 	}
@@ -121,8 +119,7 @@ func (es *storageEditor) initialSturdyRef() (*commonlib.SturdyRef, error) {
 
 // implement the StorageEditor and StorageReader interfaces
 type storageEditor struct {
-	dbResponse  chan dbResponse
-	dbRequest   chan dbRequest
+	dbRequest   chan *dbRequest
 	persistable *commonlib.Persistable
 }
 
@@ -150,15 +147,17 @@ func (s *storageEditor) AddSturdyRef(ctx context.Context, call capnp_service_reg
 	}
 	// TODO: check if input is valid
 
-	s.dbRequest <- dbRequest{
+	request := &dbRequest{
 		requestType:  addSturdyRefRequest,
 		sturdyRef:    sturdyRefId,
 		serviceId:    seriveId,
 		payload:      payload,
 		authToken:    authToken,
-		responseChan: s.dbResponse,
+		responseChan: make(chan dbResponse),
 	}
-	response := <-s.dbResponse
+	s.dbRequest <- request
+
+	response := <-request.responseChan
 
 	if response.err != nil {
 		return response.err
@@ -175,12 +174,13 @@ func (s *storageEditor) GetSturdyRef(ctx context.Context, call capnp_service_reg
 	if len(sturdyRefId) == 0 {
 		return fmt.Errorf("sturdyRefId is empty")
 	}
-	s.dbRequest <- dbRequest{
+	request := &dbRequest{
 		requestType:  getSturdyRefRequest,
 		sturdyRef:    sturdyRefId,
-		responseChan: s.dbResponse,
+		responseChan: make(chan dbResponse),
 	}
-	response := <-s.dbResponse
+	s.dbRequest <- request
+	response := <-request.responseChan
 	if response.err != nil {
 		return response.err
 	}
@@ -212,21 +212,27 @@ func (s *storageEditor) GetSturdyRef(ctx context.Context, call capnp_service_reg
 
 	return nil
 }
-func (s *storageEditor) ListSturdyRefsForUser(ctx context.Context, call capnp_service_registry.StorageEditor_listSturdyRefsForUser) error {
+func (s *storageEditor) ListSturdyRefs(ctx context.Context, call capnp_service_registry.StorageEditor_listSturdyRefs) error {
 
-	userSignature, err := call.Args().Usersignature()
-	if err != nil {
-		return err
+	var userSignature string
+
+	request := &dbRequest{
+		responseChan: make(chan dbResponse),
 	}
-	if len(userSignature) == 0 {
-		return fmt.Errorf("userSignature is empty")
+	var err error
+	if call.Args().HasUsersignature() {
+
+		userSignature, err = call.Args().Usersignature()
+		if err != nil {
+			return err
+		}
+		request.requestType = listSturdyRefsByAuthTokenRequest
+		request.authToken = userSignature
+	} else {
+		request.requestType = listSturdyRefsRequest
 	}
-	s.dbRequest <- dbRequest{
-		requestType:  listSturdyRefsByAuthTokenRequest,
-		authToken:    userSignature,
-		responseChan: s.dbResponse,
-	}
-	response := <-s.dbResponse
+	s.dbRequest <- request
+	response := <-request.responseChan
 	if response.err != nil {
 		return response.err
 	}
@@ -239,58 +245,6 @@ func (s *storageEditor) ListSturdyRefsForUser(ctx context.Context, call capnp_se
 		return nil
 	}
 
-	sturdyRefs, err := result.NewSturdyrefs(int32(len(response.sturdyRefs)))
-	if err != nil {
-		return err
-	}
-	for i, sref := range response.sturdyRefs {
-		sturdyRefStored, err := capnp_service_registry.NewSturdyRefStored(sturdyRefs.Segment())
-		if err != nil {
-			return err
-		}
-		err = sturdyRefStored.SetPayload(sref.payload)
-		if err != nil {
-			return err
-		}
-		err = sturdyRefStored.SetServiceID(sref.serviceId)
-		if err != nil {
-			return err
-		}
-		err = sturdyRefStored.SetSturdyRefID(sref.sturdyRef)
-		if err != nil {
-			return err
-		}
-		err = sturdyRefStored.SetUsersignature(sref.authToken)
-		if err != nil {
-			return err
-		}
-		err = sturdyRefs.Set(i, sturdyRefStored)
-		if err != nil {
-			return err
-		}
-	}
-
-	return nil
-}
-func (s *storageEditor) ListAllSturdyRefs(ctx context.Context, call capnp_service_registry.StorageEditor_listAllSturdyRefs) error {
-
-	s.dbRequest <- dbRequest{
-		requestType:  listSturdyRefsRequest,
-		responseChan: s.dbResponse,
-	}
-	response := <-s.dbResponse
-	if response.err != nil {
-		return response.err
-	}
-
-	result, err := call.AllocResults()
-	if err != nil {
-		return err
-	}
-	// return if no sturdyRefs are found
-	if len(response.sturdyRefs) == 0 {
-		return nil
-	}
 	sturdyRefs, err := result.NewSturdyrefs(int32(len(response.sturdyRefs)))
 	if err != nil {
 		return err
@@ -334,12 +288,13 @@ func (s *storageEditor) DeleteSturdyRef(ctx context.Context, call capnp_service_
 	if len(sturdyRefId) == 0 {
 		return fmt.Errorf("sturdyRefId is empty")
 	}
-	s.dbRequest <- dbRequest{
+	request := &dbRequest{
 		requestType:  deleteSturdyRefRequest,
 		sturdyRef:    sturdyRefId,
-		responseChan: s.dbResponse,
+		responseChan: make(chan dbResponse),
 	}
-	response := <-s.dbResponse
+	s.dbRequest <- request
+	response := <-request.responseChan
 	if response.err != nil {
 		return response.err
 	}
@@ -348,8 +303,7 @@ func (s *storageEditor) DeleteSturdyRef(ctx context.Context, call capnp_service_
 }
 
 type storageReader struct {
-	dbResponse  chan dbResponse
-	dbRequest   chan dbRequest
+	dbRequest   chan *dbRequest
 	persistable *commonlib.Persistable
 }
 

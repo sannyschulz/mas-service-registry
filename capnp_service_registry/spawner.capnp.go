@@ -2047,7 +2047,7 @@ func (c SaveCallback) Save(ctx context.Context, params func(SaveCallback_save_Pa
 		},
 	}
 	if params != nil {
-		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 1}
+		s.ArgsSize = capnp.ObjectSize{DataSize: 0, PointerCount: 2}
 		s.PlaceArgs = func(s capnp.Struct) error { return params(SaveCallback_save_Params(s)) }
 	}
 
@@ -2198,12 +2198,12 @@ type SaveCallback_save_Params capnp.Struct
 const SaveCallback_save_Params_TypeID = 0xbae82bafe65fda09
 
 func NewSaveCallback_save_Params(s *capnp.Segment) (SaveCallback_save_Params, error) {
-	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	st, err := capnp.NewStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2})
 	return SaveCallback_save_Params(st), err
 }
 
 func NewRootSaveCallback_save_Params(s *capnp.Segment) (SaveCallback_save_Params, error) {
-	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1})
+	st, err := capnp.NewRootStruct(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2})
 	return SaveCallback_save_Params(st), err
 }
 
@@ -2257,12 +2257,30 @@ func (s SaveCallback_save_Params) SetPayload(v string) error {
 	return capnp.Struct(s).SetText(0, v)
 }
 
+func (s SaveCallback_save_Params) Desc() (string, error) {
+	p, err := capnp.Struct(s).Ptr(1)
+	return p.Text(), err
+}
+
+func (s SaveCallback_save_Params) HasDesc() bool {
+	return capnp.Struct(s).HasPtr(1)
+}
+
+func (s SaveCallback_save_Params) DescBytes() ([]byte, error) {
+	p, err := capnp.Struct(s).Ptr(1)
+	return p.TextBytes(), err
+}
+
+func (s SaveCallback_save_Params) SetDesc(v string) error {
+	return capnp.Struct(s).SetText(1, v)
+}
+
 // SaveCallback_save_Params_List is a list of SaveCallback_save_Params.
 type SaveCallback_save_Params_List = capnp.StructList[SaveCallback_save_Params]
 
 // NewSaveCallback_save_Params creates a new list of SaveCallback_save_Params.
 func NewSaveCallback_save_Params_List(s *capnp.Segment, sz int32) (SaveCallback_save_Params_List, error) {
-	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 1}, sz)
+	l, err := capnp.NewCompositeList(s, capnp.ObjectSize{DataSize: 0, PointerCount: 2}, sz)
 	return capnp.StructList[SaveCallback_save_Params](l), err
 }
 

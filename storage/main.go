@@ -61,19 +61,16 @@ func main() {
 	}
 
 	// create a channel for db requests
-	requestChan := make(chan dbRequest)
+	requestChan := make(chan *dbRequest)
 	go dbRequestScheduler(db, requestChan)
 
-	// create a channel for db responses
-	responseChan := make(chan dbResponse)
-
 	// listen to incoming requests
-	listenForRequests(requestChan, responseChan, config)
+	listenForRequests(requestChan, config)
 
 }
 
 // db request sheduler
-func dbRequestScheduler(db *sql.DB, requestChan <-chan dbRequest) {
+func dbRequestScheduler(db *sql.DB, requestChan <-chan *dbRequest) {
 	for request := range requestChan {
 		switch request.requestType {
 		case addSturdyRefRequest:
